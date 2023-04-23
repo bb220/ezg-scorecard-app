@@ -1,0 +1,1545 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0ABD3A15297D7A6700B2DF26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A14297D7A6700B2DF26 /* AppDelegate.swift */; };
+		0ABD3A17297D7A6700B2DF26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A16297D7A6700B2DF26 /* SceneDelegate.swift */; };
+		0ABD3A19297D7A6700B2DF26 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A18297D7A6700B2DF26 /* MainController.swift */; };
+		0ABD3A1C297D7A6700B2DF26 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A1A297D7A6700B2DF26 /* Authentication.storyboard */; };
+		0ABD3A1E297D7A6800B2DF26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A1D297D7A6800B2DF26 /* Assets.xcassets */; };
+		0ABD3A21297D7A6800B2DF26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A1F297D7A6800B2DF26 /* LaunchScreen.storyboard */; };
+		0ABD3A40297D7C4800B2DF26 /* Rubik-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A32297D7C4600B2DF26 /* Rubik-Black.ttf */; };
+		0ABD3A41297D7C4800B2DF26 /* Rubik-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A33297D7C4700B2DF26 /* Rubik-Italic.ttf */; };
+		0ABD3A42297D7C4800B2DF26 /* Rubik-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A34297D7C4700B2DF26 /* Rubik-MediumItalic.ttf */; };
+		0ABD3A43297D7C4800B2DF26 /* Rubik-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A35297D7C4700B2DF26 /* Rubik-ExtraBold.ttf */; };
+		0ABD3A44297D7C4800B2DF26 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A36297D7C4700B2DF26 /* Rubik-Medium.ttf */; };
+		0ABD3A45297D7C4800B2DF26 /* Rubik-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A37297D7C4700B2DF26 /* Rubik-ExtraBoldItalic.ttf */; };
+		0ABD3A46297D7C4800B2DF26 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A38297D7C4700B2DF26 /* Rubik-Regular.ttf */; };
+		0ABD3A47297D7C4800B2DF26 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A39297D7C4700B2DF26 /* Rubik-SemiBold.ttf */; };
+		0ABD3A48297D7C4800B2DF26 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A3A297D7C4700B2DF26 /* Rubik-Light.ttf */; };
+		0ABD3A49297D7C4800B2DF26 /* Rubik-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A3B297D7C4700B2DF26 /* Rubik-Bold.ttf */; };
+		0ABD3A4A297D7C4800B2DF26 /* Rubik-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A3C297D7C4700B2DF26 /* Rubik-LightItalic.ttf */; };
+		0ABD3A4B297D7C4800B2DF26 /* Rubik-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A3D297D7C4700B2DF26 /* Rubik-BoldItalic.ttf */; };
+		0ABD3A4C297D7C4800B2DF26 /* Rubik-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A3E297D7C4700B2DF26 /* Rubik-SemiBoldItalic.ttf */; };
+		0ABD3A4D297D7C4800B2DF26 /* Rubik-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A3F297D7C4800B2DF26 /* Rubik-BlackItalic.ttf */; };
+		0ABD3A4F297D7F1A00B2DF26 /* Theme.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A4E297D7F1A00B2DF26 /* Theme.xcassets */; };
+		0ABD3A52297D808000B2DF26 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A51297D808000B2DF26 /* LoginController.swift */; };
+		0ABD3A57297D80B800B2DF26 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A53297D80B800B2DF26 /* Utility.swift */; };
+		0ABD3A58297D80B800B2DF26 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A54297D80B800B2DF26 /* Extensions.swift */; };
+		0ABD3A5A297D80B800B2DF26 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A56297D80B800B2DF26 /* Global.swift */; };
+		0ABD3A5F297D810300B2DF26 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A5B297D810200B2DF26 /* NetworkService.swift */; };
+		0ABD3A60297D810300B2DF26 /* ServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A5C297D810300B2DF26 /* ServerResponse.swift */; };
+		0ABD3A61297D810300B2DF26 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A5D297D810300B2DF26 /* NetworkManager.swift */; };
+		0ABD3A62297D810300B2DF26 /* ResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A5E297D810300B2DF26 /* ResponseHandler.swift */; };
+		0ABD3A64297D812900B2DF26 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A63297D812900B2DF26 /* User.swift */; };
+		0ABD3A66297D816800B2DF26 /* ServerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A65297D816800B2DF26 /* ServerError.swift */; };
+		0ABD3A68297D81F900B2DF26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABD3A67297D81F900B2DF26 /* Main.storyboard */; };
+		0ABD3A6A297D823400B2DF26 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A69297D823400B2DF26 /* LoginViewModel.swift */; };
+		0ABD3A6F297D871100B2DF26 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A6D297D86C700B2DF26 /* RegisterController.swift */; };
+		0ABD3A70297D871500B2DF26 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ABD3A6E297D86CA00B2DF26 /* RegisterViewModel.swift */; };
+		159ECBD293C6290F76FFF3E6 /* Pods_EzgWatchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 096A4440A91CB978D4B48F83 /* Pods_EzgWatchTests.framework */; };
+		6AD6FC6F59B8F3CEE16A79E0 /* Pods_EzgWatch_EzgWatchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 476ADBF5970BF71087236630 /* Pods_EzgWatch_EzgWatchUITests.framework */; };
+		83E997C5E52194B33786F92E /* Pods_EzgWatch_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533C5959C641FC2F68A8EE67 /* Pods_EzgWatch_WatchKit_Extension.framework */; };
+		8872AEF829B5B56C007AB444 /* LoginContrroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872AEF729B5B56C007AB444 /* LoginContrroller.swift */; };
+		8872AEFC29B5C10D007AB444 /* FinishRoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872AEFB29B5C10D007AB444 /* FinishRoundController.swift */; };
+		8873B56529E4146300826B18 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8873B56429E4146300826B18 /* Model.swift */; };
+		88B1228229BAF0230031F4BF /* RoundsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1228129BAF0230031F4BF /* RoundsTVCell.swift */; };
+		88B1228429BAFB100031F4BF /* ScorecardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1228329BAFB0F0031F4BF /* ScorecardViewController.swift */; };
+		88B1228629BAFB520031F4BF /* HoleTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1228529BAFB520031F4BF /* HoleTVCell.swift */; };
+		88B1228D29BB39E00031F4BF /* GetRoundList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1228A29BB39E00031F4BF /* GetRoundList.swift */; };
+		88B1228E29BB39E00031F4BF /* RoundData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1228B29BB39E00031F4BF /* RoundData.swift */; };
+		88B1228F29BB39E00031F4BF /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1228C29BB39E00031F4BF /* UserData.swift */; };
+		88B1229529BB46BF0031F4BF /* HoleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1229129BB46BE0031F4BF /* HoleData.swift */; };
+		88B1229629BB46BF0031F4BF /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1229229BB46BE0031F4BF /* Round.swift */; };
+		88B1229729BB46BF0031F4BF /* GetHoleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1229329BB46BF0031F4BF /* GetHoleList.swift */; };
+		88B44F8029C0487000F2D11C /* GetRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B44F7F29C0487000F2D11C /* GetRound.swift */; };
+		88B44F8229C0489500F2D11C /* RoundIdData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B44F8129C0489500F2D11C /* RoundIdData.swift */; };
+		91763922AFB0147825B8CF99 /* Pods_EzgWatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F29C530E4A251B82D5B83086 /* Pods_EzgWatch.framework */; };
+		BD7C54A329B486E1001AF531 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD7C54A129B486E1001AF531 /* Interface.storyboard */; };
+		BD7C54A529B486E3001AF531 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD7C54A429B486E3001AF531 /* Assets.xcassets */; };
+		BD7C54AB29B486E3001AF531 /* EzgWatch WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = BD7C54AA29B486E3001AF531 /* EzgWatch WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BD7C54B029B486E3001AF531 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7C54AF29B486E3001AF531 /* InterfaceController.swift */; };
+		BD7C54B229B486E3001AF531 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7C54B129B486E3001AF531 /* ExtensionDelegate.swift */; };
+		BD7C54B429B486E3001AF531 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7C54B329B486E3001AF531 /* NotificationController.swift */; };
+		BD7C54B629B486E3001AF531 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7C54B529B486E3001AF531 /* ComplicationController.swift */; };
+		BD7C54B829B486E4001AF531 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD7C54B729B486E4001AF531 /* Assets.xcassets */; };
+		BD7C54C429B486E4001AF531 /* EzgWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7C54C329B486E4001AF531 /* EzgWatchTests.swift */; };
+		BD7C54CE29B486E4001AF531 /* EzgWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7C54CD29B486E4001AF531 /* EzgWatchUITests.swift */; };
+		BD7C54D029B486E4001AF531 /* EzgWatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7C54CF29B486E4001AF531 /* EzgWatchUITestsLaunchTests.swift */; };
+		BD7C54D329B486E4001AF531 /* EzgWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BD7C549F29B486E1001AF531 /* EzgWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F02DB9313187A0FE6F9BB167 /* Pods_EzgIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F8B27691994E1F986109EA5 /* Pods_EzgIOS.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		88EDF4C629CD7D64003AC1F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABD3A09297D7A6700B2DF26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0ABD3A10297D7A6700B2DF26;
+			remoteInfo = EzgIOS;
+		};
+		BD7C54AC29B486E3001AF531 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABD3A09297D7A6700B2DF26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BD7C54A929B486E3001AF531;
+			remoteInfo = "EzgWatch WatchKit Extension";
+		};
+		BD7C54C029B486E4001AF531 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABD3A09297D7A6700B2DF26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BD7C54A929B486E3001AF531;
+			remoteInfo = "EzgWatch WatchKit Extension";
+		};
+		BD7C54CA29B486E4001AF531 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABD3A09297D7A6700B2DF26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BD7C549E29B486E1001AF531;
+			remoteInfo = EzgWatch;
+		};
+		BD7C54D129B486E4001AF531 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0ABD3A09297D7A6700B2DF26 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BD7C549E29B486E1001AF531;
+			remoteInfo = EzgWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BD7C54D429B486E4001AF531 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				BD7C54D329B486E4001AF531 /* EzgWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD7C54D729B486E4001AF531 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				BD7C54AB29B486E3001AF531 /* EzgWatch WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		096A4440A91CB978D4B48F83 /* Pods_EzgWatchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EzgWatchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A19A692BA5C3DBE3647F4D2 /* Pods-EzgWatchTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatchTests.release.xcconfig"; path = "Target Support Files/Pods-EzgWatchTests/Pods-EzgWatchTests.release.xcconfig"; sourceTree = "<group>"; };
+		0ABD3A11297D7A6700B2DF26 /* Ezg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ezg.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0ABD3A14297D7A6700B2DF26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0ABD3A16297D7A6700B2DF26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		0ABD3A18297D7A6700B2DF26 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		0ABD3A1B297D7A6700B2DF26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Authentication.storyboard; sourceTree = "<group>"; };
+		0ABD3A1D297D7A6800B2DF26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0ABD3A20297D7A6800B2DF26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0ABD3A22297D7A6800B2DF26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0ABD3A32297D7C4600B2DF26 /* Rubik-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Black.ttf"; sourceTree = "<group>"; };
+		0ABD3A33297D7C4700B2DF26 /* Rubik-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Italic.ttf"; sourceTree = "<group>"; };
+		0ABD3A34297D7C4700B2DF26 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
+		0ABD3A35297D7C4700B2DF26 /* Rubik-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-ExtraBold.ttf"; sourceTree = "<group>"; };
+		0ABD3A36297D7C4700B2DF26 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		0ABD3A37297D7C4700B2DF26 /* Rubik-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		0ABD3A38297D7C4700B2DF26 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
+		0ABD3A39297D7C4700B2DF26 /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-SemiBold.ttf"; sourceTree = "<group>"; };
+		0ABD3A3A297D7C4700B2DF26 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
+		0ABD3A3B297D7C4700B2DF26 /* Rubik-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Bold.ttf"; sourceTree = "<group>"; };
+		0ABD3A3C297D7C4700B2DF26 /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
+		0ABD3A3D297D7C4700B2DF26 /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
+		0ABD3A3E297D7C4700B2DF26 /* Rubik-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		0ABD3A3F297D7C4800B2DF26 /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
+		0ABD3A4E297D7F1A00B2DF26 /* Theme.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Theme.xcassets; sourceTree = "<group>"; };
+		0ABD3A51297D808000B2DF26 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		0ABD3A53297D80B800B2DF26 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		0ABD3A54297D80B800B2DF26 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		0ABD3A56297D80B800B2DF26 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		0ABD3A5B297D810200B2DF26 /* NetworkService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		0ABD3A5C297D810300B2DF26 /* ServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerResponse.swift; sourceTree = "<group>"; };
+		0ABD3A5D297D810300B2DF26 /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0ABD3A5E297D810300B2DF26 /* ResponseHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHandler.swift; sourceTree = "<group>"; };
+		0ABD3A63297D812900B2DF26 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0ABD3A65297D816800B2DF26 /* ServerError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerError.swift; sourceTree = "<group>"; };
+		0ABD3A67297D81F900B2DF26 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		0ABD3A69297D823400B2DF26 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		0ABD3A6D297D86C700B2DF26 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		0ABD3A6E297D86CA00B2DF26 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		19AFBF1E181A3BDD3C02B1DA /* Pods-EzgWatch WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatch WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-EzgWatch WatchKit Extension/Pods-EzgWatch WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		316E9FBC4CED137B542CBCC5 /* Pods-EzgWatch-EzgWatchUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatch-EzgWatchUITests.debug.xcconfig"; path = "Target Support Files/Pods-EzgWatch-EzgWatchUITests/Pods-EzgWatch-EzgWatchUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		38DAE86174452E431795C9FE /* Pods-EzgIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgIOS.debug.xcconfig"; path = "Target Support Files/Pods-EzgIOS/Pods-EzgIOS.debug.xcconfig"; sourceTree = "<group>"; };
+		476ADBF5970BF71087236630 /* Pods_EzgWatch_EzgWatchUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EzgWatch_EzgWatchUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		533C5959C641FC2F68A8EE67 /* Pods_EzgWatch_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EzgWatch_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		539EC651D9B32017CE9B74BD /* Pods-EzgWatch-EzgWatchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatch-EzgWatchUITests.release.xcconfig"; path = "Target Support Files/Pods-EzgWatch-EzgWatchUITests/Pods-EzgWatch-EzgWatchUITests.release.xcconfig"; sourceTree = "<group>"; };
+		80DAFCC253A6A3911835A3B7 /* Pods-EzgWatchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatchTests.debug.xcconfig"; path = "Target Support Files/Pods-EzgWatchTests/Pods-EzgWatchTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8872AEF729B5B56C007AB444 /* LoginContrroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContrroller.swift; sourceTree = "<group>"; };
+		8872AEFB29B5C10D007AB444 /* FinishRoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRoundController.swift; sourceTree = "<group>"; };
+		8873B56429E4146300826B18 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		88A37D1129B31221008EA902 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
+		88B1228129BAF0230031F4BF /* RoundsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundsTVCell.swift; sourceTree = "<group>"; };
+		88B1228329BAFB0F0031F4BF /* ScorecardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorecardViewController.swift; sourceTree = "<group>"; };
+		88B1228529BAFB520031F4BF /* HoleTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleTVCell.swift; sourceTree = "<group>"; };
+		88B1228A29BB39E00031F4BF /* GetRoundList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRoundList.swift; sourceTree = "<group>"; };
+		88B1228B29BB39E00031F4BF /* RoundData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundData.swift; sourceTree = "<group>"; };
+		88B1228C29BB39E00031F4BF /* UserData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		88B1229129BB46BE0031F4BF /* HoleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoleData.swift; sourceTree = "<group>"; };
+		88B1229229BB46BE0031F4BF /* Round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
+		88B1229329BB46BF0031F4BF /* GetHoleList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetHoleList.swift; sourceTree = "<group>"; };
+		88B44F7F29C0487000F2D11C /* GetRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRound.swift; sourceTree = "<group>"; };
+		88B44F8129C0489500F2D11C /* RoundIdData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundIdData.swift; sourceTree = "<group>"; };
+		8DC8E48379FAD7D3C240D6CE /* Pods-EzgIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgIOS.release.xcconfig"; path = "Target Support Files/Pods-EzgIOS/Pods-EzgIOS.release.xcconfig"; sourceTree = "<group>"; };
+		9F8B27691994E1F986109EA5 /* Pods_EzgIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EzgIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD38369FA6388539D28BD213 /* Pods-EzgWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatch.debug.xcconfig"; path = "Target Support Files/Pods-EzgWatch/Pods-EzgWatch.debug.xcconfig"; sourceTree = "<group>"; };
+		BD7C549F29B486E1001AF531 /* EzgWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EzgWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD7C54A229B486E1001AF531 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		BD7C54A429B486E3001AF531 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BD7C54AA29B486E3001AF531 /* EzgWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "EzgWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD7C54AF29B486E3001AF531 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		BD7C54B129B486E3001AF531 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		BD7C54B329B486E3001AF531 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		BD7C54B529B486E3001AF531 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		BD7C54B729B486E4001AF531 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BD7C54B929B486E4001AF531 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD7C54BA29B486E4001AF531 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		BD7C54BF29B486E4001AF531 /* EzgWatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EzgWatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD7C54C329B486E4001AF531 /* EzgWatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EzgWatchTests.swift; sourceTree = "<group>"; };
+		BD7C54C929B486E4001AF531 /* EzgWatchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EzgWatchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD7C54CD29B486E4001AF531 /* EzgWatchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EzgWatchUITests.swift; sourceTree = "<group>"; };
+		BD7C54CF29B486E4001AF531 /* EzgWatchUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EzgWatchUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CA9CE14F0760D0DCE3D6FEDB /* Pods-EzgWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatch.release.xcconfig"; path = "Target Support Files/Pods-EzgWatch/Pods-EzgWatch.release.xcconfig"; sourceTree = "<group>"; };
+		F0967A447A8FAA5B996F686E /* Pods-EzgWatch WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatch WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-EzgWatch WatchKit Extension/Pods-EzgWatch WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
+		F29C530E4A251B82D5B83086 /* Pods_EzgWatch.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EzgWatch.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0ABD3A0E297D7A6700B2DF26 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F02DB9313187A0FE6F9BB167 /* Pods_EzgIOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6F9B6519E8E3D5FE3FF56B72 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91763922AFB0147825B8CF99 /* Pods_EzgWatch.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD7C54A729B486E3001AF531 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83E997C5E52194B33786F92E /* Pods_EzgWatch_WatchKit_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD7C54BC29B486E4001AF531 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				159ECBD293C6290F76FFF3E6 /* Pods_EzgWatchTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD7C54C629B486E4001AF531 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6AD6FC6F59B8F3CEE16A79E0 /* Pods_EzgWatch_EzgWatchUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0ABD3A08297D7A6700B2DF26 = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A13297D7A6700B2DF26 /* EzgIOS */,
+				BD7C54A029B486E1001AF531 /* EzgWatch */,
+				BD7C54AE29B486E3001AF531 /* EzgWatch WatchKit Extension */,
+				BD7C54C229B486E4001AF531 /* EzgWatchTests */,
+				BD7C54CC29B486E4001AF531 /* EzgWatchUITests */,
+				0ABD3A12297D7A6700B2DF26 /* Products */,
+				3537DE44DAFD9B2337F1EF4C /* Pods */,
+				60330B0D579356C5E6835354 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0ABD3A12297D7A6700B2DF26 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A11297D7A6700B2DF26 /* Ezg.app */,
+				BD7C549F29B486E1001AF531 /* EzgWatch.app */,
+				BD7C54AA29B486E3001AF531 /* EzgWatch WatchKit Extension.appex */,
+				BD7C54BF29B486E4001AF531 /* EzgWatchTests.xctest */,
+				BD7C54C929B486E4001AF531 /* EzgWatchUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0ABD3A13297D7A6700B2DF26 /* EzgIOS */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A31297D7AD100B2DF26 /* Localization */,
+				0ABD3A30297D7AC700B2DF26 /* Delegates */,
+				0ABD3A2F297D7AC300B2DF26 /* Helpers */,
+				0ABD3A2E297D7ABE00B2DF26 /* Network */,
+				0ABD3A2D297D7AB800B2DF26 /* Storyboards */,
+				885C38F529CC3BEE00C3BE6B /* Cell */,
+				0ABD3A2C297D7AB300B2DF26 /* View Controllers */,
+				0ABD3A2B297D7AAE00B2DF26 /* Models */,
+				0ABD3A2A297D7AA900B2DF26 /* Resources */,
+				0ABD3A29297D7AA000B2DF26 /* Supporting Files */,
+				0ABD3A28297D7A9800B2DF26 /* Fonts */,
+			);
+			path = EzgIOS;
+			sourceTree = "<group>";
+		};
+		0ABD3A28297D7A9800B2DF26 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A32297D7C4600B2DF26 /* Rubik-Black.ttf */,
+				0ABD3A3F297D7C4800B2DF26 /* Rubik-BlackItalic.ttf */,
+				0ABD3A3B297D7C4700B2DF26 /* Rubik-Bold.ttf */,
+				0ABD3A3D297D7C4700B2DF26 /* Rubik-BoldItalic.ttf */,
+				0ABD3A35297D7C4700B2DF26 /* Rubik-ExtraBold.ttf */,
+				0ABD3A37297D7C4700B2DF26 /* Rubik-ExtraBoldItalic.ttf */,
+				0ABD3A33297D7C4700B2DF26 /* Rubik-Italic.ttf */,
+				0ABD3A3A297D7C4700B2DF26 /* Rubik-Light.ttf */,
+				0ABD3A3C297D7C4700B2DF26 /* Rubik-LightItalic.ttf */,
+				0ABD3A36297D7C4700B2DF26 /* Rubik-Medium.ttf */,
+				0ABD3A34297D7C4700B2DF26 /* Rubik-MediumItalic.ttf */,
+				0ABD3A38297D7C4700B2DF26 /* Rubik-Regular.ttf */,
+				0ABD3A39297D7C4700B2DF26 /* Rubik-SemiBold.ttf */,
+				0ABD3A3E297D7C4700B2DF26 /* Rubik-SemiBoldItalic.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		0ABD3A29297D7AA000B2DF26 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A22297D7A6800B2DF26 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0ABD3A2A297D7AA900B2DF26 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A4E297D7F1A00B2DF26 /* Theme.xcassets */,
+				0ABD3A1D297D7A6800B2DF26 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0ABD3A2B297D7AAE00B2DF26 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				885C38F429CC3BBB00C3BE6B /* Register */,
+				885C38F329CC3BA100C3BE6B /* Login */,
+				0ABD3A63297D812900B2DF26 /* User.swift */,
+				0ABD3A65297D816800B2DF26 /* ServerError.swift */,
+				88B1228C29BB39E00031F4BF /* UserData.swift */,
+				88B1228929BB39CB0031F4BF /* RoundListModel */,
+				88B1229029BB46860031F4BF /* HoleListModel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0ABD3A2C297D7AB300B2DF26 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A6B297D831E00B2DF26 /* Main */,
+				8883A53E29C196F900151C2C /* Scorecard */,
+				0ABD3A50297D807400B2DF26 /* Login */,
+				0ABD3A6C297D86B900B2DF26 /* Register */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		0ABD3A2D297D7AB800B2DF26 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A1F297D7A6800B2DF26 /* LaunchScreen.storyboard */,
+				0ABD3A1A297D7A6700B2DF26 /* Authentication.storyboard */,
+				0ABD3A67297D81F900B2DF26 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		0ABD3A2E297D7ABE00B2DF26 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A5D297D810300B2DF26 /* NetworkManager.swift */,
+				0ABD3A5B297D810200B2DF26 /* NetworkService.swift */,
+				0ABD3A5E297D810300B2DF26 /* ResponseHandler.swift */,
+				0ABD3A5C297D810300B2DF26 /* ServerResponse.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		0ABD3A2F297D7AC300B2DF26 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A54297D80B800B2DF26 /* Extensions.swift */,
+				0ABD3A56297D80B800B2DF26 /* Global.swift */,
+				0ABD3A53297D80B800B2DF26 /* Utility.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		0ABD3A30297D7AC700B2DF26 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A14297D7A6700B2DF26 /* AppDelegate.swift */,
+				0ABD3A16297D7A6700B2DF26 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		0ABD3A31297D7AD100B2DF26 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		0ABD3A50297D807400B2DF26 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A51297D808000B2DF26 /* LoginController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0ABD3A6B297D831E00B2DF26 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A18297D7A6700B2DF26 /* MainController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		0ABD3A6C297D86B900B2DF26 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A6D297D86C700B2DF26 /* RegisterController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		3537DE44DAFD9B2337F1EF4C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				38DAE86174452E431795C9FE /* Pods-EzgIOS.debug.xcconfig */,
+				8DC8E48379FAD7D3C240D6CE /* Pods-EzgIOS.release.xcconfig */,
+				BD38369FA6388539D28BD213 /* Pods-EzgWatch.debug.xcconfig */,
+				CA9CE14F0760D0DCE3D6FEDB /* Pods-EzgWatch.release.xcconfig */,
+				19AFBF1E181A3BDD3C02B1DA /* Pods-EzgWatch WatchKit Extension.debug.xcconfig */,
+				F0967A447A8FAA5B996F686E /* Pods-EzgWatch WatchKit Extension.release.xcconfig */,
+				316E9FBC4CED137B542CBCC5 /* Pods-EzgWatch-EzgWatchUITests.debug.xcconfig */,
+				539EC651D9B32017CE9B74BD /* Pods-EzgWatch-EzgWatchUITests.release.xcconfig */,
+				80DAFCC253A6A3911835A3B7 /* Pods-EzgWatchTests.debug.xcconfig */,
+				0A19A692BA5C3DBE3647F4D2 /* Pods-EzgWatchTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		60330B0D579356C5E6835354 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88A37D1129B31221008EA902 /* WatchConnectivity.framework */,
+				9F8B27691994E1F986109EA5 /* Pods_EzgIOS.framework */,
+				F29C530E4A251B82D5B83086 /* Pods_EzgWatch.framework */,
+				533C5959C641FC2F68A8EE67 /* Pods_EzgWatch_WatchKit_Extension.framework */,
+				476ADBF5970BF71087236630 /* Pods_EzgWatch_EzgWatchUITests.framework */,
+				096A4440A91CB978D4B48F83 /* Pods_EzgWatchTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		885C38F329CC3BA100C3BE6B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A69297D823400B2DF26 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		885C38F429CC3BBB00C3BE6B /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				0ABD3A6E297D86CA00B2DF26 /* RegisterViewModel.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		885C38F529CC3BEE00C3BE6B /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				88B1228129BAF0230031F4BF /* RoundsTVCell.swift */,
+				88B1228529BAFB520031F4BF /* HoleTVCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8873B56129E4142000826B18 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8873B56429E4146300826B18 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		888325C729C59CD6001D4534 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8872AEF729B5B56C007AB444 /* LoginContrroller.swift */,
+				BD7C54AF29B486E3001AF531 /* InterfaceController.swift */,
+				8872AEFB29B5C10D007AB444 /* FinishRoundController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		8883A53E29C196F900151C2C /* Scorecard */ = {
+			isa = PBXGroup;
+			children = (
+				88B1228329BAFB0F0031F4BF /* ScorecardViewController.swift */,
+			);
+			path = Scorecard;
+			sourceTree = "<group>";
+		};
+		88B1228929BB39CB0031F4BF /* RoundListModel */ = {
+			isa = PBXGroup;
+			children = (
+				88B1228A29BB39E00031F4BF /* GetRoundList.swift */,
+				88B1228B29BB39E00031F4BF /* RoundData.swift */,
+			);
+			path = RoundListModel;
+			sourceTree = "<group>";
+		};
+		88B1229029BB46860031F4BF /* HoleListModel */ = {
+			isa = PBXGroup;
+			children = (
+				88B1229329BB46BF0031F4BF /* GetHoleList.swift */,
+				88B1229129BB46BE0031F4BF /* HoleData.swift */,
+				88B1229229BB46BE0031F4BF /* Round.swift */,
+			);
+			path = HoleListModel;
+			sourceTree = "<group>";
+		};
+		88B44F7E29C0484300F2D11C /* GetRoundModel */ = {
+			isa = PBXGroup;
+			children = (
+				88B44F7F29C0487000F2D11C /* GetRound.swift */,
+				88B44F8129C0489500F2D11C /* RoundIdData.swift */,
+			);
+			path = GetRoundModel;
+			sourceTree = "<group>";
+		};
+		BD7C54A029B486E1001AF531 /* EzgWatch */ = {
+			isa = PBXGroup;
+			children = (
+				BD7C54A129B486E1001AF531 /* Interface.storyboard */,
+				BD7C54A429B486E3001AF531 /* Assets.xcassets */,
+			);
+			path = EzgWatch;
+			sourceTree = "<group>";
+		};
+		BD7C54AE29B486E3001AF531 /* EzgWatch WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8873B56129E4142000826B18 /* Model */,
+				888325C729C59CD6001D4534 /* Controllers */,
+				88B44F7E29C0484300F2D11C /* GetRoundModel */,
+				BD7C54B129B486E3001AF531 /* ExtensionDelegate.swift */,
+				BD7C54B329B486E3001AF531 /* NotificationController.swift */,
+				BD7C54B529B486E3001AF531 /* ComplicationController.swift */,
+				BD7C54B729B486E4001AF531 /* Assets.xcassets */,
+				BD7C54B929B486E4001AF531 /* Info.plist */,
+				BD7C54BA29B486E4001AF531 /* PushNotificationPayload.apns */,
+			);
+			path = "EzgWatch WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		BD7C54C229B486E4001AF531 /* EzgWatchTests */ = {
+			isa = PBXGroup;
+			children = (
+				BD7C54C329B486E4001AF531 /* EzgWatchTests.swift */,
+			);
+			path = EzgWatchTests;
+			sourceTree = "<group>";
+		};
+		BD7C54CC29B486E4001AF531 /* EzgWatchUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BD7C54CD29B486E4001AF531 /* EzgWatchUITests.swift */,
+				BD7C54CF29B486E4001AF531 /* EzgWatchUITestsLaunchTests.swift */,
+			);
+			path = EzgWatchUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0ABD3A10297D7A6700B2DF26 /* EzgIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0ABD3A25297D7A6800B2DF26 /* Build configuration list for PBXNativeTarget "EzgIOS" */;
+			buildPhases = (
+				58D253C5012DC027C90322FC /* [CP] Check Pods Manifest.lock */,
+				0ABD3A0D297D7A6700B2DF26 /* Sources */,
+				0ABD3A0E297D7A6700B2DF26 /* Frameworks */,
+				0ABD3A0F297D7A6700B2DF26 /* Resources */,
+				BD7C54D429B486E4001AF531 /* Embed Watch Content */,
+				0255AC99757EFD8521DB4C85 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BD7C54D229B486E4001AF531 /* PBXTargetDependency */,
+			);
+			name = EzgIOS;
+			productName = EzgIOS;
+			productReference = 0ABD3A11297D7A6700B2DF26 /* Ezg.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BD7C549E29B486E1001AF531 /* EzgWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD7C54DF29B486E4001AF531 /* Build configuration list for PBXNativeTarget "EzgWatch" */;
+			buildPhases = (
+				14C13AEFFBAE4803566E6779 /* [CP] Check Pods Manifest.lock */,
+				BD7C549D29B486E1001AF531 /* Resources */,
+				BD7C54D729B486E4001AF531 /* Embed App Extensions */,
+				6F9B6519E8E3D5FE3FF56B72 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BD7C54AD29B486E3001AF531 /* PBXTargetDependency */,
+			);
+			name = EzgWatch;
+			productName = EzgWatch;
+			productReference = BD7C549F29B486E1001AF531 /* EzgWatch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		BD7C54A929B486E3001AF531 /* EzgWatch WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD7C54DE29B486E4001AF531 /* Build configuration list for PBXNativeTarget "EzgWatch WatchKit Extension" */;
+			buildPhases = (
+				C72FFAED1510012146F094CC /* [CP] Check Pods Manifest.lock */,
+				BD7C54A629B486E3001AF531 /* Sources */,
+				BD7C54A729B486E3001AF531 /* Frameworks */,
+				BD7C54A829B486E3001AF531 /* Resources */,
+				035C358307CCCEAE41F3B3CA /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EzgWatch WatchKit Extension";
+			productName = "EzgWatch WatchKit Extension";
+			productReference = BD7C54AA29B486E3001AF531 /* EzgWatch WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		BD7C54BE29B486E4001AF531 /* EzgWatchTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD7C54E029B486E4001AF531 /* Build configuration list for PBXNativeTarget "EzgWatchTests" */;
+			buildPhases = (
+				3BEBC38DB5929587F6B33117 /* [CP] Check Pods Manifest.lock */,
+				BD7C54BB29B486E4001AF531 /* Sources */,
+				BD7C54BC29B486E4001AF531 /* Frameworks */,
+				BD7C54BD29B486E4001AF531 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BD7C54C129B486E4001AF531 /* PBXTargetDependency */,
+			);
+			name = EzgWatchTests;
+			productName = EzgWatchTests;
+			productReference = BD7C54BF29B486E4001AF531 /* EzgWatchTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BD7C54C829B486E4001AF531 /* EzgWatchUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD7C54E129B486E4001AF531 /* Build configuration list for PBXNativeTarget "EzgWatchUITests" */;
+			buildPhases = (
+				D82A05AD4107455441D1B7E6 /* [CP] Check Pods Manifest.lock */,
+				BD7C54C529B486E4001AF531 /* Sources */,
+				BD7C54C629B486E4001AF531 /* Frameworks */,
+				BD7C54C729B486E4001AF531 /* Resources */,
+				A801AB9847AAC73CFA5049A9 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BD7C54CB29B486E4001AF531 /* PBXTargetDependency */,
+				88EDF4C729CD7D64003AC1F1 /* PBXTargetDependency */,
+			);
+			name = EzgWatchUITests;
+			productName = EzgWatchUITests;
+			productReference = BD7C54C929B486E4001AF531 /* EzgWatchUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0ABD3A09297D7A6700B2DF26 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					0ABD3A10297D7A6700B2DF26 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					BD7C549E29B486E1001AF531 = {
+						CreatedOnToolsVersion = 13.4;
+					};
+					BD7C54A929B486E3001AF531 = {
+						CreatedOnToolsVersion = 13.4;
+					};
+					BD7C54BE29B486E4001AF531 = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = BD7C54A929B486E3001AF531;
+					};
+					BD7C54C829B486E4001AF531 = {
+						CreatedOnToolsVersion = 13.4;
+						TestTargetID = BD7C549E29B486E1001AF531;
+					};
+				};
+			};
+			buildConfigurationList = 0ABD3A0C297D7A6700B2DF26 /* Build configuration list for PBXProject "EzgIOS" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0ABD3A08297D7A6700B2DF26;
+			productRefGroup = 0ABD3A12297D7A6700B2DF26 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0ABD3A10297D7A6700B2DF26 /* EzgIOS */,
+				BD7C549E29B486E1001AF531 /* EzgWatch */,
+				BD7C54A929B486E3001AF531 /* EzgWatch WatchKit Extension */,
+				BD7C54BE29B486E4001AF531 /* EzgWatchTests */,
+				BD7C54C829B486E4001AF531 /* EzgWatchUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0ABD3A0F297D7A6700B2DF26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0ABD3A49297D7C4800B2DF26 /* Rubik-Bold.ttf in Resources */,
+				0ABD3A21297D7A6800B2DF26 /* LaunchScreen.storyboard in Resources */,
+				0ABD3A48297D7C4800B2DF26 /* Rubik-Light.ttf in Resources */,
+				0ABD3A4C297D7C4800B2DF26 /* Rubik-SemiBoldItalic.ttf in Resources */,
+				0ABD3A42297D7C4800B2DF26 /* Rubik-MediumItalic.ttf in Resources */,
+				0ABD3A41297D7C4800B2DF26 /* Rubik-Italic.ttf in Resources */,
+				0ABD3A46297D7C4800B2DF26 /* Rubik-Regular.ttf in Resources */,
+				0ABD3A45297D7C4800B2DF26 /* Rubik-ExtraBoldItalic.ttf in Resources */,
+				0ABD3A1E297D7A6800B2DF26 /* Assets.xcassets in Resources */,
+				0ABD3A40297D7C4800B2DF26 /* Rubik-Black.ttf in Resources */,
+				0ABD3A4A297D7C4800B2DF26 /* Rubik-LightItalic.ttf in Resources */,
+				0ABD3A4D297D7C4800B2DF26 /* Rubik-BlackItalic.ttf in Resources */,
+				0ABD3A4B297D7C4800B2DF26 /* Rubik-BoldItalic.ttf in Resources */,
+				0ABD3A43297D7C4800B2DF26 /* Rubik-ExtraBold.ttf in Resources */,
+				0ABD3A47297D7C4800B2DF26 /* Rubik-SemiBold.ttf in Resources */,
+				0ABD3A4F297D7F1A00B2DF26 /* Theme.xcassets in Resources */,
+				0ABD3A1C297D7A6700B2DF26 /* Authentication.storyboard in Resources */,
+				0ABD3A68297D81F900B2DF26 /* Main.storyboard in Resources */,
+				0ABD3A44297D7C4800B2DF26 /* Rubik-Medium.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD7C549D29B486E1001AF531 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD7C54A529B486E3001AF531 /* Assets.xcassets in Resources */,
+				BD7C54A329B486E1001AF531 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD7C54A829B486E3001AF531 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD7C54B829B486E4001AF531 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD7C54BD29B486E4001AF531 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD7C54C729B486E4001AF531 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0255AC99757EFD8521DB4C85 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EzgIOS/Pods-EzgIOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EzgIOS/Pods-EzgIOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EzgIOS/Pods-EzgIOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		035C358307CCCEAE41F3B3CA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EzgWatch WatchKit Extension/Pods-EzgWatch WatchKit Extension-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EzgWatch WatchKit Extension/Pods-EzgWatch WatchKit Extension-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EzgWatch WatchKit Extension/Pods-EzgWatch WatchKit Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		14C13AEFFBAE4803566E6779 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EzgWatch-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3BEBC38DB5929587F6B33117 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EzgWatchTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58D253C5012DC027C90322FC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EzgIOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A801AB9847AAC73CFA5049A9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EzgWatch-EzgWatchUITests/Pods-EzgWatch-EzgWatchUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EzgWatch-EzgWatchUITests/Pods-EzgWatch-EzgWatchUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EzgWatch-EzgWatchUITests/Pods-EzgWatch-EzgWatchUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C72FFAED1510012146F094CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EzgWatch WatchKit Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D82A05AD4107455441D1B7E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-EzgWatch-EzgWatchUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0ABD3A0D297D7A6700B2DF26 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88B1229729BB46BF0031F4BF /* GetHoleList.swift in Sources */,
+				0ABD3A57297D80B800B2DF26 /* Utility.swift in Sources */,
+				88B1228229BAF0230031F4BF /* RoundsTVCell.swift in Sources */,
+				0ABD3A58297D80B800B2DF26 /* Extensions.swift in Sources */,
+				0ABD3A61297D810300B2DF26 /* NetworkManager.swift in Sources */,
+				0ABD3A70297D871500B2DF26 /* RegisterViewModel.swift in Sources */,
+				0ABD3A62297D810300B2DF26 /* ResponseHandler.swift in Sources */,
+				88B1228629BAFB520031F4BF /* HoleTVCell.swift in Sources */,
+				88B1228E29BB39E00031F4BF /* RoundData.swift in Sources */,
+				0ABD3A5F297D810300B2DF26 /* NetworkService.swift in Sources */,
+				0ABD3A6F297D871100B2DF26 /* RegisterController.swift in Sources */,
+				88B1228F29BB39E00031F4BF /* UserData.swift in Sources */,
+				88B1228D29BB39E00031F4BF /* GetRoundList.swift in Sources */,
+				0ABD3A19297D7A6700B2DF26 /* MainController.swift in Sources */,
+				88B1229529BB46BF0031F4BF /* HoleData.swift in Sources */,
+				88B1228429BAFB100031F4BF /* ScorecardViewController.swift in Sources */,
+				0ABD3A6A297D823400B2DF26 /* LoginViewModel.swift in Sources */,
+				0ABD3A60297D810300B2DF26 /* ServerResponse.swift in Sources */,
+				0ABD3A52297D808000B2DF26 /* LoginController.swift in Sources */,
+				0ABD3A64297D812900B2DF26 /* User.swift in Sources */,
+				0ABD3A66297D816800B2DF26 /* ServerError.swift in Sources */,
+				0ABD3A15297D7A6700B2DF26 /* AppDelegate.swift in Sources */,
+				0ABD3A17297D7A6700B2DF26 /* SceneDelegate.swift in Sources */,
+				88B1229629BB46BF0031F4BF /* Round.swift in Sources */,
+				0ABD3A5A297D80B800B2DF26 /* Global.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD7C54A629B486E3001AF531 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8873B56529E4146300826B18 /* Model.swift in Sources */,
+				BD7C54B429B486E3001AF531 /* NotificationController.swift in Sources */,
+				BD7C54B629B486E3001AF531 /* ComplicationController.swift in Sources */,
+				8872AEF829B5B56C007AB444 /* LoginContrroller.swift in Sources */,
+				88B44F8229C0489500F2D11C /* RoundIdData.swift in Sources */,
+				BD7C54B229B486E3001AF531 /* ExtensionDelegate.swift in Sources */,
+				88B44F8029C0487000F2D11C /* GetRound.swift in Sources */,
+				BD7C54B029B486E3001AF531 /* InterfaceController.swift in Sources */,
+				8872AEFC29B5C10D007AB444 /* FinishRoundController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD7C54BB29B486E4001AF531 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD7C54C429B486E4001AF531 /* EzgWatchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BD7C54C529B486E4001AF531 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BD7C54D029B486E4001AF531 /* EzgWatchUITestsLaunchTests.swift in Sources */,
+				BD7C54CE29B486E4001AF531 /* EzgWatchUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		88EDF4C729CD7D64003AC1F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0ABD3A10297D7A6700B2DF26 /* EzgIOS */;
+			targetProxy = 88EDF4C629CD7D64003AC1F1 /* PBXContainerItemProxy */;
+		};
+		BD7C54AD29B486E3001AF531 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BD7C54A929B486E3001AF531 /* EzgWatch WatchKit Extension */;
+			targetProxy = BD7C54AC29B486E3001AF531 /* PBXContainerItemProxy */;
+		};
+		BD7C54C129B486E4001AF531 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BD7C54A929B486E3001AF531 /* EzgWatch WatchKit Extension */;
+			targetProxy = BD7C54C029B486E4001AF531 /* PBXContainerItemProxy */;
+		};
+		BD7C54CB29B486E4001AF531 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BD7C549E29B486E1001AF531 /* EzgWatch */;
+			targetProxy = BD7C54CA29B486E4001AF531 /* PBXContainerItemProxy */;
+		};
+		BD7C54D229B486E4001AF531 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BD7C549E29B486E1001AF531 /* EzgWatch */;
+			targetProxy = BD7C54D129B486E4001AF531 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0ABD3A1A297D7A6700B2DF26 /* Authentication.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0ABD3A1B297D7A6700B2DF26 /* Base */,
+			);
+			name = Authentication.storyboard;
+			sourceTree = "<group>";
+		};
+		0ABD3A1F297D7A6800B2DF26 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0ABD3A20297D7A6800B2DF26 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		BD7C54A129B486E1001AF531 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BD7C54A229B486E1001AF531 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0ABD3A23297D7A6800B2DF26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0ABD3A24297D7A6800B2DF26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0ABD3A26297D7A6800B2DF26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38DAE86174452E431795C9FE /* Pods-EzgIOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EzgIOS/Supporting Files/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZG;
+				PRODUCT_NAME = Ezg;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0ABD3A27297D7A6800B2DF26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DC8E48379FAD7D3C240D6CE /* Pods-EzgIOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EzgIOS/Supporting Files/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZG;
+				PRODUCT_NAME = Ezg;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BD7C54D529B486E4001AF531 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD38369FA6388539D28BD213 /* Pods-EzgWatch.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = EzgWatch_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = EzgWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoft.EZG;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZG.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Debug;
+		};
+		BD7C54D629B486E4001AF531 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA9CE14F0760D0DCE3D6FEDB /* Pods-EzgWatch.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = EzgWatch_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = EzgWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoft.EZG;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZG.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Release;
+		};
+		BD7C54D829B486E4001AF531 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19AFBF1E181A3BDD3C02B1DA /* Pods-EzgWatch WatchKit Extension.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EzgWatch WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "EzgWatch WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = EzgWatch_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKExtensionDelegateClassName = EzgWatch_WatchKit_Extension.ExtensionDelegate;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZG.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Debug;
+		};
+		BD7C54D929B486E4001AF531 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0967A447A8FAA5B996F686E /* Pods-EzgWatch WatchKit Extension.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "EzgWatch WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "EzgWatch WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = EzgWatch_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKExtensionDelegateClassName = EzgWatch_WatchKit_Extension.ExtensionDelegate;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZG.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.3;
+			};
+			name = Release;
+		};
+		BD7C54DA29B486E4001AF531 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80DAFCC253A6A3911835A3B7 /* Pods-EzgWatchTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VDN386CYB3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZG.EzgWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EzgWatch WatchKit Extension.appex/EzgWatch WatchKit Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		BD7C54DB29B486E4001AF531 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A19A692BA5C3DBE3647F4D2 /* Pods-EzgWatchTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VDN386CYB3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZG.EzgWatchTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/EzgWatch WatchKit Extension.appex/EzgWatch WatchKit Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Release;
+		};
+		BD7C54DC29B486E4001AF531 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 316E9FBC4CED137B542CBCC5 /* Pods-EzgWatch-EzgWatchUITests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VDN386CYB3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZG.EzgWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = EzgWatch;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Debug;
+		};
+		BD7C54DD29B486E4001AF531 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 539EC651D9B32017CE9B74BD /* Pods-EzgWatch-EzgWatchUITests.release.xcconfig */;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = VDN386CYB3;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZG.EzgWatchUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = EzgWatch;
+				WATCHOS_DEPLOYMENT_TARGET = 8.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0ABD3A0C297D7A6700B2DF26 /* Build configuration list for PBXProject "EzgIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0ABD3A23297D7A6800B2DF26 /* Debug */,
+				0ABD3A24297D7A6800B2DF26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0ABD3A25297D7A6800B2DF26 /* Build configuration list for PBXNativeTarget "EzgIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0ABD3A26297D7A6800B2DF26 /* Debug */,
+				0ABD3A27297D7A6800B2DF26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BD7C54DE29B486E4001AF531 /* Build configuration list for PBXNativeTarget "EzgWatch WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD7C54D829B486E4001AF531 /* Debug */,
+				BD7C54D929B486E4001AF531 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BD7C54DF29B486E4001AF531 /* Build configuration list for PBXNativeTarget "EzgWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD7C54D529B486E4001AF531 /* Debug */,
+				BD7C54D629B486E4001AF531 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BD7C54E029B486E4001AF531 /* Build configuration list for PBXNativeTarget "EzgWatchTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD7C54DA29B486E4001AF531 /* Debug */,
+				BD7C54DB29B486E4001AF531 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BD7C54E129B486E4001AF531 /* Build configuration list for PBXNativeTarget "EzgWatchUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD7C54DC29B486E4001AF531 /* Debug */,
+				BD7C54DD29B486E4001AF531 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0ABD3A09297D7A6700B2DF26 /* Project object */;
+}

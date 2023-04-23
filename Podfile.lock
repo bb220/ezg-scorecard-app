@@ -1,0 +1,78 @@
+PODS:
+  - Alamofire (4.9.1)
+  - AlamofireImage (3.6.0):
+    - Alamofire (~> 4.9)
+  - BEMCheckBox (1.4.1)
+  - FSCalendar (2.8.4)
+  - ImageSlideshow/Alamofire (1.8.3):
+    - AlamofireImage (~> 3.0)
+    - ImageSlideshow/Core
+  - ImageSlideshow/Core (1.8.3)
+  - IQKeyboardManager (6.5.11)
+  - Moya/Core (12.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.0)
+  - Moya/RxSwift (12.0.1):
+    - Moya/Core
+    - RxSwift (~> 4.0)
+  - ObjectMapper (4.2.0)
+  - ReachabilitySwift (5.0.0)
+  - Result (4.1.0)
+  - RxSwift (4.5.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftKeychainWrapper (4.0.1)
+  - SwiftyJSON (5.0.1)
+  - Toast-Swift (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire (= 4.9.1)
+  - BEMCheckBox
+  - FSCalendar
+  - ImageSlideshow/Alamofire
+  - IQKeyboardManager
+  - Moya/RxSwift (= 12.0.1)
+  - ObjectMapper (= 4.2.0)
+  - ReachabilitySwift
+  - SVProgressHUD
+  - SwiftKeychainWrapper
+  - SwiftyJSON (= 5.0.1)
+  - Toast-Swift
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AlamofireImage
+    - BEMCheckBox
+    - FSCalendar
+    - ImageSlideshow
+    - IQKeyboardManager
+    - Moya
+    - ObjectMapper
+    - ReachabilitySwift
+    - Result
+    - RxSwift
+    - SVProgressHUD
+    - SwiftKeychainWrapper
+    - SwiftyJSON
+    - Toast-Swift
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
+  BEMCheckBox: 5ba6e37ade3d3657b36caecc35c8b75c6c2b1a4e
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
+  ImageSlideshow: 4694d7d699a1549582e7cc631fb392d8f91630f3
+  IQKeyboardManager: ef43ce1ba1e5aaf4adf222c0a46f39761f246879
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
+
+PODFILE CHECKSUM: ff46a6d45633d24b48478bbfb19a0680446833aa
+
+COCOAPODS: 1.11.3

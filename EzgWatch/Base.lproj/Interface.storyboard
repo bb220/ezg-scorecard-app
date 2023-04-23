@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="19529" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="qVo-3k-aLI">
+    <device id="watch38"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="19514"/>
+    </dependencies>
+    <scenes>
+        <!--InterfaceController-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="InterfaceController" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="EzgWatch" customModuleProvider="target">
+                    <items>
+                        <group width="1" height="1" alignment="left" layout="vertical" id="rax-Qa-TEY" userLabel="Container">
+                            <items>
+                                <group width="1" height="50" alignment="left" id="0UQ-li-thY">
+                                    <items>
+                                        <label width="0.29999999999999999" height="49" alignment="left" text="-" id="lSh-g5-zCb">
+                                            <color key="textColor" red="0.1411764324" green="0.1411764324" blue="0.1411764324" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="38"/>
+                                        </label>
+                                        <label width="0.40000000000000002" height="48" alignment="left" text="-" textAlignment="center" id="6TO-3M-AoL">
+                                            <fontDescription key="font" type="system" pointSize="50"/>
+                                        </label>
+                                        <label width="0.29999999999999999" height="49" alignment="left" text="-" textAlignment="right" id="INK-03-95X">
+                                            <color key="textColor" red="0.28281539680000001" green="0.28659111259999998" blue="0.29334804419999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="38"/>
+                                        </label>
+                                    </items>
+                                </group>
+                                <button width="1" height="44" alignment="left" title="Stroke" id="ZmF-Tf-idd">
+                                    <gestureRecognizers>
+                                        <longPressGestureRecognizer id="vh3-rE-kgj">
+                                            <connections>
+                                                <action selector="storeLongPush:" destination="AgC-eL-Hgc" id="vrQ-4w-Bd3"/>
+                                            </connections>
+                                        </longPressGestureRecognizer>
+                                    </gestureRecognizers>
+                                    <color key="backgroundColor" red="0.1411764324" green="0.1411764324" blue="0.1411764324" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="17"/>
+                                    <connections>
+                                        <action selector="strokeClicked" destination="AgC-eL-Hgc" id="VHt-5f-Qbv"/>
+                                    </connections>
+                                </button>
+                                <group width="1" height="0.00050000000000000001" alignment="left" id="yva-8b-KqB"/>
+                                <group width="1" alignment="left" id="aeL-nz-wRF">
+                                    <items>
+                                        <button width="1" height="44" alignment="left" title="Putt" id="sCD-GB-jh2">
+                                            <gestureRecognizers>
+                                                <longPressGestureRecognizer id="J8g-Mm-gMQ">
+                                                    <connections>
+                                                        <action selector="puttLongPush:" destination="AgC-eL-Hgc" id="hfJ-YG-gPe"/>
+                                                    </connections>
+                                                </longPressGestureRecognizer>
+                                            </gestureRecognizers>
+                                            <color key="backgroundColor" red="0.28281539680000001" green="0.28659111259999998" blue="0.29334804419999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="17"/>
+                                            <connections>
+                                                <action selector="puttClicked" destination="AgC-eL-Hgc" id="10d-8h-a7T"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                            <gestureRecognizers>
+                                <swipeGestureRecognizer direction="2" id="wfg-bY-BTo">
+                                    <connections>
+                                        <action selector="swipedNext:" destination="AgC-eL-Hgc" id="THj-xF-oCD"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
+                                <swipeGestureRecognizer id="1gc-xT-pLb">
+                                    <connections>
+                                        <action selector="swipedPrevious:" destination="AgC-eL-Hgc" id="3yg-FZ-rkE"/>
+                                    </connections>
+                                </swipeGestureRecognizer>
+                            </gestureRecognizers>
+                        </group>
+                    </items>
+                    <connections>
+                        <outlet property="putLabel" destination="INK-03-95X" id="fiY-mn-wvV"/>
+                        <outlet property="strokeLabel" destination="lSh-g5-zCb" id="DVC-f7-5n1"/>
+                        <outlet property="totalLabel" destination="6TO-3M-AoL" id="0qS-Hh-J4b"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="216" y="345"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" numberOfLines="0" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                        <segue destination="eXb-UN-Cd0" kind="relationship" relationship="dynamicInteractiveNotificationInterface" id="mpB-YA-K8N"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="EzgWatch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="Niz-AI-uX2">
+            <objects>
+                <controller id="eXb-UN-Cd0" customClass="NotificationController" customModule="EzgWatch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="345"/>
+        </scene>
+        <!--EZG-->
+        <scene sceneID="dnF-x7-bD1">
+            <objects>
+                <controller identifier="LoginController" title="EZG" id="qVo-3k-aLI" customClass="LoginContrroller" customModule="EzgWatch_WatchKit_Extension">
+                    <items>
+                        <label width="120" alignment="center" verticalAlignment="center" text="Log in to the EZG iPhone app to begin" textAlignment="center" numberOfLines="0" id="cP0-uq-bzD">
+                            <fontDescription key="font" style="UICTFontTextStyleTitle3"/>
+                        </label>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-62" y="345"/>
+        </scene>
+        <!--EZG-->
+        <scene sceneID="lTw-ar-Ulv">
+            <objects>
+                <controller identifier="FinishRoundController" title="EZG" id="9hG-k3-aqi" customClass="FinishRoundController" customModule="EzgWatch_WatchKit_Extension">
+                    <items>
+                        <group width="1" height="1" alignment="left" layout="vertical" id="KiX-as-uEm" userLabel="Container">
+                            <items>
+                                <group width="1" height="2" alignment="left" id="R28-9x-YAK"/>
+                                <group width="1" height="44" alignment="left" id="ctm-gs-yvF">
+                                    <items>
+                                        <label width="136" height="48" alignment="center" text="Finish round?" textAlignment="center" id="lgP-nN-W5v">
+                                            <fontDescription key="font" type="system" pointSize="17"/>
+                                        </label>
+                                    </items>
+                                </group>
+                                <button width="1" height="44" alignment="left" title="Yes" id="4Nz-dS-FIy">
+                                    <gestureRecognizers>
+                                        <longPressGestureRecognizer id="RsF-3j-mCu">
+                                            <connections>
+                                                <action selector="storeLongPush:" destination="AgC-eL-Hgc" id="7Kz-b0-Mzb"/>
+                                            </connections>
+                                        </longPressGestureRecognizer>
+                                    </gestureRecognizers>
+                                    <color key="backgroundColor" red="0.1411764324" green="0.1411764324" blue="0.1411764324" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="font" type="system" pointSize="17"/>
+                                    <connections>
+                                        <action selector="yesClicked" destination="9hG-k3-aqi" id="TlK-iC-SZG"/>
+                                    </connections>
+                                </button>
+                                <group width="1" height="0.00050000000000000001" alignment="left" id="dzS-Lp-yRG"/>
+                                <group width="1" alignment="left" id="egr-0s-qDE">
+                                    <items>
+                                        <button width="1" height="44" alignment="left" title="No" id="Xas-ie-dAv">
+                                            <gestureRecognizers>
+                                                <longPressGestureRecognizer id="LRL-Cy-4XL">
+                                                    <connections>
+                                                        <action selector="puttLongPush:" destination="AgC-eL-Hgc" id="DJX-rR-INx"/>
+                                                    </connections>
+                                                </longPressGestureRecognizer>
+                                            </gestureRecognizers>
+                                            <color key="backgroundColor" red="0.28281539680000001" green="0.28659111259999998" blue="0.29334804419999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="font" type="system" pointSize="17"/>
+                                            <connections>
+                                                <action selector="noClicked" destination="9hG-k3-aqi" id="Tte-qS-blx"/>
+                                            </connections>
+                                        </button>
+                                    </items>
+                                </group>
+                            </items>
+                        </group>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="-53" y="643"/>
+        </scene>
+    </scenes>
+</document>
