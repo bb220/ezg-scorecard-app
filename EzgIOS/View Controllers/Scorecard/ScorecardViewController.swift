@@ -293,7 +293,6 @@ class ScorecardViewController: UIViewController {
     
     @IBAction func shareScoreTap(_ sender: Any) {
         
-        let link = URL(string: "https://www.example.com")
         let text = """
         Check out my scorecard
         \(roundName)
@@ -326,7 +325,7 @@ class ScorecardViewController: UIViewController {
         EZG Golf Scorecard App
         google.com
         """
-        let activityViewController = UIActivityViewController(activityItems: [text,link], applicationActivities: nil)
+        let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
         if let popoverController = activityViewController.popoverPresentationController {
             popoverController.barButtonItem = sender as? UIBarButtonItem
         }
