@@ -18,7 +18,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     var hole = 1
     var finishRoundValue = false
     let session = WCSession.default
-    var baseUrl = "http://44.202.136.185/api/v1/"
+    var baseUrl = "https://api.ezgolftech.com/api/v1/"
     var temp = false
     var swipe = true
     var holeModel: [HoleData] = []
