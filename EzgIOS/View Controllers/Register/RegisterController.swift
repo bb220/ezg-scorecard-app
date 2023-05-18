@@ -33,10 +33,10 @@ class RegisterController: UIViewController {
     
     // MARK: - View Methods
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         initViews()
     }
     
@@ -83,36 +83,53 @@ class RegisterController: UIViewController {
         
         Utility.showProgressDialog(view: self.view)
         
-        let params: [String: Any] =
-            ["email": (textFieldEmail.text ?? ""),
-             "password": (textFieldPassword.text ?? "")
+        let params: [String: Any] = [
+            "email": (textFieldEmail.text ?? ""),
+            "password": (textFieldPassword.text ?? "")
         ]
         
         viewModel.register(params: params)
             .subscribe(onCompleted: { [self] in
-                
-                if session.isReachable {
-                    let data = ["isLoggedIn": true]
-                    session.sendMessage(data, replyHandler: nil, errorHandler: nil)
-                }
-                
-                Utility.hideProgressDialog(view: self.view)
-                                
-                let alert = UIAlertController(title: "", message: "Account created.", preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(title: "Okay", style: UIAlertAction.Style.default) {
-                        UIAlertAction in
-                    self.navigationController?.popToRootViewController(animated: true)
-                    }
-                
-                alert.addAction(okAction)
-                self.present(alert, animated: true)
-                
+                login()
             }, onError: { (error) in
                 Utility.hideProgressDialog(view: self.view)
                 Utility.showAlertNew(message: "An account with this email already exists", context: self)
             })
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
+    }
+    
+    private func login() {
+        let viewModel = LoginViewModel()
+        let params: [String: Any] = [
+            "email": (textFieldEmail.text ?? ""),
+            "password": (textFieldPassword.text ?? "")
+        ]
+        
+        viewModel.login(params: params)
+            .subscribe(onSuccess: { [self] message in
+                if session.isReachable {
+                    print("Session.isReachable inside")
+                    let data = ["userId": "\(UserDefaults.standard.string(forKey: "userId") ?? "")",
+                                "token": "\(UserDefaults.standard.string(forKey: "token") ?? "")"]
+                    session.sendMessage(data, replyHandler: nil, errorHandler: nil)
+                } else if WCSession.isSupported() {
+                    print("WCSession.isSupported inside")
+                    let data = ["userId": "\(UserDefaults.standard.string(forKey: "userId") ?? "")",
+                                "token": "\(UserDefaults.standard.string(forKey: "token") ?? "")"]
+                    session.transferUserInfo(data)
+                }
+                Utility.hideProgressDialog(view: self.view)
+                let alert = UIAlertController(title: "", message: "Account created.", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Okay", style: UIAlertAction.Style.default) { UIAlertAction in
+                    Utility.openMainPageController()
+                }
+                alert.addAction(okAction)
+                self.present(alert, animated: true)
+            }, onError: { (error) in
+                Utility.hideProgressDialog(view: self.view)
+                Utility.showAlertNew(message: "We can't find that username and password. Please try again or create a new account.", context: self)
+            })
+            .disposed(by: disposeBag)
     }
     
 }
