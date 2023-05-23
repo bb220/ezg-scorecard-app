@@ -45,6 +45,7 @@
 		159ECBD293C6290F76FFF3E6 /* Pods_EzgWatchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 096A4440A91CB978D4B48F83 /* Pods_EzgWatchTests.framework */; };
 		6AD6FC6F59B8F3CEE16A79E0 /* Pods_EzgWatch_EzgWatchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 476ADBF5970BF71087236630 /* Pods_EzgWatch_EzgWatchUITests.framework */; };
 		83E997C5E52194B33786F92E /* Pods_EzgWatch_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533C5959C641FC2F68A8EE67 /* Pods_EzgWatch_WatchKit_Extension.framework */; };
+		8456C6922A1D777900266A9E /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8456C6912A1D777900266A9E /* NSAttributedStringExtension.swift */; };
 		8872AEF829B5B56C007AB444 /* LoginContrroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872AEF729B5B56C007AB444 /* LoginContrroller.swift */; };
 		8872AEFC29B5C10D007AB444 /* FinishRoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872AEFB29B5C10D007AB444 /* FinishRoundController.swift */; };
 		8873B56529E4146300826B18 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8873B56429E4146300826B18 /* Model.swift */; };
@@ -185,6 +186,7 @@
 		533C5959C641FC2F68A8EE67 /* Pods_EzgWatch_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EzgWatch_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		539EC651D9B32017CE9B74BD /* Pods-EzgWatch-EzgWatchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatch-EzgWatchUITests.release.xcconfig"; path = "Target Support Files/Pods-EzgWatch-EzgWatchUITests/Pods-EzgWatch-EzgWatchUITests.release.xcconfig"; sourceTree = "<group>"; };
 		80DAFCC253A6A3911835A3B7 /* Pods-EzgWatchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatchTests.debug.xcconfig"; path = "Target Support Files/Pods-EzgWatchTests/Pods-EzgWatchTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8456C6912A1D777900266A9E /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
 		8872AEF729B5B56C007AB444 /* LoginContrroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContrroller.swift; sourceTree = "<group>"; };
 		8872AEFB29B5C10D007AB444 /* FinishRoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRoundController.swift; sourceTree = "<group>"; };
 		8873B56429E4146300826B18 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 			isa = PBXGroup;
 			children = (
 				0ABD3A6D297D86C700B2DF26 /* RegisterController.swift */,
+				8456C6912A1D777900266A9E /* NSAttributedStringExtension.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -996,6 +999,7 @@
 				88B1229529BB46BF0031F4BF /* HoleData.swift in Sources */,
 				88B1228429BAFB100031F4BF /* ScorecardViewController.swift in Sources */,
 				0ABD3A6A297D823400B2DF26 /* LoginViewModel.swift in Sources */,
+				8456C6922A1D777900266A9E /* NSAttributedStringExtension.swift in Sources */,
 				0ABD3A60297D810300B2DF26 /* ServerResponse.swift in Sources */,
 				0ABD3A52297D808000B2DF26 /* LoginController.swift in Sources */,
 				0ABD3A64297D812900B2DF26 /* User.swift in Sources */,

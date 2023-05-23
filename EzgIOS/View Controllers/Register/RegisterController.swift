@@ -27,6 +27,7 @@ class RegisterController: UIViewController {
     
     @IBOutlet weak var cbAgree: BEMCheckBox!
     
+    @IBOutlet weak var textView: UITextView!
     
     // MARK: - Variables
     let session = WCSession.default
@@ -43,6 +44,18 @@ class RegisterController: UIViewController {
     private func initViews(){
         btnRegister.layer.cornerRadius = 10
         cbAgree.boxType = .square
+        updateTextView()
+    }
+    
+    func updateTextView() {
+        let path = "https://bb220.github.io/ezg-site/"
+        let text = textView.text ?? ""
+        let attributedString = NSAttributedString.makeHyperlink(for: path, in: text, as: "Terms and Conditions")
+        let font = textView.font
+        let textColor = textView.textColor
+        textView.attributedText = attributedString
+        textView.font = font
+        textView.textColor = textColor
     }
     
     // MARK: - Validate
