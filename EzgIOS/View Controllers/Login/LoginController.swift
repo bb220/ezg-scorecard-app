@@ -77,14 +77,16 @@ class LoginController: UIViewController {
         viewModel.login(params: params)
             .subscribe(onSuccess: { [self] message in
                 if session.isReachable {
-                    print("Session.isReachable inside")
                     let data = ["userId": "\(UserDefaults.standard.string(forKey: "userId") ?? "")",
-                                  "token": "\(UserDefaults.standard.string(forKey: "token") ?? "")"]
+                                  "token": "\(UserDefaults.standard.string(forKey: "token") ?? "")",
+                                "refreshToken":"\(UserDefaults.standard.string(forKey: "refreshToken") ?? "")",
+                                "tokenExpireAt": UserDefaults.standard.integer(forKey: "tokenExpireAt")] as [String : Any]
                     session.sendMessage(data, replyHandler: nil, errorHandler: nil)
                 } else if WCSession.isSupported() {
-                    print("WCSession.isSupported inside")
                     let data = ["userId": "\(UserDefaults.standard.string(forKey: "userId") ?? "")",
-                                  "token": "\(UserDefaults.standard.string(forKey: "token") ?? "")"]
+                                  "token": "\(UserDefaults.standard.string(forKey: "token") ?? "")",
+                                "refreshToken":"\(UserDefaults.standard.string(forKey: "refreshToken") ?? "")",
+                                "tokenExpireAt": UserDefaults.standard.integer(forKey: "tokenExpireAt")] as [String : Any]
                     session.transferUserInfo(data)
                 }
                 

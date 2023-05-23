@@ -170,6 +170,22 @@ class ScorecardViewController: UIViewController {
     }
     
     func holeListAPI(call: Bool) {
+        Utility.isValidateToken { [self] isValid in
+            if isValid {
+                holeList(call: call)
+            } else {
+                Utility.refreshToken { [self] success in
+                    if success {
+                        holeList(call: call)
+                    } else {
+                        print("Error in holeListAPI")
+                    }
+                }
+            }
+        }
+    }
+    
+    func holeList(call: Bool) {
         let url = "\(Global.sharedInstance.baseUrl)hole?page=1&limit=18&round=\(roundId)"
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token") ?? "")",
@@ -242,6 +258,22 @@ class ScorecardViewController: UIViewController {
     }
     
     func updateRoundNameAPI() {
+        Utility.isValidateToken { [self] isValid in
+            if isValid {
+                udateRoundName()
+            } else {
+                Utility.refreshToken { [self] success in
+                    if success {
+                        udateRoundName()
+                    } else {
+                        print("Error in udateRoundNameAPI")
+                    }
+                }
+            }
+        }
+    }
+    
+    func udateRoundName() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let currentDate = Date()
@@ -270,8 +302,23 @@ class ScorecardViewController: UIViewController {
         }
     }
     
-    
     func updateScoreAPI() {
+        Utility.isValidateToken { [self] isValid in
+            if isValid {
+                updateScore()
+            } else {
+                Utility.refreshToken { [self] success in
+                    if success {
+                        updateScore()
+                    } else {
+                        print("Error in updateScoreAPI")
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateScore() {
         let parameters: Parameters = [
             "round": roundId,
             "holes": updatedGolfScore

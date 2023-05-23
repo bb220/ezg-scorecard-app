@@ -7,7 +7,7 @@
 		<key>EzgIOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>21</integer>
+			<integer>22</integer>
 		</dict>
 		<key>EzgWatch (Complication).xcscheme_^#shared#^_</key>
 		<dict>
@@ -22,7 +22,7 @@
 		<key>EzgWatch.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>22</integer>
+			<integer>21</integer>
 		</dict>
 	</dict>
 </dict>

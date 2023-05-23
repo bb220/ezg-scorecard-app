@@ -34,7 +34,7 @@ class LoginViewModel {
                         
                         let refreshToken = json["data"]["refresh_token"].string
                         
-                        let tokenExpireAt = json["data"]["token_expire_at"].int
+                        let tokenExpireAt = json["data"]["token_expire_at"].double
                                             
                         //Save access token to KeyChain Wrapper
                         let _: Bool = KeychainWrapper.standard.set(accessToken!, forKey: "accessToken")

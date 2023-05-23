@@ -38,12 +38,7 @@ class LoginContrroller: WKInterfaceController, WCSessionDelegate {
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         if activationState == .activated {
-            if let token = session.receivedApplicationContext["token"] as? String {
-                UserDefaults.standard.set("\(token)", forKey: "token")
-            }
-            if let userId = session.receivedApplicationContext["userId"] as? String {
-                UserDefaults.standard.set("\(userId)", forKey: "userId")
-            }
+            print("Session activated in WatchOS.")
         } else {
             print("Session not activated in WatchOS.")
         }
@@ -65,11 +60,24 @@ class LoginContrroller: WKInterfaceController, WCSessionDelegate {
         }
         if let token = message["token"] as? String {
             UserDefaults.standard.set("\(token)", forKey: "token")
+            print("didReceiveMessage token:\(UserDefaults.standard.string(forKey: "token") ?? "")")
+        }
+        if let refreshToken = message["refreshToken"] as? String {
+            UserDefaults.standard.set("\(refreshToken)", forKey: "refreshToken")
+            print("didReceiveMessage refreshToken:\(UserDefaults.standard.string(forKey: "refreshToken") ?? "")")
+        }
+        if let tokenExpireAt = message["tokenExpireAt"] as? Int64 {
+            UserDefaults.standard.set(tokenExpireAt, forKey: "tokenExpireAt")
+            print("didReceiveMessage tokenExpireAt:\(UserDefaults.standard.integer(forKey: "tokenExpireAt"))")
         }
         if let userId = message["userId"] as? String {
             UserDefaults.standard.set("\(userId)", forKey: "userId")
+            print("didReceiveMessage userId:\(UserDefaults.standard.string(forKey: "userId") ?? "")")
             checkLogin()
             if UserDefaults.standard.string(forKey: "userId") == "" {
+                UserDefaults.standard.set("", forKey: "token")
+                UserDefaults.standard.set("", forKey: "refreshToken")
+                UserDefaults.standard.set(0, forKey: "tokenExpireAt")
                 DispatchQueue.main.async {
                     let nextControllerName = "LoginController"
                     self.pushController(withName: nextControllerName, context: nil)
@@ -95,11 +103,24 @@ class LoginContrroller: WKInterfaceController, WCSessionDelegate {
         }
         if let token = userInfo["token"] as? String {
             UserDefaults.standard.set("\(token)", forKey: "token")
+            print("didReceiveUserInfo token:\(UserDefaults.standard.string(forKey: "token") ?? "")")
+        }
+        if let refreshToken = userInfo["refreshToken"] as? String {
+            UserDefaults.standard.set("\(refreshToken)", forKey: "refreshToken")
+            print("didReceiveUserInfo refreshToken:\(UserDefaults.standard.string(forKey: "refreshToken") ?? "")")
+        }
+        if let tokenExpireAt = userInfo["tokenExpireAt"] as? Int64 {
+            UserDefaults.standard.set(tokenExpireAt, forKey: "tokenExpireAt")
+            print("didReceiveUserInfo tokenExpireAt:\(UserDefaults.standard.string(forKey: "tokenExpireAt") ?? "")")
         }
         if let userId = userInfo["userId"] as? String {
             UserDefaults.standard.set("\(userId)", forKey: "userId")
+            print("didReceiveUserInfo userId:\(UserDefaults.standard.string(forKey: "userId") ?? "")")
             checkLogin()
             if UserDefaults.standard.string(forKey: "userId") == "" {
+                UserDefaults.standard.set("", forKey: "token")
+                UserDefaults.standard.set("", forKey: "refreshToken")
+                UserDefaults.standard.set(0, forKey: "tokenExpireAt")
                 DispatchQueue.main.async {
                     let nextControllerName = "LoginController"
                     self.pushController(withName: nextControllerName, context: nil)

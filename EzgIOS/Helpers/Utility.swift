@@ -2,8 +2,11 @@ import Foundation
 import UIKit
 import SVProgressHUD
 import Reachability
+import Alamofire
 
 class Utility {
+    
+    static var isAcCreated: Bool = false
     
     static func showAlert(message: String) -> UIAlertController {
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
@@ -50,7 +53,7 @@ class Utility {
                 guard let windowScene = (scene as? UIWindowScene) else { return }
                 print(">>> windowScene: \(windowScene)")
                 let window: UIWindow = UIWindow(frame: windowScene.coordinateSpace.bounds)
-                window.windowScene = windowScene //Make sure to do this
+                window.windowScene = windowScene
                 window.rootViewController = vc
                 window.makeKeyAndVisible()
                 appDelegate.window = window
@@ -78,6 +81,39 @@ class Utility {
         } else {
             appDelegate.window?.rootViewController = vc
             appDelegate.window?.makeKeyAndVisible()
+        }
+    }
+    
+    static func isValidateToken(completion: @escaping (Bool) -> Void) {
+        let tokenExpireAt = UserDefaults.standard.integer(forKey: "tokenExpireAt")
+        let currentTimestamp = Int(Date().timeIntervalSince1970 * 1000)
+        
+        if currentTimestamp < tokenExpireAt {
+            completion(true)
+        } else {
+            completion(false)
+        }
+    }
+    
+    static func refreshToken(completion: @escaping (Bool) -> Void) {
+        let parameters: Parameters = ["refresh_token": "\(UserDefaults.standard.string(forKey: "refreshToken") ?? "")"]
+        let url = "\(Global.sharedInstance.baseUrl)user/access_token"
+        Alamofire.request(url, method: .post, parameters: parameters).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                if let json = value as? [String: Any], let data = json["data"] as? [String: Any] {
+                    let access_token = data["access_token"] as? String
+                    let refresh_token = data["refresh_token"] as? String
+                    let token_expire_at = data["token_expire_at"] as? Int64
+                    UserDefaults.standard.set(access_token, forKey: "token")
+                    UserDefaults.standard.set(refresh_token, forKey: "refreshToken")
+                    UserDefaults.standard.set(token_expire_at, forKey: "tokenExpireAt")
+                    completion(true)
+                }
+            case .failure(let error):
+                print("API Error: \(error)")
+                completion(false)
+            }
         }
     }
     

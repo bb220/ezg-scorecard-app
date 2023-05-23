@@ -119,12 +119,9 @@ class RegisterController: UIViewController {
                     session.transferUserInfo(data)
                 }
                 Utility.hideProgressDialog(view: self.view)
-                let alert = UIAlertController(title: "", message: "Account created.", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Okay", style: UIAlertAction.Style.default) { UIAlertAction in
-                    Utility.openMainPageController()
-                }
-                alert.addAction(okAction)
-                self.present(alert, animated: true)
+                Utility.isAcCreated = true
+                Utility.openMainPageController()
+                
             }, onError: { (error) in
                 Utility.hideProgressDialog(view: self.view)
                 Utility.showAlertNew(message: "We can't find that username and password. Please try again or create a new account.", context: self)

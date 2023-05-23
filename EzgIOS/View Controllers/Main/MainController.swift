@@ -58,16 +58,20 @@ class MainController: UIViewController {
     }
     
     func initViews() {
+        if Utility.isAcCreated {
+            accountCreatedAlert()
+        }
         Utility.showProgressDialog(view: self.view)
         UserDefaults.standard.set(KeychainWrapper.standard.string(forKey: "accessToken"), forKey: "token")
         UserDefaults.standard.set(KeychainWrapper.standard.string(forKey: "id"), forKey: "userId")
+        
+        let data = ["userId": "\(UserDefaults.standard.string(forKey: "userId") ?? "")",
+                      "token": "\(UserDefaults.standard.string(forKey: "token") ?? "")",
+                    "refreshToken":"\(UserDefaults.standard.string(forKey: "refreshToken") ?? "")",
+                    "tokenExpireAt": UserDefaults.standard.integer(forKey: "tokenExpireAt")] as [String : Any]
         if session.isReachable {
-            let data = ["userId": "\(UserDefaults.standard.string(forKey: "userId") ?? "")",
-                          "token": "\(UserDefaults.standard.string(forKey: "token") ?? "")"]
             session.sendMessage(data, replyHandler: nil, errorHandler: nil)
         } else if WCSession.isSupported() {
-            let data = ["userId": "\(UserDefaults.standard.string(forKey: "userId") ?? "")",
-                          "token": "\(UserDefaults.standard.string(forKey: "token") ?? "")"]
             session.transferUserInfo(data)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(reloadMainVC(_:)), name: NSNotification.Name("updateMainVC"), object: nil)
@@ -77,6 +81,16 @@ class MainController: UIViewController {
         roundsTableView.separatorColor = UIColor.clear
         view.layer.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
         navigationController?.navigationBar.titleTextAttributes = textAttributes
+    }
+    
+    func accountCreatedAlert() {
+        let alert = UIAlertController(title: "", message: "Account created.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Okay", style: UIAlertAction.Style.default) { UIAlertAction in
+            self.dismiss(animated: true)
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true)
+        Utility.isAcCreated = false
     }
 
     @objc func reloadMainVC(_ notification: Notification) {
@@ -102,6 +116,22 @@ class MainController: UIViewController {
     }
     
     func roundListAPI() {
+        Utility.isValidateToken { [self] isValid in
+            if isValid {
+                roundList()
+            } else {
+                Utility.refreshToken { [self] success in
+                    if success {
+                        roundList()
+                    } else {
+                        print("Error in holeListAPI")
+                    }
+                }
+            }
+        }
+    }
+    
+    func roundList() {
         let url = "\(Global.sharedInstance.baseUrl)round?page=\(currentPage)&limit=\(limit)"
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token") ?? "")",
@@ -149,6 +179,22 @@ class MainController: UIViewController {
     }
     
     func holeListAPI() {
+        Utility.isValidateToken { [self] isValid in
+            if isValid {
+                holeList()
+            } else {
+                Utility.refreshToken { [self] success in
+                    if success {
+                        holeList()
+                    } else {
+                        print("Error in holeListAPI")
+                    }
+                }
+            }
+        }
+    }
+    
+    func holeList() {
         let url = "\(Global.sharedInstance.baseUrl)hole?page=1&limit=10000"
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token") ?? "")",
@@ -179,6 +225,22 @@ class MainController: UIViewController {
     }
     
     func deleteRoundAPI(roundId: String, index: Int) {
+        Utility.isValidateToken { [self] isValid in
+            if isValid {
+                deleteRound(roundId: roundId, index: index)
+            } else {
+                Utility.refreshToken { [self] success in
+                    if success {
+                        deleteRound(roundId: roundId, index: index)
+                    } else {
+                        print("Error in deleteRoundAPI")
+                    }
+                }
+            }
+        }
+    }
+    
+    func deleteRound(roundId: String, index: Int) {
         let url = "\(Global.sharedInstance.baseUrl)round/\(roundId)"
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token") ?? "")",
@@ -203,11 +265,18 @@ class MainController: UIViewController {
     private func clearUserData(){
         let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
         Global.sharedInstance.user = nil
+        Utility.isAcCreated = false
         UserDefaults.standard.set("", forKey: "userId")
         UserDefaults.standard.set("", forKey: "token")
+        UserDefaults.standard.set("", forKey: "refreshToken")
+        UserDefaults.standard.set(0, forKey: "tokenExpireAt")
         UserDefaults.standard.set("", forKey: "roundIndex")
-        let data = ["userId": "", "token": "", "roundIndex":""]
-        session.transferUserInfo(data)
+        let data = ["userId": "", "roundIndex":""]
+        if session.isReachable {
+            session.sendMessage(data, replyHandler: nil, errorHandler: nil)
+        } else if WCSession.isSupported() {
+            session.transferUserInfo(data)
+        }
         if removeSuccessful {
             Utility.openLogin()
         }

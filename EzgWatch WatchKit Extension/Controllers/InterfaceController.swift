@@ -110,6 +110,22 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     func createRoundAPI() {
+        isValidateToken { [self] isValid in
+            if isValid {
+                createRound()
+            } else {
+                refreshToken { [self] success in
+                    if success {
+                        createRound()
+                    } else {
+                        print("Error in createRoundAPI")
+                    }
+                }
+            }
+        }
+    }
+    
+    func createRound() {
         let roundIndex = UserDefaults.standard.integer(forKey: "roundIndex") + 1
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -127,7 +143,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         Alamofire.request(url, method: .post, parameters: parameters, headers: headers).responseJSON { response in
             switch response.result {
             case .success(_):
-                let model = try? JSONDecoder().decode(GetRoundId.self, from: response.data!)                
+                let model = try? JSONDecoder().decode(GetRoundId.self, from: response.data!)
                 DispatchQueue.main.async {
                     UserDefaults.standard.set("\(model?.data?.Id ?? "")", forKey: "roundID")
                     self.createHoleAPI(val: true)
@@ -139,6 +155,22 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     func createHoleAPI(val: Bool) {
+        isValidateToken { [self] isValid in
+            if isValid {
+                createHole(val: val)
+            } else {
+                refreshToken { [self] success in
+                    if success {
+                        createHole(val: val)
+                    } else {
+                        print("Error in createHoleAPI")
+                    }
+                }
+            }
+        }
+    }
+    
+    func createHole(val: Bool) {
         let parameters: Parameters = [
             "round": "\(UserDefaults.standard.string(forKey: "roundID") ?? "")",
             "number": hole,
@@ -203,6 +235,22 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     }
     
     func updateHoleAPI(val: Bool) {
+        isValidateToken { [self] isValid in
+            if isValid {
+                updateHole(val: val)
+            } else {
+                refreshToken { [self] success in
+                    if success {
+                        updateHole(val: val)
+                    } else {
+                        print("Error in updateHoleAPI")
+                    }
+                }
+            }
+        }
+    }
+    
+    func updateHole(val: Bool) {
         let parameters: Parameters = [
             "round": "\(UserDefaults.standard.string(forKey: "roundID") ?? "")",
             "number": hole,
@@ -260,6 +308,39 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                 userInteraction = false
             case .failure:
                 print("API Error")
+            }
+        }
+    }
+    
+    func isValidateToken(completion: @escaping (Bool) -> Void) {
+        let tokenExpireAt = Int64(UserDefaults.standard.string(forKey: "tokenExpireAt") ?? "0")
+        let currentTimestamp = Int64(Date().timeIntervalSince1970 * 1000)
+        
+        if currentTimestamp < tokenExpireAt ?? 0 {
+            completion(true)
+        } else {
+            completion(false)
+        }
+    }
+    
+    func refreshToken(completion: @escaping (Bool) -> Void) {
+        let parameters: Parameters = ["refresh_token": "\(UserDefaults.standard.string(forKey: "refreshToken") ?? "")"]
+        let url = "\(baseUrl)user/access_token"
+        Alamofire.request(url, method: .post, parameters: parameters).responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                if let json = value as? [String: Any], let data = json["data"] as? [String: Any] {
+                    let access_token = data["access_token"] as? String
+                    let refresh_token = data["refresh_token"] as? String
+                    let token_expire_at = data["token_expire_at"] as? Int64
+                    UserDefaults.standard.set(access_token, forKey: "token")
+                    UserDefaults.standard.set(refresh_token, forKey: "refreshToken")
+                    UserDefaults.standard.set(token_expire_at, forKey: "tokenExpireAt")
+                    completion(true)
+                }
+            case .failure(let error):
+                print("API Error: \(error)")
+                completion(false)
             }
         }
     }
