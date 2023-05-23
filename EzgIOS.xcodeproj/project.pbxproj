@@ -71,7 +71,7 @@
 		BD7C54C429B486E4001AF531 /* EzgWatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7C54C329B486E4001AF531 /* EzgWatchTests.swift */; };
 		BD7C54CE29B486E4001AF531 /* EzgWatchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7C54CD29B486E4001AF531 /* EzgWatchUITests.swift */; };
 		BD7C54D029B486E4001AF531 /* EzgWatchUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7C54CF29B486E4001AF531 /* EzgWatchUITestsLaunchTests.swift */; };
-		BD7C54D329B486E4001AF531 /* EzgWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BD7C549F29B486E1001AF531 /* EzgWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BD7C54D329B486E4001AF531 /* EZG.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = BD7C549F29B486E1001AF531 /* EZG.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F02DB9313187A0FE6F9BB167 /* Pods_EzgIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F8B27691994E1F986109EA5 /* Pods_EzgIOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,7 +120,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				BD7C54D329B486E4001AF531 /* EzgWatch.app in Embed Watch Content */,
+				BD7C54D329B486E4001AF531 /* EZG.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,7 +203,7 @@
 		8DC8E48379FAD7D3C240D6CE /* Pods-EzgIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgIOS.release.xcconfig"; path = "Target Support Files/Pods-EzgIOS/Pods-EzgIOS.release.xcconfig"; sourceTree = "<group>"; };
 		9F8B27691994E1F986109EA5 /* Pods_EzgIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EzgIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD38369FA6388539D28BD213 /* Pods-EzgWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatch.debug.xcconfig"; path = "Target Support Files/Pods-EzgWatch/Pods-EzgWatch.debug.xcconfig"; sourceTree = "<group>"; };
-		BD7C549F29B486E1001AF531 /* EzgWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EzgWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD7C549F29B486E1001AF531 /* EZG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD7C54A229B486E1001AF531 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		BD7C54A429B486E3001AF531 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD7C54AA29B486E3001AF531 /* EzgWatch WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "EzgWatch WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,7 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				0ABD3A11297D7A6700B2DF26 /* Ezg.app */,
-				BD7C549F29B486E1001AF531 /* EzgWatch.app */,
+				BD7C549F29B486E1001AF531 /* EZG.app */,
 				BD7C54AA29B486E3001AF531 /* EzgWatch WatchKit Extension.appex */,
 				BD7C54BF29B486E4001AF531 /* EzgWatchTests.xctest */,
 				BD7C54C929B486E4001AF531 /* EzgWatchUITests.xctest */,
@@ -637,7 +637,7 @@
 			);
 			name = EzgWatch;
 			productName = EzgWatch;
-			productReference = BD7C549F29B486E1001AF531 /* EzgWatch.app */;
+			productReference = BD7C549F29B486E1001AF531 /* EZG.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		BD7C54A929B486E3001AF531 /* EzgWatch WatchKit Extension */ = {
@@ -1220,9 +1220,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KKD7CBMB3K;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgIOS/Supporting Files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = EZG;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1250,9 +1251,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KKD7CBMB3K;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgIOS/Supporting Files/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = EZG;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1282,15 +1284,14 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KKD7CBMB3K;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = EzgWatch_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = EzgWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoft.EZGe;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EZG;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1310,15 +1311,14 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KKD7CBMB3K;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = EzgWatch_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = EzgWatch;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoft.EZGe;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe.watchkitapp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EZG;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1336,10 +1336,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KKD7CBMB3K;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgWatch WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "EzgWatch WatchKit Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "EZG WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = EzgWatch_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKExtensionDelegateClassName = EzgWatch_WatchKit_Extension.ExtensionDelegate;
@@ -1368,10 +1368,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KKD7CBMB3K;
+				DEVELOPMENT_TEAM = QQ3M724RHH;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgWatch WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "EzgWatch WatchKit Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "EZG WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = EzgWatch_WatchKit_Extension.ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKExtensionDelegateClassName = EzgWatch_WatchKit_Extension.ExtensionDelegate;
