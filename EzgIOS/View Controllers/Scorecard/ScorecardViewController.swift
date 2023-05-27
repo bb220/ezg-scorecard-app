@@ -369,8 +369,7 @@ class ScorecardViewController: UIViewController {
         18: \(scoreArray[17])
         
         Focus on your game with the
-        EZG Golf Scorecard App
-        google.com
+        EZG Golf Scorecard app
         """
         let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
         if let popoverController = activityViewController.popoverPresentationController {
