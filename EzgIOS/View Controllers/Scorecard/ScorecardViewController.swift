@@ -243,7 +243,7 @@ class ScorecardViewController: UIViewController {
                                 if i <= holeModelData.count - 1 {
                                     scoreArray.append("\(holeModelData[i].score ?? 0)")
                                 } else {
-                                    scoreArray.append("Not played yet")
+                                    scoreArray.append("-")
                                 }
                             }
                             holesTableView.reloadData()
@@ -345,9 +345,9 @@ class ScorecardViewController: UIViewController {
         \(roundName)
         \(roundDate)
         
-        Total: \(totalScore.text ?? "0")
-        Front 9: \(frontScore.text ?? "0")
-        Back 9: \(backScore.text ?? "0")
+        Total: \(totalScore.text ?? "-")
+        Front 9: \(frontScore.text ?? "-")
+        Back 9: \(backScore.text ?? "-")
         1: \(scoreArray[0])
         2: \(scoreArray[1])
         3: \(scoreArray[2])
@@ -370,6 +370,7 @@ class ScorecardViewController: UIViewController {
         
         Focus on your game with the
         EZG Golf Scorecard app
+        https://apps.apple.com/app/apple-store/id6449625414?pt=124483576&ct=share&mt=8
         """
         let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
         if let popoverController = activityViewController.popoverPresentationController {
