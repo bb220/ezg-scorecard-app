@@ -49,6 +49,8 @@
 		8872AEF829B5B56C007AB444 /* LoginContrroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872AEF729B5B56C007AB444 /* LoginContrroller.swift */; };
 		8872AEFC29B5C10D007AB444 /* FinishRoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872AEFB29B5C10D007AB444 /* FinishRoundController.swift */; };
 		8873B56529E4146300826B18 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8873B56429E4146300826B18 /* Model.swift */; };
+		88A1958E2A2A1104004556D9 /* GetRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A1958D2A2A1104004556D9 /* GetRound.swift */; };
+		88A195912A2A1167004556D9 /* RoundIdData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A195902A2A1167004556D9 /* RoundIdData.swift */; };
 		88B1228229BAF0230031F4BF /* RoundsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1228129BAF0230031F4BF /* RoundsTVCell.swift */; };
 		88B1228429BAFB100031F4BF /* ScorecardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1228329BAFB0F0031F4BF /* ScorecardViewController.swift */; };
 		88B1228629BAFB520031F4BF /* HoleTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1228529BAFB520031F4BF /* HoleTVCell.swift */; };
@@ -190,6 +192,8 @@
 		8872AEF729B5B56C007AB444 /* LoginContrroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContrroller.swift; sourceTree = "<group>"; };
 		8872AEFB29B5C10D007AB444 /* FinishRoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRoundController.swift; sourceTree = "<group>"; };
 		8873B56429E4146300826B18 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		88A1958D2A2A1104004556D9 /* GetRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRound.swift; sourceTree = "<group>"; };
+		88A195902A2A1167004556D9 /* RoundIdData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundIdData.swift; sourceTree = "<group>"; };
 		88A37D1129B31221008EA902 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
 		88B1228129BAF0230031F4BF /* RoundsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundsTVCell.swift; sourceTree = "<group>"; };
 		88B1228329BAFB0F0031F4BF /* ScorecardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorecardViewController.swift; sourceTree = "<group>"; };
@@ -362,6 +366,7 @@
 				88B1228C29BB39E00031F4BF /* UserData.swift */,
 				88B1228929BB39CB0031F4BF /* RoundListModel */,
 				88B1229029BB46860031F4BF /* HoleListModel */,
+				88A1958F2A2A110D004556D9 /* NewRoundModel */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -530,6 +535,15 @@
 			path = Scorecard;
 			sourceTree = "<group>";
 		};
+		88A1958F2A2A110D004556D9 /* NewRoundModel */ = {
+			isa = PBXGroup;
+			children = (
+				88A1958D2A2A1104004556D9 /* GetRound.swift */,
+				88A195902A2A1167004556D9 /* RoundIdData.swift */,
+			);
+			path = NewRoundModel;
+			sourceTree = "<group>";
+		};
 		88B1228929BB39CB0031F4BF /* RoundListModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,9 +584,9 @@
 		BD7C54AE29B486E3001AF531 /* EzgWatch WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				88B44F7E29C0484300F2D11C /* GetRoundModel */,
 				8873B56129E4142000826B18 /* Model */,
 				888325C729C59CD6001D4534 /* Controllers */,
-				88B44F7E29C0484300F2D11C /* GetRoundModel */,
 				BD7C54B129B486E3001AF531 /* ExtensionDelegate.swift */,
 				BD7C54B329B486E3001AF531 /* NotificationController.swift */,
 				BD7C54B529B486E3001AF531 /* ComplicationController.swift */,
@@ -1005,9 +1019,11 @@
 				0ABD3A64297D812900B2DF26 /* User.swift in Sources */,
 				0ABD3A66297D816800B2DF26 /* ServerError.swift in Sources */,
 				0ABD3A15297D7A6700B2DF26 /* AppDelegate.swift in Sources */,
+				88A1958E2A2A1104004556D9 /* GetRound.swift in Sources */,
 				0ABD3A17297D7A6700B2DF26 /* SceneDelegate.swift in Sources */,
 				88B1229629BB46BF0031F4BF /* Round.swift in Sources */,
 				0ABD3A5A297D80B800B2DF26 /* Global.swift in Sources */,
+				88A195912A2A1167004556D9 /* RoundIdData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1224,7 +1240,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QQ3M724RHH;
+				DEVELOPMENT_TEAM = VDN386CYB3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgIOS/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = EZG;
@@ -1240,7 +1256,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee;
 				PRODUCT_NAME = Ezg;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1259,7 +1275,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QQ3M724RHH;
+				DEVELOPMENT_TEAM = VDN386CYB3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgIOS/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = EZG;
@@ -1275,7 +1291,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee;
 				PRODUCT_NAME = Ezg;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1296,13 +1312,13 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QQ3M724RHH;
+				DEVELOPMENT_TEAM = VDN386CYB3;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = EzgWatch_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoft.EZGe;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoft.EZGee;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.watchkitapp;
 				PRODUCT_NAME = EZG;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1323,13 +1339,13 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QQ3M724RHH;
+				DEVELOPMENT_TEAM = VDN386CYB3;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = EzgWatch_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoft.EZGe;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoft.EZGee;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.watchkitapp;
 				PRODUCT_NAME = EZG;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1348,7 +1364,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QQ3M724RHH;
+				DEVELOPMENT_TEAM = VDN386CYB3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgWatch WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "EZG WatchKit Extension";
@@ -1361,7 +1377,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1380,7 +1396,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QQ3M724RHH;
+				DEVELOPMENT_TEAM = VDN386CYB3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgWatch WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "EZG WatchKit Extension";
@@ -1393,7 +1409,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1413,10 +1429,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KKD7CBMB3K;
+				DEVELOPMENT_TEAM = VDN386CYB3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe.EzgWatchTests;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.EzgWatchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1436,10 +1452,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KKD7CBMB3K;
+				DEVELOPMENT_TEAM = VDN386CYB3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe.EzgWatchTests;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.EzgWatchTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1457,10 +1473,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KKD7CBMB3K;
+				DEVELOPMENT_TEAM = VDN386CYB3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe.EzgWatchUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.EzgWatchUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -1479,10 +1495,10 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KKD7CBMB3K;
+				DEVELOPMENT_TEAM = VDN386CYB3;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGe.EzgWatchUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.EzgWatchUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;

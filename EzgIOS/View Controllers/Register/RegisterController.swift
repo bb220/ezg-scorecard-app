@@ -85,7 +85,11 @@ class RegisterController: UIViewController {
     @IBAction func didTapRegisterBtn(_ sender: Any) {
         
         if validateForm() {
-            register()
+            if Utility.isValidEmail(testStr: textFieldEmail.text ?? "") {
+                register()
+            } else {
+                Utility.showAlertNew(message: "Please enter valid E-mail", context: self)
+            }
         }
         
     }

@@ -63,29 +63,32 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             deactivate = false
             let holeNumber = data["holeNumber"] as! Int
             let currentRoundId = data["currentRoundId"] as! String
-            if holeNumber == 19 {
-                UserDefaults.standard.set("\(currentRoundId)", forKey: "roundID")
-                if holeModel.count > 0 {
-                    let index = holeNumber - 2
-                    hole = holeNumber - 1
-                    total = holeModel[index].score ?? 0
-                    put = holeModel[index].putts ?? 0
-                    stroke = total - put
+            DispatchQueue.main.async { [self] in
+                if holeNumber == 19 {
+                    UserDefaults.standard.set("\(currentRoundId)", forKey: "roundID")
+                    if holeModel.count > 0 {
+                        let index = holeNumber - 2
+                        hole = holeNumber - 1
+                        total = holeModel[index].score ?? 0
+                        put = holeModel[index].putts ?? 0
+                        stroke = total - put
+                        swipe = true
+                        DispatchQueue.main.async { [self] in
+                            updateLabel()
+                        }
+                        print("Hole:\(hole)|Put:\(put)|Stroke:\(stroke)|total:\(total)")
+                    }
+                } else {
+                    UserDefaults.standard.set("\(currentRoundId)", forKey: "roundID")
+                    hole = holeNumber
+                    stroke = 0
+                    put = 0
+                    total = 0
                     swipe = true
                     DispatchQueue.main.async { [self] in
                         updateLabel()
                     }
-                }
-            }
-            else {
-                UserDefaults.standard.set("\(currentRoundId)", forKey: "roundID")
-                hole = holeNumber
-                stroke = 0
-                put = 0
-                total = 0
-                swipe = true
-                DispatchQueue.main.async { [self] in
-                    updateLabel()
+                    print("Hole:\(hole)|Put:\(put)|Stroke:\(stroke)|total:\(total)")
                 }
             }
         }
@@ -105,51 +108,6 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                 DispatchQueue.main.async { [self] in
                     updateLabel()
                 }
-            }
-        }
-    }
-    
-    func createRoundAPI() {
-        isValidateToken { [self] isValid in
-            if isValid {
-                createRound()
-            } else {
-                refreshToken { [self] success in
-                    if success {
-                        createRound()
-                    } else {
-                        print("Error in createRoundAPI")
-                    }
-                }
-            }
-        }
-    }
-    
-    func createRound() {
-        let roundIndex = UserDefaults.standard.integer(forKey: "roundIndex") + 1
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let todayDate = dateFormatter.string(from: Date())
-        let parameters: Parameters = [
-            "name": "Round \(roundIndex)",
-            "played_date": "\(todayDate)"
-        ]
-        UserDefaults.standard.set(roundIndex, forKey: "roundIndex")
-        let token = "\(UserDefaults.standard.string(forKey: "token") ?? "")"
-        let headers: HTTPHeaders = [
-            "Authorization": "Bearer \(token)"
-        ]
-        let url = "\(baseUrl)round/"
-        Alamofire.request(url, method: .post, parameters: parameters, headers: headers).responseJSON { response in
-            switch response.result {
-            case .success(_):
-                let model = try? JSONDecoder().decode(GetRoundId.self, from: response.data!)
-                DispatchQueue.main.async {
-                    UserDefaults.standard.set("\(model?.data?.Id ?? "")", forKey: "roundID")
-                    self.createHoleAPI(val: true)
-                }
-            case .failure(let error):
-                print("API error: \(error)")
             }
         }
     }
@@ -188,29 +146,25 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             case .success(_):
                 DispatchQueue.main.async { [self] in
                     if val {
-                        hole += 1
-                        if hole == 19 {
-                            hole = 1
-                            holeModel.removeAll()
+                        if hole < 18 {
+                            hole += 1
+                            put = 0
+                            stroke = 0
+                            total = 0
                         }
-                        put = 0
-                        stroke = 0
-                        total = 0
                         swipe = true
                         DispatchQueue.main.async { [self] in
                             updateLabel()
                         }
                         if session.isReachable {
-                            if hole == 2 {
-                                session.sendMessage(["roundAPI": true, "scorecardVC": true], replyHandler: nil)
-                            } else {
-                                session.sendMessage(["roundAPI": true, "holeAPI": true], replyHandler: nil)
-                            }
+                            session.sendMessage(["roundAPI": true, "holeAPI": true], replyHandler: nil)
                         } else if WCSession.isSupported() {
                             session.transferUserInfo(["roundAPI": true, "holeAPI": true])
                         }
                     } else if !val {
+                        print("HoleModelCount on createHole:-",holeModel.count,"hole:-",hole)
                         if holeModel.count >= hole - 1 {
+                            print("createHole Val = False")
                             if session.isReachable {
                                 session.sendMessage(["roundAPI": true, "holeAPI": true], replyHandler: nil)
                             } else if WCSession.isSupported() {
@@ -268,16 +222,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                     session.sendMessage(["roundAPI": true, "holeAPI": true], replyHandler: nil)
                 }
                 if val == true {
-                    if hole == 18 {
-                        holeModel.removeAll()
-                        put = 0
-                        stroke = 0
-                        total = 0
-                        hole = 1
-                        DispatchQueue.main.async { [self] in
-                            updateLabel()
-                        }
-                    } else if holeModel.count > hole {
+                    if holeModel.count > hole {
                         put = holeModel[hole].putts ?? 0
                         total = holeModel[hole].score ?? 0
                         stroke = total - put
@@ -285,7 +230,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                         DispatchQueue.main.async { [self] in
                             updateLabel()
                         }
-                    } else if deactivate == false {
+                    } else if deactivate == false && hole < 18{
                         put = 0
                         total = 0
                         stroke = 0
@@ -351,9 +296,8 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
             if holeModel.count >= hole {
                 if userInteraction && holeModel[hole-1].number == hole {
                     if hole == 18 {
-                        let created: Bool = true
-                        let context = [put, stroke, total, created] as [Any]
-                        self.presentController(withName: "FinishRoundController", context: context)
+                        updateHoleAPI(val: true)
+                        self.presentController(withName: "FinishRoundController", context: nil)
                     } else {
                         updateHoleAPI(val: true)
                     }
@@ -367,9 +311,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                             updateLabel()
                         }
                     } else if hole == 18 {
-                        let created: Bool = true
-                        let context = [put, stroke, total,created] as [Any]
-                        self.presentController(withName: "FinishRoundController", context: context)
+                        self.presentController(withName: "FinishRoundController", context: nil)
                     } else {
                         hole = hole + 1
                         put = 0
@@ -381,18 +323,12 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
                     }
                     swipe = true
                 }
-            }
-            else {
+            } else {
                 if hole == 18 {
-                    let created: Bool = false
-                    let context = [put, stroke, total,created] as [Any]
-                    self.presentController(withName: "FinishRoundController", context: context)
+                    createHoleAPI(val: true)
+                    self.presentController(withName: "FinishRoundController", context: nil)
                 } else {
-                    if hole == 1 {
-                        createRoundAPI()
-                    } else {
-                        createHoleAPI(val: true)
-                    }
+                    createHoleAPI(val: true)
                 }
             }
         }
@@ -495,28 +431,18 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         if temp {
             temp = false
             if let data = notification.userInfo as? [String: Bool] {
-                if data["call"] == true && data["created"] == false {
-                    modelUpdate = false
-                    createHoleAPI(val: true)
+                if data["call"] == true {
                     DispatchQueue.main.async { [self] in
                         if session.isReachable {
                             session.sendMessage(["popToMain": true], replyHandler: nil)
                         } else if WCSession.isSupported() {
                             session.transferUserInfo(["popToMain": true])
                         }
+                        let nextControllerName = "OpenRoundMsgController"
+                        self.pushController(withName: nextControllerName, context: nil)
+                        WKInterfaceController.reloadRootPageControllers(withNames: [nextControllerName], contexts: nil, orientation: .vertical, pageIndex: 0)
                     }
-                } else if data["call"] == true && data["created"] == true && holeModel.count >= hole {
-                    modelUpdate = false
-                    updateHoleAPI(val: true)
-                    DispatchQueue.main.async { [self] in
-                        if session.isReachable {
-                            session.sendMessage(["popToMain": true], replyHandler: nil)
-                        } else if WCSession.isSupported() {
-                            session.transferUserInfo(["popToMain": true])
-                        }
-                    }
-                } else {
-                    swipe = true
+                    
                 }
             }
         }

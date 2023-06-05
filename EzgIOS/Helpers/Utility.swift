@@ -3,6 +3,7 @@ import UIKit
 import SVProgressHUD
 import Reachability
 import Alamofire
+import SwiftKeychainWrapper
 
 class Utility {
     
@@ -17,8 +18,7 @@ class Utility {
     
     static func showAlertNew(message: String, context: UIViewController) {
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("okay", comment: ""), style: .cancel, handler: nil))
-        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Okay", comment: ""), style: .cancel, handler: nil))
         context.present(alert, animated: true, completion: nil)
     }
     
@@ -87,7 +87,6 @@ class Utility {
     static func isValidateToken(completion: @escaping (Bool) -> Void) {
         let tokenExpireAt = UserDefaults.standard.integer(forKey: "tokenExpireAt")
         let currentTimestamp = Int(Date().timeIntervalSince1970 * 1000)
-        
         if currentTimestamp < tokenExpireAt {
             completion(true)
         } else {
@@ -108,6 +107,8 @@ class Utility {
                     UserDefaults.standard.set(access_token, forKey: "token")
                     UserDefaults.standard.set(refresh_token, forKey: "refreshToken")
                     UserDefaults.standard.set(token_expire_at, forKey: "tokenExpireAt")
+                    KeychainWrapper.standard.set(access_token ?? "", forKey: "accessToken")
+                    KeychainWrapper.standard.set(refresh_token ?? "", forKey: "refreshToken")
                     completion(true)
                 }
             case .failure(let error):

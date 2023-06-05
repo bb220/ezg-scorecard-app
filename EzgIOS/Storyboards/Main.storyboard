@@ -149,13 +149,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Rounds" largeTitleDisplayMode="always" id="gg4-LX-UZF">
-                        <barButtonItem key="rightBarButtonItem" title="Log Out" style="plain" id="2S8-vB-vhP">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" style="plain" id="2S8-vB-vhP">
                             <connections>
                                 <action selector="didTapLogoutBtn:" destination="7U5-7o-yI5" id="MtW-Tq-RvV"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="xMv-4u-YiM">
+                            <connections>
+                                <action selector="didTapAddRoundBtn:" destination="7U5-7o-yI5" id="pyq-Bl-mDB"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addRoundBtn" destination="xMv-4u-YiM" id="Muo-nX-HFK"/>
                         <outlet property="roundsTableView" destination="eMJ-Ui-9jH" id="6rx-eJ-uSV"/>
                     </connections>
                 </viewController>

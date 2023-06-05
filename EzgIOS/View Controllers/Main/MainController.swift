@@ -21,6 +21,8 @@ class MainController: UIViewController {
     let refreshControl = UIRefreshControl()
     
     @IBOutlet weak var roundsTableView: UITableView!
+    @IBOutlet weak var addRoundBtn: UIBarButtonItem!
+    
     let session = WCSession.default
     let textAttributes = [
         NSAttributedString.Key.foregroundColor:UIColor(red: 0, green: 0, blue: 0),
@@ -29,8 +31,8 @@ class MainController: UIViewController {
     var modelData: [RoundData] = []
     var holeModelData: [HoleData] = []
     var temp = true
-    var navigate = false
     var deActivate: Bool = false
+    var totalRound: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +60,7 @@ class MainController: UIViewController {
     }
     
     func initViews() {
+        addRoundBtn.isEnabled = false
         if Utility.isAcCreated {
             accountCreatedAlert()
         }
@@ -75,7 +78,6 @@ class MainController: UIViewController {
             session.transferUserInfo(data)
         }
         NotificationCenter.default.addObserver(self, selector: #selector(reloadMainVC(_:)), name: NSNotification.Name("updateMainVC"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(navigateVC(_:)), name: NSNotification.Name("navigateVC"), object: nil)
         refreshControl.addTarget(self, action: #selector(refreshTable(_:)), for: .valueChanged)
         roundsTableView.addSubview(refreshControl)
         roundsTableView.separatorColor = UIColor.clear
@@ -100,12 +102,6 @@ class MainController: UIViewController {
                 roundListAPI()
                 holeListAPI()
             }
-        }
-    }
-    
-    @objc func navigateVC(_ notification: Notification) {
-        if let data = notification.userInfo as? [String: Bool] {
-            navigate = data["scorecardVC"] ?? false
         }
     }
     
@@ -147,6 +143,8 @@ class MainController: UIViewController {
                             holeListAPI()
                             roundsTableView.reloadData()
                             temp = false
+                        } else {
+                            totalRound = 0
                         }
                     } else {
                         modelData += model.data ?? []
@@ -159,17 +157,15 @@ class MainController: UIViewController {
                     DispatchQueue.main.async { [self] in
                         if modelData.count > 0 {
                             roundsTableView.setMessage(message: "")
+                            totalRound = model.total_rounds ?? 0
                         } else {
+                            totalRound = 0
                             roundsTableView.reloadData()
                             Utility.hideProgressDialog(view: self.view)
                             refreshControl.endRefreshing()
-                            roundsTableView.setMessage(message: "Use the WatchOS app to start a round")
+                            roundsTableView.setMessage(message: "Tap + to create a round")
                         }
-                        if session.isReachable {
-                            session.sendMessage(["roundIndex": model.total_rounds ?? 0], replyHandler: nil, errorHandler: nil)
-                        } else if WCSession.isSupported() {
-                            session.transferUserInfo(["roundIndex": model.total_rounds ?? 0])
-                        }
+                        addRoundBtn.isEnabled = true
                     }
                 }
             case .failure(let error):
@@ -209,13 +205,6 @@ class MainController: UIViewController {
                         refreshControl.endRefreshing()
                         roundsTableView.tableFooterView = hidefooterview()
                         Utility.hideProgressDialog(view: self.view)
-                        if navigate == true {
-                            let vc = storyboard?.instantiateViewController(withIdentifier: "ScorecardViewController") as? ScorecardViewController
-                            vc?.roundId = modelData[0].Id ?? ""
-                            vc?.roundName = modelData[0].name ?? ""
-                            navigate = false
-                            self.navigationController?.pushViewController(vc!, animated: true)
-                        }
                     }
                 }
             case .failure(let error):
@@ -262,6 +251,59 @@ class MainController: UIViewController {
         }
     }
     
+    func createRoundAPI() {
+        Utility.showProgressDialog(view: self.view)
+        Utility.isValidateToken { [self] isValid in
+            if isValid {
+                createRound()
+            } else {
+                Utility.refreshToken { [self] success in
+                    if success {
+                        createRound()
+                    } else {
+                        Utility.hideProgressDialog(view: self.view)
+                        print("Error in createRoundAPI")
+                    }
+                }
+            }
+        }
+    }
+    
+    func createRound() {
+        let roundIndex = totalRound + 1
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let todayDate = dateFormatter.string(from: Date())
+        let parameters: Parameters = [
+            "name": "Round \(roundIndex)",
+            "played_date": "\(todayDate)"
+        ]
+        let token = "\(UserDefaults.standard.string(forKey: "token") ?? "")"
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        let url = "\(Global.sharedInstance.baseUrl)round/"
+        Alamofire.request(url, method: .post, parameters: parameters, headers: headers).responseJSON { [self] response in
+            switch response.result {
+            case .success(_):
+                Utility.hideProgressDialog(view: self.view)
+                let model = try? JSONDecoder().decode(GetRoundId.self, from: response.data!)
+                temp = true
+                roundListAPI()
+                DispatchQueue.main.async { [self] in
+                    UserDefaults.standard.set("\(model?.data?.Id ?? "")", forKey: "roundID")
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "ScorecardViewController") as? ScorecardViewController
+                    vc?.roundId = model?.data?.Id ?? ""
+                    vc?.roundName = model?.data?.name ?? ""
+                    self.navigationController?.pushViewController(vc!, animated: true)
+                    
+                }
+            case .failure(let error):
+                print("API error: \(error)")
+            }
+        }
+    }
+    
     private func clearUserData(){
         let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
         Global.sharedInstance.user = nil
@@ -270,8 +312,7 @@ class MainController: UIViewController {
         UserDefaults.standard.set("", forKey: "token")
         UserDefaults.standard.set("", forKey: "refreshToken")
         UserDefaults.standard.set(0, forKey: "tokenExpireAt")
-        UserDefaults.standard.set("", forKey: "roundIndex")
-        let data = ["userId": "", "roundIndex":""]
+        let data = ["userId": ""]
         if session.isReachable {
             session.sendMessage(data, replyHandler: nil, errorHandler: nil)
         } else if WCSession.isSupported() {
@@ -280,6 +321,10 @@ class MainController: UIViewController {
         if removeSuccessful {
             Utility.openLogin()
         }
+    }
+    
+    @IBAction func didTapAddRoundBtn(_ sender: Any) {
+        createRoundAPI()
     }
     
     @IBAction func didTapLogoutBtn(_ sender: Any) {

@@ -16,9 +16,9 @@ class LoginContrroller: WKInterfaceController, WCSessionDelegate {
     var holeNumber: Int = 0
     var currentRoundId: String = ""
     
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        UserDefaults.standard.integer(forKey: "roundIndex")
         if WCSession.isSupported() {
             session.delegate = self
             session.activate()
@@ -28,10 +28,47 @@ class LoginContrroller: WKInterfaceController, WCSessionDelegate {
     
     func checkLogin() {
         if UserDefaults.standard.string(forKey: "userId") != nil && UserDefaults.standard.string(forKey: "userId") != "" {
-            DispatchQueue.main.async {
-                let nextControllerName = "InterfaceController"
-                self.pushController(withName: nextControllerName, context: nil)
-                WKInterfaceController.reloadRootPageControllers(withNames: [nextControllerName], contexts: nil, orientation: .vertical, pageIndex: 0)
+            DispatchQueue.main.async { [self] in
+                if holeNumber == 0 && currentRoundId == "" {
+                    holeModel.removeAll()
+                    let nextControllerName = "OpenRoundMsgController"
+                    self.pushController(withName: nextControllerName, context: nil)
+                    WKInterfaceController.reloadRootPageControllers(withNames: [nextControllerName], contexts: nil, orientation: .vertical, pageIndex: 0)
+                } else {
+                    holeModel.removeAll()
+                    let nextControllerName = "InterfaceController"
+                    if let visibleController = WKExtension.shared().visibleInterfaceController {
+                        if !(visibleController is InterfaceController) {
+                            self.pushController(withName: nextControllerName, context: nil)
+                            WKInterfaceController.reloadRootPageControllers(withNames: [nextControllerName], contexts: nil, orientation: .vertical, pageIndex: 0)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func checkRoundOpen() {
+        if UserDefaults.standard.string(forKey: "userId") != nil && UserDefaults.standard.string(forKey: "userId") != "" {
+            DispatchQueue.main.async { [self] in
+                if holeNumber == 0 && currentRoundId == "" {
+                    holeModel.removeAll()
+                    let nextControllerName = "OpenRoundMsgController"
+                    self.pushController(withName: nextControllerName, context: nil)
+                    WKInterfaceController.reloadRootPageControllers(withNames: [nextControllerName], contexts: nil, orientation: .vertical, pageIndex: 0)
+                } else {
+                    let nextControllerName = "InterfaceController"
+                    if let visibleController = WKExtension.shared().visibleInterfaceController {
+                        if !(visibleController is InterfaceController) {
+                            self.pushController(withName: nextControllerName, context: nil)
+                            WKInterfaceController.reloadRootPageControllers(withNames: [nextControllerName], contexts: nil, orientation: .vertical, pageIndex: 0)
+                        }
+                    }
+                    let data = ["holeNumber": holeNumber, "currentRoundId": currentRoundId] as [String : Any]
+                    NotificationCenter.default.post(name: NSNotification.Name("updateHoleData"), object: nil, userInfo: data)
+                    let data1 = ["holeModel":holeModel]
+                    NotificationCenter.default.post(name: NSNotification.Name("holeModel"), object: nil, userInfo: data1)
+                }
             }
         }
     }
@@ -48,15 +85,14 @@ class LoginContrroller: WKInterfaceController, WCSessionDelegate {
         if let holeNumber = message["holeNumber"] as? Int, let currentRoundId = message["currentRoundId"] as? String {
             self.currentRoundId = currentRoundId
             self.holeNumber = holeNumber
-            let data = ["holeNumber": holeNumber, "currentRoundId": currentRoundId] as [String : Any]
-            NotificationCenter.default.post(name: NSNotification.Name("updateHoleData"), object: nil, userInfo: data)
+            print("didReceiveMessage currentRoundId :-",currentRoundId,"holeNumber :-",holeNumber)
+            DispatchQueue.main.async {
+                self.checkRoundOpen()
+            }
         }
         if let deactivateRound = message["deactivateRound"] as? Bool {
             let data = ["deactivateRound": deactivateRound]
             NotificationCenter.default.post(name: NSNotification.Name("deactivateRound"), object: nil, userInfo: data)
-        }
-        if let roundIndex = message["roundIndex"] as? Int {
-            UserDefaults.standard.set(roundIndex, forKey: "roundIndex")
         }
         if let token = message["token"] as? String {
             UserDefaults.standard.set("\(token)", forKey: "token")
@@ -91,15 +127,14 @@ class LoginContrroller: WKInterfaceController, WCSessionDelegate {
         if let holeNumber = userInfo["holeNumber"] as? Int, let currentRoundId = userInfo["currentRoundId"] as? String {
             self.currentRoundId = currentRoundId
             self.holeNumber = holeNumber
-            let data = ["holeNumber": holeNumber, "currentRoundId": currentRoundId] as [String : Any]
-            NotificationCenter.default.post(name: NSNotification.Name("updateHoleData"), object: nil, userInfo: data)
+            print("didReceiveUserInfo currentRoundId :-",currentRoundId,"holeNumber :-",holeNumber)
+            DispatchQueue.main.async {
+                self.checkRoundOpen()
+            }
         }
         if let deactivateRound = userInfo["deactivateRound"] as? Bool {
             let data = ["deactivateRound": deactivateRound]
             NotificationCenter.default.post(name: NSNotification.Name("deactivateRound"), object: nil, userInfo: data)
-        }
-        if let roundIndex = userInfo["roundIndex"] as? Int {
-            UserDefaults.standard.set(roundIndex, forKey: "roundIndex")
         }
         if let token = userInfo["token"] as? String {
             UserDefaults.standard.set("\(token)", forKey: "token")
@@ -131,13 +166,13 @@ class LoginContrroller: WKInterfaceController, WCSessionDelegate {
     }
     
     func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
-        let data = messageData
         do {
             let decoder = JSONDecoder()
-            let decodedObject = try decoder.decode(GetHoleList.self, from: data)
+            let decodedObject = try decoder.decode(GetHoleList.self, from: messageData)
             self.holeModel = decodedObject.data ?? []
             DispatchQueue.main.async { [self] in
                 holeModel = holeModel.reversed()
+                print("didReceiveMessageData HoleModel Count:-",holeModel.count)
                 let data = ["holeModel":holeModel]
                 NotificationCenter.default.post(name: NSNotification.Name("holeModel"), object: nil, userInfo: data)
             }

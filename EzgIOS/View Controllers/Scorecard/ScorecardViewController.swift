@@ -37,11 +37,25 @@ class ScorecardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("roundId :- \(roundId)")
+        print("roundName :- \(roundName)")
         initView()
-        holeListAPI(call: false)
+        holeListAPI(call: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let data = ["holeNumber": 0, "currentRoundId": ""] as [String : Any]
+        if session.isReachable {
+            session.sendMessage(data, replyHandler: nil, errorHandler: nil)
+        } else if WCSession.isSupported() {
+            session.transferUserInfo(data)
+        }
+        self.navigationController?.popViewController(animated: true)
     }
     
     func initView() {
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         Utility.showProgressDialog(view: self.view)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -153,7 +167,7 @@ class ScorecardViewController: UIViewController {
         if let data = notification.userInfo as? [String: Bool] {
             if data["holeAPI"] == true {
                 UserDefaults.standard.set(false, forKey: "holeAPI")
-                holeListAPI(call: true)
+                holeListAPI(call: false)
             }
         }
     }
@@ -162,7 +176,13 @@ class ScorecardViewController: UIViewController {
         if let data = notification.userInfo as? [String: Bool] {
             if data["pop"] == true {
                 didChangeVariableValue?(true)
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [self] in
+                    let data = ["holeNumber": 0, "currentRoundId": ""] as [String : Any]
+                    if session.isReachable {
+                        session.sendMessage(data, replyHandler: nil, errorHandler: nil)
+                    } else if WCSession.isSupported() {
+                        session.transferUserInfo(data)
+                    }
                     self.navigationController?.popViewController(animated: true)
                 }
             }
@@ -198,27 +218,24 @@ class ScorecardViewController: UIViewController {
                     self.holeModelData = self.holeModelData.reversed()
                     DispatchQueue.main.async { [self] in
                         if holeModelData.count > 0 {
-                            if session.isReachable && call == true {
+                            let holeNumber = holeModelData.count + 1
+                            let data = ["holeNumber": holeNumber, "currentRoundId": "\(roundId)"] as [String : Any]
+                            if session.isReachable && call {
                                 do {
                                     let jsonData = try JSONEncoder().encode(model)
                                     session.sendMessageData(jsonData, replyHandler: nil, errorHandler: nil)
                                 } catch {
                                     print("Error encoding holeDataArray: \(error)")
                                 }
-                            } else if !call {
-                                let holeNumber = holeModelData.count + 1
-                                if session.isReachable {
-                                    do {
-                                        let jsonData = try JSONEncoder().encode(model)
-                                        session.sendMessageData(jsonData, replyHandler: nil, errorHandler: nil)
-                                    } catch {
-                                        print("Error encoding holeDataArray: \(error)")
-                                    }
-                                    let data = ["holeNumber": holeNumber, "currentRoundId": "\(roundId)"] as [String : Any]
-                                    session.sendMessage(data, replyHandler: nil, errorHandler: nil)
-                                } else if WCSession.isSupported() {
-                                    let data = ["holeNumber": holeNumber, "currentRoundId": "\(roundId)"] as [String : Any]
-                                    session.transferUserInfo(data)
+                                session.sendMessage(data, replyHandler: nil, errorHandler: nil)
+                            } else if WCSession.isSupported() && call {
+                                session.transferUserInfo(data)
+                            } else if session.isReachable && !call {
+                                do {
+                                    let jsonData = try JSONEncoder().encode(model)
+                                    session.sendMessageData(jsonData, replyHandler: nil, errorHandler: nil)
+                                } catch {
+                                    print("Error encoding holeDataArray: \(error)")
                                 }
                             }
                             total = 0
@@ -235,6 +252,13 @@ class ScorecardViewController: UIViewController {
                                     back += holeModelData[i].score!
                                     backScore.text = "\(back)"
                                 }
+                            }
+                        } else if holeModelData.count == 0 {
+                            let data = ["holeNumber": 1, "currentRoundId": "\(roundId)"] as [String : Any]
+                            if session.isReachable {
+                                session.sendMessage(data, replyHandler: nil, errorHandler: nil)
+                            } else if WCSession.isSupported() {
+                                session.transferUserInfo(data)
                             }
                         }
                         DispatchQueue.main.async { [self] in
@@ -329,7 +353,7 @@ class ScorecardViewController: UIViewController {
             switch response.result {
             case .success:
                 Utility.showProgressDialog(view: self.view)
-                holeListAPI(call: true)
+                holeListAPI(call: false)
                 let data = ["roundAPI": true]
                 NotificationCenter.default.post(name: NSNotification.Name("updateMainVC"), object: nil, userInfo: data)
             case .failure:

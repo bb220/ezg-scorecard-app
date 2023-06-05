@@ -58,15 +58,18 @@ class LoginController: UIViewController {
     @IBAction func didTapSignInBtn(_ sender: Any) {
         
         if validateForm() {
-            login()
+            if Utility.isValidEmail(testStr: textFieldEmail.text ?? "") {
+                login()
+            } else {
+                Utility.showAlertNew(message: "Please enter valid Email", context: self)
+            }
         }
         
     }
     
     // MARK: - Network
     
-    private func login(){
-        
+    private func login() {
         Utility.showProgressDialog(view: self.view)
         
         let params: [String: Any] =

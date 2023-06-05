@@ -12,30 +12,20 @@ import WatchConnectivity
 class FinishRoundController: WKInterfaceController, WCSessionDelegate {
     
     var data = ["call": true]
-    var put = 0
-    var stroke = 0
-    var total = 0
-    var created: Bool = true
     let session = WCSession.default
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        if let data = context as? [Any] {
-            put = data[0] as! Int
-            stroke = data[1] as! Int
-            total = data[2] as! Int
-            created = data[3] as! Bool
-        }
     }
 
     @IBAction func yesClicked() {
-        data = ["call": true, "created": created]
+        data = ["call": true]
         NotificationCenter.default.post(name: NSNotification.Name("response"), object: nil, userInfo: data)
         dismiss()
     }
     
     @IBAction func noClicked() {
-        data = ["call": false, "created": created]
+        data = ["call": false]
         NotificationCenter.default.post(name: NSNotification.Name("response"), object: nil, userInfo: data)
         dismiss()
     }

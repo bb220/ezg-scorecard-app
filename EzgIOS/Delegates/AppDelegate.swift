@@ -72,10 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             let data = ["holeAPI": holeAPI]
             NotificationCenter.default.post(name: NSNotification.Name("updateScorecardVC"), object: nil, userInfo: data)
         }
-        if let scorecardVC = message["scorecardVC"] as? Bool {
-            let data = ["scorecardVC": scorecardVC]
-            NotificationCenter.default.post(name: NSNotification.Name("navigateVC"), object: nil, userInfo: data)
-        }
         if let shouldShowScorecard = message["popToMain"] as? Bool, shouldShowScorecard {
             let data = ["pop": shouldShowScorecard]
             NotificationCenter.default.post(name: NSNotification.Name("popToMain"), object: nil, userInfo: data)
