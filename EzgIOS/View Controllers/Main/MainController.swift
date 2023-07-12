@@ -296,7 +296,6 @@ class MainController: UIViewController {
                     vc?.roundId = model?.data?.Id ?? ""
                     vc?.roundName = model?.data?.name ?? ""
                     self.navigationController?.pushViewController(vc!, animated: true)
-                    
                 }
             case .failure(let error):
                 print("API error: \(error)")
@@ -304,7 +303,7 @@ class MainController: UIViewController {
         }
     }
     
-    private func clearUserData(){
+    private func clearUserData() {
         let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
         Global.sharedInstance.user = nil
         Utility.isAcCreated = false
@@ -386,13 +385,16 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
         view.addSubview(activityIndicatorView)
         return view
     }
+    
     func hidefooterview() -> UIView {
         activityIndicatorView.stopAnimating()
         roundsTableView.tableFooterView?.isHidden = true
         let view = UIView(frame: CGRect(x: 0, y: 0, width: roundsTableView.frame.width, height: 0))
         return view
     }
+    
 }
+
 extension UITableView {
     func setMessage(message: String) {
         let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))

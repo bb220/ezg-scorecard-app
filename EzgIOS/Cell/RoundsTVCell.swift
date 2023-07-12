@@ -33,6 +33,8 @@ class RoundsTVCell: UITableViewCell {
                 total = total + (HoleData?[i].score)!
             }
             roundScore.text = "\(total)"
+        } else {
+            roundScore.text = "-"
         }
         // For Date
         let dateFormatter = DateFormatter()

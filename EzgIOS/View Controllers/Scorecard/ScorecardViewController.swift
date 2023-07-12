@@ -10,6 +10,12 @@ import Alamofire
 import Foundation
 import WatchConnectivity
 
+struct data {
+    var number: Int?
+    var putt: Int?
+    var score: Int?
+}
+
 class ScorecardViewController: UIViewController {
     
     @IBOutlet var headerView: UIView!
@@ -22,6 +28,7 @@ class ScorecardViewController: UIViewController {
     
     let session = WCSession.default
     var holeModelData: [HoleData] = []
+    var tmpData: [data] = []
     var scoreArray: [String] = []
     var roundId: String = ""
     var roundName: String = ""
@@ -132,10 +139,9 @@ class ScorecardViewController: UIViewController {
         navigationTitleLabel.textColor = UIColor(red: 0, green: 0, blue: 0)
         navigationItem.titleView = navigationTitleLabel
         navigationItem.title = updatedRoundName
-        
+        holeListAPI(call: true)
         DispatchQueue.main.async { [self] in
             editToggle = true
-            holesTableView.reloadData()
         }
         editButtonTapped(sender)
     }
@@ -156,10 +162,9 @@ class ScorecardViewController: UIViewController {
         totalScore.text = "\(total)"
         frontScore.text = "\(front)"
         backScore.text = "\(back)"
-        
+        holeListAPI(call: true)
         DispatchQueue.main.async { [self] in
             editToggle = true
-            holesTableView.reloadData()
         }
     }
     
@@ -217,6 +222,16 @@ class ScorecardViewController: UIViewController {
                     self.holeModelData = model.data ?? []
                     self.holeModelData = self.holeModelData.reversed()
                     DispatchQueue.main.async { [self] in
+                        tmpData.removeAll()
+                        if holeModelData.count > 0 {
+                            for value in 0...holeModelData.count - 1 {
+                                tmpData.append(data.init(number: holeModelData[value].number,
+                                                         putt: holeModelData[value].putts,
+                                                         score: holeModelData[value].score))
+                            }
+                        }
+                        let data = ["roundAPI": true]
+                        NotificationCenter.default.post(name: NSNotification.Name("updateMainVC"), object: nil, userInfo: data)
                         if holeModelData.count > 0 {
                             let holeNumber = holeModelData.count + 1
                             let data = ["holeNumber": holeNumber, "currentRoundId": "\(roundId)"] as [String : Any]
@@ -352,6 +367,7 @@ class ScorecardViewController: UIViewController {
         Alamofire.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON { [self] response in
             switch response.result {
             case .success:
+                updatedGolfScore.removeAll()
                 Utility.showProgressDialog(view: self.view)
                 holeListAPI(call: false)
                 let data = ["roundAPI": true]
@@ -441,6 +457,16 @@ extension ScorecardViewController: ScorecardViewControllerDelegate {
             }
         }
     }
+    
+    func reloadTableView() {
+        holesTableView.reloadData()
+    }
+    
+    func updateTmpData(tmpData: [data]) {
+        self.tmpData = tmpData
+        holesTableView.reloadData()
+    }
+    
 }
 
 extension ScorecardViewController: UITableViewDelegate, UITableViewDataSource, ChangeScoreValueDelegate {
@@ -452,7 +478,8 @@ extension ScorecardViewController: UITableViewDelegate, UITableViewDataSource, C
         let cell = holesTableView.dequeueReusableCell(withIdentifier: "HoleTVCell", for: indexPath) as? HoleTVCell
         cell?.scoreDelegate = self
         cell?.delegate = self
-        cell?.setValueOnCell(index: indexPath.row, holeModelData: holeModelData, isEditable: editToggle)
+        cell?.roundId = roundId
+        cell?.setValueOnCell(index: indexPath.row, modelData: tmpData, isEditable: editToggle)
         return cell!
     }
     

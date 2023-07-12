@@ -6,13 +6,15 @@
 //
 
 import UIKit
+import Alamofire
 
 class HoleTVCell: UITableViewCell {
     
     var scoreLongPress = false
     var puttLongPress = false
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-    var holeModelDataa: [HoleData] = []
+    var tmpData: [data] = []
+    var roundId: String = ""
     
     weak var delegate: ScorecardViewControllerDelegate?
     weak var scoreDelegate: ChangeScoreValueDelegate?
@@ -31,18 +33,88 @@ class HoleTVCell: UITableViewCell {
         holeBackView.dropShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 0.06), opacity: 1, offSet: CGSize(width: 0, height: 0), radius: 16, scale: true)
     }
     
+    func createHoleAPI(hole: Int, putt: Bool) {
+        Utility.isValidateToken { [self] isValid in
+            if isValid {
+                createHole(hole: hole, putt: putt)
+            } else {
+                Utility.refreshToken { [self] success in
+                    if success {
+                        createHole(hole: hole, putt: putt)
+                    } else {
+                        print("Error in createHoleAPI")
+                    }
+                }
+            }
+        }
+    }
+    
+    func createHole(hole: Int, putt: Bool) {
+        let parameters: Parameters = [
+            "round": roundId,
+            "number": hole,
+            "par": 0,
+            "score": 1,
+            "putts": (putt ? 1 : 0)
+        ]
+        let token = "\(UserDefaults.standard.string(forKey: "token") ?? "")"
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(token)"
+        ]
+        let url = "\(Global.sharedInstance.baseUrl)hole/"
+        Alamofire.request(url, method: .post, parameters: parameters, headers: headers).responseJSON { response in
+            switch response.result {
+            case .success(_):
+                DispatchQueue.main.async { [self] in
+                    tmpData.append(data.init(number: hole, putt: (putt ? 1 : 0), score: 1))
+                    DispatchQueue.main.async {
+                        self.delegate?.updateTmpData(tmpData: tmpData)
+                        self.delegate?.incrementScore(value: hole-1)
+                    }
+                    DispatchQueue.main.async {
+                        self.delegate?.reloadTableView()
+                    }
+                }
+            case .failure(let error):
+                print("API error: \(error)")
+            }
+        }
+    }
+    
+    func updateTmp(number: Int, putt: Int, score: Int) {
+        var update: Bool = false
+        for val in 0...tmpData.count - 1 {
+            if tmpData[val].number == number {
+                tmpData[val].putt = putt
+                tmpData[val].score = score
+                update = true
+                break
+            }
+        }
+        DispatchQueue.main.async { [self] in
+            if update {
+                delegate?.updateTmpData(tmpData: tmpData)
+            }
+        }
+    }
+    
     @objc func scorePressed(_ sender: UIButton) {
         let title = sender.titleLabel?.text
-        if let current = Int(title ?? "0") {
-            let incrementedInt = current + 1
-            let newTitle = "\(incrementedInt)"
-            sender.setTitle(newTitle, for: .normal)
-            feedbackGenerator.impactOccurred()
-            delegate?.incrementScore(value: sender.tag)
-            let number = Int(holeName.text ?? "0")
-            let score = Int(scoreButton.currentTitle ?? "0")
-            let putts = Int(puttButton.currentTitle ?? "0")
-            scoreDelegate?.scoreUpdate(number: number ?? 0, par: 1, score: score ?? 0, putts: putts ?? 0)
+        if title == "  " {
+            createHoleAPI(hole: sender.tag + 1, putt: false)
+        } else {
+            if let current = Int(title ?? "0") {
+                let incrementedInt = current + 1
+                let newTitle = "\(incrementedInt)"
+                sender.setTitle(newTitle, for: .normal)
+                feedbackGenerator.impactOccurred()
+                delegate?.incrementScore(value: sender.tag)
+                let number = Int(holeName.text ?? "0")
+                let score = Int(scoreButton.currentTitle ?? "0")
+                let putts = Int(puttButton.currentTitle ?? "0")
+                scoreDelegate?.scoreUpdate(number: number ?? 0, par: 1, score: score ?? 0, putts: putts ?? 0)
+                updateTmp(number: number ?? 0, putt: putts ?? 0, score: score ?? 0)
+            }
         }
     }
     
@@ -63,6 +135,7 @@ class HoleTVCell: UITableViewCell {
                         let score = Int(scoreButton.currentTitle ?? "0")
                         let putts = Int(puttButton.currentTitle ?? "0")
                         scoreDelegate?.scoreUpdate(number: number ?? 0, par: 1, score: score ?? 0, putts: putts ?? 0)
+                        updateTmp(number: number ?? 0, putt: putts ?? 0, score: score ?? 0)
                     }
                 }
                 scoreLongPress = true
@@ -75,22 +148,27 @@ class HoleTVCell: UITableViewCell {
     
     @objc func puttPressed(_ sender: UIButton) {
         let scoreTitle = scoreButton.currentTitle
-        if let current = Int(scoreTitle ?? "0") {
-            let incrementedInt = current + 1
-            let newTitle = "\(incrementedInt)"
-            scoreButton.setTitle(newTitle, for: .normal)
-        }
-        let title = sender.titleLabel?.text
-        if let current = Int(title ?? "0") {
-            let incrementedInt = current + 1
-            let newTitle = "\(incrementedInt)"
-            sender.setTitle(newTitle, for: .normal)
-            feedbackGenerator.impactOccurred()
-            delegate?.incrementScore(value: sender.tag)
-            let number = Int(holeName.text ?? "0")
-            let score = Int(scoreButton.currentTitle ?? "0")
-            let putts = Int(puttButton.currentTitle ?? "0")
-            scoreDelegate?.scoreUpdate(number: number ?? 0, par: 1, score: score ?? 0, putts: putts ?? 0)
+        if scoreTitle == "  " {
+            createHoleAPI(hole: sender.tag + 1, putt: true)
+        } else {
+            if let current = Int(scoreTitle ?? "0") {
+                let incrementedInt = current + 1
+                let newTitle = "\(incrementedInt)"
+                scoreButton.setTitle(newTitle, for: .normal)
+            }
+            let title = sender.titleLabel?.text
+            if let current = Int(title ?? "0") {
+                let incrementedInt = current + 1
+                let newTitle = "\(incrementedInt)"
+                sender.setTitle(newTitle, for: .normal)
+                feedbackGenerator.impactOccurred()
+                delegate?.incrementScore(value: sender.tag)
+                let number = Int(holeName.text ?? "0")
+                let score = Int(scoreButton.currentTitle ?? "0")
+                let putts = Int(puttButton.currentTitle ?? "0")
+                scoreDelegate?.scoreUpdate(number: number ?? 0, par: 1, score: score ?? 0, putts: putts ?? 0)
+                updateTmp(number: number ?? 0, putt: putts ?? 0, score: score ?? 0)
+            }
         }
     }
     
@@ -116,6 +194,7 @@ class HoleTVCell: UITableViewCell {
                     let score = Int(scoreButton.currentTitle ?? "0")
                     let putts = Int(puttButton.currentTitle ?? "0")
                     scoreDelegate?.scoreUpdate(number: number ?? 0, par: 1, score: score ?? 0, putts: putts ?? 0)
+                    updateTmp(number: number ?? 0, putt: putts ?? 0, score: score ?? 0)
                 }
             }
             puttLongPress = true
@@ -125,8 +204,8 @@ class HoleTVCell: UITableViewCell {
         }
     }
     
-    func setValueOnCell(index: Int, holeModelData: [HoleData]?, isEditable: Bool) {
-        holeModelDataa = holeModelData!
+    func setValueOnCell(index: Int, modelData: [data], isEditable: Bool) {
+        tmpData = modelData
         holeName.text = "\(index + 1)"
         scoreButton.tag = index
         puttButton.tag = index
@@ -141,21 +220,27 @@ class HoleTVCell: UITableViewCell {
         let puttLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(puttLongPressed(_:)))
         puttLongPressGesture.minimumPressDuration = 0.5
         puttButton.addGestureRecognizer(puttLongPressGesture)
-        
-        if index < holeModelData?.count ?? 0 {
-            if holeModelData?[index].score != nil {
+        if index < tmpData.count {
+            if tmpData[index].score != nil {
                 scoreButton.isEnabled = (isEditable ? false : true)
                 puttButton.isEnabled = (isEditable ? false : true)
                 scoreView.backgroundColor = (isEditable ? UIColor.clear : UIColor.systemGray5)
                 puttView.backgroundColor = (isEditable ? UIColor.clear : UIColor.systemGray5)
-                scoreButton.setTitle("\(holeModelData?[index].score ?? 0)", for: .normal)
-                puttButton.setTitle("\(holeModelData?[index].putts ?? 0)", for: .normal)
+                scoreButton.setTitle("\(tmpData[index].score ?? 0)", for: .normal)
+                puttButton.setTitle("\(tmpData[index].putt ?? 0)", for: .normal)
             }
+        } else if index == tmpData.count && !isEditable {
+            scoreButton.isEnabled = true
+            puttButton.isEnabled = true
+            scoreButton.setTitle("  ", for: .normal)
+            puttButton.setTitle("  ", for: .normal)
+            scoreView.backgroundColor = UIColor.systemGray5
+            puttView.backgroundColor = UIColor.systemGray5
         } else {
             scoreButton.isEnabled = false
             puttButton.isEnabled = false
-            scoreView.backgroundColor = .clear
-            puttView.backgroundColor = .clear
+            scoreView.backgroundColor = (isEditable ? UIColor.clear : UIColor.systemGray5)
+            puttView.backgroundColor = (isEditable ? UIColor.clear : UIColor.systemGray5)
             scoreButton.setTitle(" ", for: .normal)
             puttButton.setTitle(" ", for: .normal)
         }
@@ -165,6 +250,8 @@ class HoleTVCell: UITableViewCell {
 protocol ScorecardViewControllerDelegate: AnyObject {
     func incrementScore(value: Int)
     func decrementScore(value: Int)
+    func reloadTableView()
+    func updateTmpData(tmpData: [data])
 }
 
 protocol ChangeScoreValueDelegate: AnyObject {
