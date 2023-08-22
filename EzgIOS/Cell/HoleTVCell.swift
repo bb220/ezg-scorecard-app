@@ -102,6 +102,7 @@ class HoleTVCell: UITableViewCell {
         let title = sender.titleLabel?.text
         if title == "  " {
             createHoleAPI(hole: sender.tag + 1, putt: false)
+            sender.isEnabled = false
         } else {
             if let current = Int(title ?? "0") {
                 let incrementedInt = current + 1
@@ -114,6 +115,7 @@ class HoleTVCell: UITableViewCell {
                 let putts = Int(puttButton.currentTitle ?? "0")
                 scoreDelegate?.scoreUpdate(number: number ?? 0, par: 1, score: score ?? 0, putts: putts ?? 0)
                 updateTmp(number: number ?? 0, putt: putts ?? 0, score: score ?? 0)
+                sender.isEnabled = false
             }
         }
     }
@@ -150,6 +152,7 @@ class HoleTVCell: UITableViewCell {
         let scoreTitle = scoreButton.currentTitle
         if scoreTitle == "  " {
             createHoleAPI(hole: sender.tag + 1, putt: true)
+            sender.isEnabled = false
         } else {
             if let current = Int(scoreTitle ?? "0") {
                 let incrementedInt = current + 1
@@ -168,6 +171,7 @@ class HoleTVCell: UITableViewCell {
                 let putts = Int(puttButton.currentTitle ?? "0")
                 scoreDelegate?.scoreUpdate(number: number ?? 0, par: 1, score: score ?? 0, putts: putts ?? 0)
                 updateTmp(number: number ?? 0, putt: putts ?? 0, score: score ?? 0)
+                sender.isEnabled = false
             }
         }
     }
