@@ -1,13 +1,12 @@
 import Foundation
 import UIKit
 
-extension UIImageView
-{
-    func createCircularImage()
-    {
+extension UIImageView {
+    func createCircularImage() {
         self.layer.cornerRadius = self.frame.size.height / 2;
         self.clipsToBounds = true;
     }
+    
     func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage{
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0)
         image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
@@ -15,22 +14,10 @@ extension UIImageView
         UIGraphicsEndImageContext()
         return newImage
     }
-}
-extension UIImage{
-    func resize(targetSize: CGSize) -> UIImage {
-        return UIGraphicsImageRenderer(size:targetSize).image { _ in
-            self.draw(in: CGRect(origin: .zero, size: targetSize))
-        }
-    }
-    
-}
-
-extension UIImageView {
     
     func loadImageUsingCacheWithUrlString(_ urlString: String) {
         
         let imageCache = NSCache<AnyObject, AnyObject>()
-        
         self.image = nil
         
         //check cache for image first
@@ -42,7 +29,6 @@ extension UIImageView {
         //otherwise fire off a new download
         let url = URL(string: urlString)
         URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-            
             //download hit an error so lets return out
             if error != nil {
                 print(error ?? "")
@@ -50,34 +36,39 @@ extension UIImageView {
             }
             
             DispatchQueue.main.async(execute: {
-                
                 if let downloadedImage = UIImage(data: data!) {
                     imageCache.setObject(downloadedImage, forKey: urlString as AnyObject)
                     self.image = downloadedImage
                 }
             })
-            
         }).resume()
     }
-    
+}
+
+extension UIImage{
+    func resize(targetSize: CGSize) -> UIImage {
+        return UIGraphicsImageRenderer(size:targetSize).image { _ in
+            self.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
+    }
 }
 
 extension UIColor {
-   convenience init(red: Int, green: Int, blue: Int) {
-       assert(red >= 0 && red <= 255, "Invalid red component")
-       assert(green >= 0 && green <= 255, "Invalid green component")
-       assert(blue >= 0 && blue <= 255, "Invalid blue component")
-
-       self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
-   }
-
-   convenience init(rgb: Int) {
-       self.init(
-           red: (rgb >> 16) & 0xFF,
-           green: (rgb >> 8) & 0xFF,
-           blue: rgb & 0xFF
-       )
-   }
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
+    }
 }
 
 extension UIView {
@@ -106,7 +97,7 @@ extension UIView {
         let mask = CAShapeLayer()
         mask.path = path.cgPath
         self.layer.mask = mask
-      }
+    }
     
     func makeFabButton(){
         self.layer.cornerRadius = 24
@@ -127,6 +118,32 @@ extension UIView {
         layer.mask = maskLayer
     }
     
+    // OUTPUT 1
+    func dropShadow(scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.06).cgColor
+        layer.shadowOpacity = 1
+        layer.shadowOffset = CGSize(width: -5, height: 5)
+        layer.shadowRadius = 5
+        
+        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+    
+    // OUTPUT 2
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offSet
+        layer.shadowRadius = radius
+        
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+    
 }
 
 extension UIButton {
@@ -138,15 +155,14 @@ extension UIButton {
         self.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 18)
     }
     
-}
-
-extension UIButton {
     func btnBackStyle(){
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.white.cgColor
         self.layer.cornerRadius = 18
     }
+    
 }
+
 
 // Put this piece of code anywhere you like
 extension UIViewController {
@@ -184,10 +200,68 @@ extension Date {
     }
     
     func dateStringWith(strFormat: String) -> String {
-           let dateFormatter = DateFormatter()
-           dateFormatter.timeZone = Calendar.current.timeZone
-           dateFormatter.locale = Calendar.current.locale
-           dateFormatter.dateFormat = strFormat
-           return dateFormatter.string(from: self)
-       }
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = Calendar.current.timeZone
+        dateFormatter.locale = Calendar.current.locale
+        dateFormatter.dateFormat = strFormat
+        return dateFormatter.string(from: self)
+    }
 }
+
+@IBDesignable extension UIView {
+    @IBInspectable public var cornerRadius: CGFloat {
+        set (radius) {
+            self.layer.cornerRadius = radius
+            self.layer.masksToBounds = radius > 0
+        }
+        get { return self.layer.cornerRadius }
+    }
+    
+    @IBInspectable public var borderWidth: CGFloat {
+        set (borderWidth) { self.layer.borderWidth = borderWidth }
+        get { return self.layer.borderWidth }
+    }
+    
+    @IBInspectable public var borderColor:UIColor? {
+        set (color) { self.layer.borderColor = color?.cgColor }
+        get { if let color = self.layer.borderColor { return UIColor(cgColor: color) } else { return nil } }
+    }
+    @IBInspectable public var shadowColor: UIColor? {
+        set (color) { self.layer.shadowColor = color?.cgColor }
+        
+        get { if let color = self.layer.shadowColor { return UIColor(cgColor: color) } else { return nil } }
+    }
+    @IBInspectable var shadowOpacity: Float {
+        get {
+            return self.layer.shadowOpacity
+        }
+        set {
+            self.layer.shadowOpacity = newValue
+        }
+    }
+}
+
+class PaddingLabel: UILabel {
+    
+    var inset = UIEdgeInsets.zero
+    
+    func padding(_ top: CGFloat, _ bottom: CGFloat, _ left: CGFloat, _ right: CGFloat) {
+        self.frame = CGRect(x: 0, y: 0, width: self.frame.width + left + right, height: self.frame.height + top + bottom)
+        inset = UIEdgeInsets(top: top, left: left, bottom: bottom, right: right)
+    }
+    
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: rect.inset(by: inset))
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        get {
+            var contentSize = super.intrinsicContentSize
+            contentSize.height += inset.top + inset.bottom
+            contentSize.width += inset.left + inset.right
+            return contentSize
+        }
+    }
+}
+
+

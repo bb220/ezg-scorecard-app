@@ -46,9 +46,19 @@
 		6AD6FC6F59B8F3CEE16A79E0 /* Pods_EzgWatch_EzgWatchUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 476ADBF5970BF71087236630 /* Pods_EzgWatch_EzgWatchUITests.framework */; };
 		83E997C5E52194B33786F92E /* Pods_EzgWatch_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 533C5959C641FC2F68A8EE67 /* Pods_EzgWatch_WatchKit_Extension.framework */; };
 		8456C6922A1D777900266A9E /* NSAttributedStringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8456C6912A1D777900266A9E /* NSAttributedStringExtension.swift */; };
+		884AD8192AA6F7DD0059940B /* GetCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AD8182AA6F7DD0059940B /* GetCourse.swift */; };
+		884AD81B2AA6F83B0059940B /* CourseIdData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884AD81A2AA6F83B0059940B /* CourseIdData.swift */; };
 		8872AEF829B5B56C007AB444 /* LoginContrroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872AEF729B5B56C007AB444 /* LoginContrroller.swift */; };
 		8872AEFC29B5C10D007AB444 /* FinishRoundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8872AEFB29B5C10D007AB444 /* FinishRoundController.swift */; };
 		8873B56529E4146300826B18 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8873B56429E4146300826B18 /* Model.swift */; };
+		887B099A2AA5BB5F0042932B /* GetCoursesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887B09992AA5BB5F0042932B /* GetCoursesList.swift */; };
+		887B099C2AA5BC080042932B /* CourseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887B099B2AA5BC080042932B /* CourseData.swift */; };
+		887B09A02AA5C43F0042932B /* GetCourseHoleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887B099F2AA5C43F0042932B /* GetCourseHoleList.swift */; };
+		887B09A22AA5C4870042932B /* CourseHoleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887B09A12AA5C4870042932B /* CourseHoleData.swift */; };
+		88821BA02AA1BC7F00D1A789 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88821B9F2AA1BC7F00D1A789 /* CoursesViewController.swift */; };
+		88821BA22AA1C20900D1A789 /* CoursesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88821BA12AA1C20900D1A789 /* CoursesTVCell.swift */; };
+		88821BA42AA1C94700D1A789 /* EditCourseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88821BA32AA1C94700D1A789 /* EditCourseViewController.swift */; };
+		88821BA62AA1CDEB00D1A789 /* CourseHoleTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88821BA52AA1CDEB00D1A789 /* CourseHoleTVCell.swift */; };
 		88A1958E2A2A1104004556D9 /* GetRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A1958D2A2A1104004556D9 /* GetRound.swift */; };
 		88A195912A2A1167004556D9 /* RoundIdData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A195902A2A1167004556D9 /* RoundIdData.swift */; };
 		88B1228229BAF0230031F4BF /* RoundsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B1228129BAF0230031F4BF /* RoundsTVCell.swift */; };
@@ -189,9 +199,19 @@
 		539EC651D9B32017CE9B74BD /* Pods-EzgWatch-EzgWatchUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatch-EzgWatchUITests.release.xcconfig"; path = "Target Support Files/Pods-EzgWatch-EzgWatchUITests/Pods-EzgWatch-EzgWatchUITests.release.xcconfig"; sourceTree = "<group>"; };
 		80DAFCC253A6A3911835A3B7 /* Pods-EzgWatchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EzgWatchTests.debug.xcconfig"; path = "Target Support Files/Pods-EzgWatchTests/Pods-EzgWatchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8456C6912A1D777900266A9E /* NSAttributedStringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringExtension.swift; sourceTree = "<group>"; };
+		884AD8182AA6F7DD0059940B /* GetCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourse.swift; sourceTree = "<group>"; };
+		884AD81A2AA6F83B0059940B /* CourseIdData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseIdData.swift; sourceTree = "<group>"; };
 		8872AEF729B5B56C007AB444 /* LoginContrroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContrroller.swift; sourceTree = "<group>"; };
 		8872AEFB29B5C10D007AB444 /* FinishRoundController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRoundController.swift; sourceTree = "<group>"; };
 		8873B56429E4146300826B18 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		887B09992AA5BB5F0042932B /* GetCoursesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCoursesList.swift; sourceTree = "<group>"; };
+		887B099B2AA5BC080042932B /* CourseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseData.swift; sourceTree = "<group>"; };
+		887B099F2AA5C43F0042932B /* GetCourseHoleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCourseHoleList.swift; sourceTree = "<group>"; };
+		887B09A12AA5C4870042932B /* CourseHoleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHoleData.swift; sourceTree = "<group>"; };
+		88821B9F2AA1BC7F00D1A789 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
+		88821BA12AA1C20900D1A789 /* CoursesTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesTVCell.swift; sourceTree = "<group>"; };
+		88821BA32AA1C94700D1A789 /* EditCourseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCourseViewController.swift; sourceTree = "<group>"; };
+		88821BA52AA1CDEB00D1A789 /* CourseHoleTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHoleTVCell.swift; sourceTree = "<group>"; };
 		88A1958D2A2A1104004556D9 /* GetRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRound.swift; sourceTree = "<group>"; };
 		88A195902A2A1167004556D9 /* RoundIdData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundIdData.swift; sourceTree = "<group>"; };
 		88A37D1129B31221008EA902 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
@@ -363,10 +383,8 @@
 				885C38F329CC3BA100C3BE6B /* Login */,
 				0ABD3A63297D812900B2DF26 /* User.swift */,
 				0ABD3A65297D816800B2DF26 /* ServerError.swift */,
-				88B1228C29BB39E00031F4BF /* UserData.swift */,
-				88B1228929BB39CB0031F4BF /* RoundListModel */,
-				88B1229029BB46860031F4BF /* HoleListModel */,
-				88A1958F2A2A110D004556D9 /* NewRoundModel */,
+				887B09982AA5BB0A0042932B /* CoursesModel */,
+				88A155C02AB3045F00EEC60D /* RoundsModel */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -374,8 +392,8 @@
 		0ABD3A2C297D7AB300B2DF26 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0ABD3A6B297D831E00B2DF26 /* Main */,
-				8883A53E29C196F900151C2C /* Scorecard */,
+				0ABD3A6B297D831E00B2DF26 /* MainControllers */,
+				8883A53E29C196F900151C2C /* ScorecardViewControllers */,
 				0ABD3A50297D807400B2DF26 /* Login */,
 				0ABD3A6C297D86B900B2DF26 /* Register */,
 			);
@@ -437,12 +455,13 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		0ABD3A6B297D831E00B2DF26 /* Main */ = {
+		0ABD3A6B297D831E00B2DF26 /* MainControllers */ = {
 			isa = PBXGroup;
 			children = (
 				0ABD3A18297D7A6700B2DF26 /* MainController.swift */,
+				88821B9F2AA1BC7F00D1A789 /* CoursesViewController.swift */,
 			);
-			path = Main;
+			path = MainControllers;
 			sourceTree = "<group>";
 		};
 		0ABD3A6C297D86B900B2DF26 /* Register */ = {
@@ -484,6 +503,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		884AD8172AA6F7C30059940B /* NewCourseModel */ = {
+			isa = PBXGroup;
+			children = (
+				884AD8182AA6F7DD0059940B /* GetCourse.swift */,
+				884AD81A2AA6F83B0059940B /* CourseIdData.swift */,
+			);
+			path = NewCourseModel;
+			sourceTree = "<group>";
+		};
 		885C38F329CC3BA100C3BE6B /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,7 +532,9 @@
 			isa = PBXGroup;
 			children = (
 				88B1228129BAF0230031F4BF /* RoundsTVCell.swift */,
+				88821BA12AA1C20900D1A789 /* CoursesTVCell.swift */,
 				88B1228529BAFB520031F4BF /* HoleTVCell.swift */,
+				88821BA52AA1CDEB00D1A789 /* CourseHoleTVCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -517,6 +547,34 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		887B09982AA5BB0A0042932B /* CoursesModel */ = {
+			isa = PBXGroup;
+			children = (
+				884AD8172AA6F7C30059940B /* NewCourseModel */,
+				887B099D2AA5C3C30042932B /* CoursesList */,
+				887B099E2AA5C3D10042932B /* CoursesHoleList */,
+			);
+			path = CoursesModel;
+			sourceTree = "<group>";
+		};
+		887B099D2AA5C3C30042932B /* CoursesList */ = {
+			isa = PBXGroup;
+			children = (
+				887B09992AA5BB5F0042932B /* GetCoursesList.swift */,
+				887B099B2AA5BC080042932B /* CourseData.swift */,
+			);
+			path = CoursesList;
+			sourceTree = "<group>";
+		};
+		887B099E2AA5C3D10042932B /* CoursesHoleList */ = {
+			isa = PBXGroup;
+			children = (
+				887B099F2AA5C43F0042932B /* GetCourseHoleList.swift */,
+				887B09A12AA5C4870042932B /* CourseHoleData.swift */,
+			);
+			path = CoursesHoleList;
+			sourceTree = "<group>";
+		};
 		888325C729C59CD6001D4534 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -527,12 +585,24 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		8883A53E29C196F900151C2C /* Scorecard */ = {
+		8883A53E29C196F900151C2C /* ScorecardViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				88B1228329BAFB0F0031F4BF /* ScorecardViewController.swift */,
+				88821BA32AA1C94700D1A789 /* EditCourseViewController.swift */,
 			);
-			path = Scorecard;
+			path = ScorecardViewControllers;
+			sourceTree = "<group>";
+		};
+		88A155C02AB3045F00EEC60D /* RoundsModel */ = {
+			isa = PBXGroup;
+			children = (
+				88B1228C29BB39E00031F4BF /* UserData.swift */,
+				88B1228929BB39CB0031F4BF /* RoundListModel */,
+				88B1229029BB46860031F4BF /* HoleListModel */,
+				88A1958F2A2A110D004556D9 /* NewRoundModel */,
+			);
+			path = RoundsModel;
 			sourceTree = "<group>";
 		};
 		88A1958F2A2A110D004556D9 /* NewRoundModel */ = {
@@ -998,25 +1068,35 @@
 			files = (
 				88B1229729BB46BF0031F4BF /* GetHoleList.swift in Sources */,
 				0ABD3A57297D80B800B2DF26 /* Utility.swift in Sources */,
+				88821BA02AA1BC7F00D1A789 /* CoursesViewController.swift in Sources */,
+				884AD81B2AA6F83B0059940B /* CourseIdData.swift in Sources */,
 				88B1228229BAF0230031F4BF /* RoundsTVCell.swift in Sources */,
+				887B09A02AA5C43F0042932B /* GetCourseHoleList.swift in Sources */,
 				0ABD3A58297D80B800B2DF26 /* Extensions.swift in Sources */,
 				0ABD3A61297D810300B2DF26 /* NetworkManager.swift in Sources */,
+				887B099A2AA5BB5F0042932B /* GetCoursesList.swift in Sources */,
 				0ABD3A70297D871500B2DF26 /* RegisterViewModel.swift in Sources */,
 				0ABD3A62297D810300B2DF26 /* ResponseHandler.swift in Sources */,
+				88821BA42AA1C94700D1A789 /* EditCourseViewController.swift in Sources */,
 				88B1228629BAFB520031F4BF /* HoleTVCell.swift in Sources */,
 				88B1228E29BB39E00031F4BF /* RoundData.swift in Sources */,
 				0ABD3A5F297D810300B2DF26 /* NetworkService.swift in Sources */,
 				0ABD3A6F297D871100B2DF26 /* RegisterController.swift in Sources */,
 				88B1228F29BB39E00031F4BF /* UserData.swift in Sources */,
 				88B1228D29BB39E00031F4BF /* GetRoundList.swift in Sources */,
+				884AD8192AA6F7DD0059940B /* GetCourse.swift in Sources */,
 				0ABD3A19297D7A6700B2DF26 /* MainController.swift in Sources */,
 				88B1229529BB46BF0031F4BF /* HoleData.swift in Sources */,
 				88B1228429BAFB100031F4BF /* ScorecardViewController.swift in Sources */,
 				0ABD3A6A297D823400B2DF26 /* LoginViewModel.swift in Sources */,
+				887B099C2AA5BC080042932B /* CourseData.swift in Sources */,
+				887B09A22AA5C4870042932B /* CourseHoleData.swift in Sources */,
 				8456C6922A1D777900266A9E /* NSAttributedStringExtension.swift in Sources */,
+				88821BA62AA1CDEB00D1A789 /* CourseHoleTVCell.swift in Sources */,
 				0ABD3A60297D810300B2DF26 /* ServerResponse.swift in Sources */,
 				0ABD3A52297D808000B2DF26 /* LoginController.swift in Sources */,
 				0ABD3A64297D812900B2DF26 /* User.swift in Sources */,
+				88821BA22AA1C20900D1A789 /* CoursesTVCell.swift in Sources */,
 				0ABD3A66297D816800B2DF26 /* ServerError.swift in Sources */,
 				0ABD3A15297D7A6700B2DF26 /* AppDelegate.swift in Sources */,
 				88A1958E2A2A1104004556D9 /* GetRound.swift in Sources */,
@@ -1168,7 +1248,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1222,7 +1302,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1240,7 +1320,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VDN386CYB3;
+				DEVELOPMENT_TEAM = 8FD2JZ3GP6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgIOS/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = EZG;
@@ -1256,7 +1336,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoftT.EZG;
 				PRODUCT_NAME = Ezg;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1275,7 +1355,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VDN386CYB3;
+				DEVELOPMENT_TEAM = 8FD2JZ3GP6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgIOS/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = EZG;
@@ -1291,7 +1371,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoftT.EZG;
 				PRODUCT_NAME = Ezg;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -1312,13 +1392,13 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VDN386CYB3;
+				DEVELOPMENT_TEAM = 8FD2JZ3GP6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = EzgWatch_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoft.EZGee;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoftT.EZG;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoftT.EZG.watchkitapp;
 				PRODUCT_NAME = EZG;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1339,13 +1419,13 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VDN386CYB3;
+				DEVELOPMENT_TEAM = 8FD2JZ3GP6;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = EzgWatch_WatchKit_Extension;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoft.EZGee;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = pseudoSoftT.EZG;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoftT.EZG.watchkitapp;
 				PRODUCT_NAME = EZG;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1364,7 +1444,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VDN386CYB3;
+				DEVELOPMENT_TEAM = 8FD2JZ3GP6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgWatch WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "EZG WatchKit Extension";
@@ -1377,7 +1457,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoftT.EZG.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1396,7 +1476,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = VDN386CYB3;
+				DEVELOPMENT_TEAM = 8FD2JZ3GP6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "EzgWatch WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "EZG WatchKit Extension";
@@ -1409,7 +1489,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoft.EZGee.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = pseudoSoftT.EZG.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

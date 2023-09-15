@@ -21,6 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
             session?.activate()
         }
         // Override point for customization after application launch.
+        
+        /// Set tabbar text
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20.0)], for: .selected)
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         
         return true
@@ -90,130 +95,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-    
-    
-}
-
-@IBDesignable extension UIView
-{
-    
-    @IBInspectable
-    public var cornerRadius: CGFloat
-    {
-        set (radius) {
-            self.layer.cornerRadius = radius
-            self.layer.masksToBounds = radius > 0
-        }
-        
-        get {
-            return self.layer.cornerRadius
-        }
-    }
-    
-    @IBInspectable
-    public var borderWidth: CGFloat
-    {
-        set (borderWidth) {
-            self.layer.borderWidth = borderWidth
-        }
-        
-        get {
-            return self.layer.borderWidth
-        }
-    }
-    
-    @IBInspectable
-    public var borderColor:UIColor?
-    {
-        set (color) {
-            self.layer.borderColor = color?.cgColor
-        }
-        
-        get {
-            if let color = self.layer.borderColor
-            {
-                return UIColor(cgColor: color)
-            } else {
-                return nil
-            }
-        }
-    }
-    @IBInspectable
-    public var shadowColor: UIColor? {
-        set (color) {
-            self.layer.shadowColor = color?.cgColor
-        }
-        
-        get {
-            if let color = self.layer.shadowColor
-            {
-                return UIColor(cgColor: color)
-            } else {
-                return nil
-            }
-        }
-        
-        
-    }
-    @IBInspectable
-    var shadowOpacity: Float {
-        get {
-            return self.layer.shadowOpacity
-        }
-        set {
-            self.layer.shadowOpacity = newValue
-        }
-    }
-}
-class PaddingLabel: UILabel {
-    
-    var inset = UIEdgeInsets.zero
-    
-    func padding(_ top: CGFloat, _ bottom: CGFloat, _ left: CGFloat, _ right: CGFloat) {
-        self.frame = CGRect(x: 0, y: 0, width: self.frame.width + left + right, height: self.frame.height + top + bottom)
-        inset = UIEdgeInsets(top: top, left: left, bottom: bottom, right: right)
-    }
-    
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: inset))
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        get {
-            var contentSize = super.intrinsicContentSize
-            contentSize.height += inset.top + inset.bottom
-            contentSize.width += inset.left + inset.right
-            return contentSize
-        }
-    }
-}
-
-extension UIView {
-    
-    // OUTPUT 1
-    func dropShadow(scale: Bool = true) {
-        layer.masksToBounds = false
-        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.06).cgColor
-        layer.shadowOpacity = 1
-        layer.shadowOffset = CGSize(width: -5, height: 5)
-        layer.shadowRadius = 5
-        
-        layer.shadowPath = UIBezierPath(rect: bounds).cgPath
-        layer.shouldRasterize = true
-        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
-    }
-    
-    // OUTPUT 2
-    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
-        layer.masksToBounds = false
-        layer.shadowColor = color.cgColor
-        layer.shadowOpacity = opacity
-        layer.shadowOffset = offSet
-        layer.shadowRadius = radius
-        
-        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-        layer.shouldRasterize = true
-        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
 }

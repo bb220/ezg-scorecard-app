@@ -42,6 +42,7 @@ class MainController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
         if deActivate == false {
             if session.isReachable {
                 session.sendMessage(["deactivateRound": true], replyHandler: nil, errorHandler: nil)
@@ -69,9 +70,10 @@ class MainController: UIViewController {
         UserDefaults.standard.set(KeychainWrapper.standard.string(forKey: "id"), forKey: "userId")
         
         let data = ["userId": "\(UserDefaults.standard.string(forKey: "userId") ?? "")",
-                      "token": "\(UserDefaults.standard.string(forKey: "token") ?? "")",
+                    "token": "\(UserDefaults.standard.string(forKey: "token") ?? "")",
                     "refreshToken":"\(UserDefaults.standard.string(forKey: "refreshToken") ?? "")",
                     "tokenExpireAt": UserDefaults.standard.integer(forKey: "tokenExpireAt")] as [String : Any]
+        print("user data---->", data)
         if session.isReachable {
             session.sendMessage(data, replyHandler: nil, errorHandler: nil)
         } else if WCSession.isSupported() {
@@ -292,9 +294,10 @@ class MainController: UIViewController {
                 roundListAPI()
                 DispatchQueue.main.async { [self] in
                     UserDefaults.standard.set("\(model?.data?.Id ?? "")", forKey: "roundID")
-                    let vc = storyboard?.instantiateViewController(withIdentifier: "ScorecardViewController") as? ScorecardViewController
+                    let vc = storyboard?.instantiateViewController(withIdentifier: "CoursesViewController") as? CoursesViewController
                     vc?.roundId = model?.data?.Id ?? ""
                     vc?.roundName = model?.data?.name ?? ""
+                    vc?.isCreatRoundCall = true
                     self.navigationController?.pushViewController(vc!, animated: true)
                 }
             case .failure(let error):
@@ -324,6 +327,7 @@ class MainController: UIViewController {
     
     @IBAction func didTapAddRoundBtn(_ sender: Any) {
         createRoundAPI()
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     @IBAction func didTapLogoutBtn(_ sender: Any) {
@@ -360,9 +364,17 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
         vc?.roundId = modelData[indexPath.row].Id ?? ""
         vc?.roundName = modelData[indexPath.row].name ?? ""
         vc?.roundDate = modelData[indexPath.row].createdAt ?? ""
+        if let courseObj = modelData[indexPath.row].course {
+            vc?.selectedCourseName = courseObj.name ?? "Select a course"
+            vc?.courseId = courseObj.Id ?? ""
+        } else {
+            vc?.courseId = ""
+            vc?.selectedCourseName = "Select a course"
+        }
         vc?.didChangeVariableValue = { value in
             self.deActivate = value
         }
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     

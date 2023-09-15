@@ -6,13 +6,16 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class RoundsTVCell: UITableViewCell {
-
-    @IBOutlet var backView: UIView!
-    @IBOutlet var roundName: UILabel!
-    @IBOutlet var roundDate: UILabel!
-    @IBOutlet var roundScore: UILabel!
+    
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var roundName: UILabel!
+    @IBOutlet weak var roundDate: UILabel!
+    @IBOutlet weak var roundScore: UILabel!
+    @IBOutlet weak var courseName: UILabel!
+    @IBOutlet weak var courseScore: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,6 +28,10 @@ class RoundsTVCell: UITableViewCell {
     func setValueOnCell(holeModelData: [HoleData]?, modelData: [RoundData]?, index: Int) {
         // For Total Score calculation
         var total = 0
+        courseScore.text = "+0"
+        courseName.text = ""
+
+        /// Round Total Score
         let HoleData = holeModelData?.filter {
             ($0.round?.Id == modelData?[index].Id)
         }
@@ -33,8 +40,16 @@ class RoundsTVCell: UITableViewCell {
                 total = total + (HoleData?[i].score)!
             }
             roundScore.text = "\(total)"
-        } else {
-            roundScore.text = "-"
+        } else { roundScore.text = "-" }
+        
+        /// Course Total Score & Course name
+        if let courseObj = modelData![index].course {
+            courseName.text = courseObj.name
+            
+            let differenceRC = total - courseObj.total!
+            if String(differenceRC).contains("-") {
+                courseScore.text = "\(differenceRC)"
+            } else { courseScore.text = "+\(differenceRC)" }
         }
         // For Date
         let dateFormatter = DateFormatter()

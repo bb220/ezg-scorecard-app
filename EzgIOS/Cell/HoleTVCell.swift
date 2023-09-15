@@ -18,13 +18,14 @@ class HoleTVCell: UITableViewCell {
     
     weak var delegate: ScorecardViewControllerDelegate?
     weak var scoreDelegate: ChangeScoreValueDelegate?
-
+    
     @IBOutlet var scoreView: UIView!
     @IBOutlet var puttView: UIView!
     @IBOutlet var holeBackView: UIView!
     @IBOutlet var holeName: UILabel!
     @IBOutlet var scoreButton: UIButton!
     @IBOutlet var puttButton: UIButton!
+    @IBOutlet var courseParLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -208,8 +209,9 @@ class HoleTVCell: UITableViewCell {
         }
     }
     
-    func setValueOnCell(index: Int, modelData: [data], isEditable: Bool) {
+    func setValueOnCell(index: IndexPath, modelData: [data], isEditable: Bool) {
         tmpData = modelData
+        let index = index.row
         holeName.text = "\(index + 1)"
         scoreButton.tag = index
         puttButton.tag = index
