@@ -42,7 +42,7 @@ class CoursesTVCell: UITableViewCell {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         if let date = dateFormatter.date(from: modelData?[index].createdAt ?? "") {
             dateFormatter.dateFormat = "MM/dd/yyyy"
-            courseDate.text = "\(dateFormatter.string(from: date))"
+//            courseDate.text = "\(dateFormatter.string(from: date))"
         }
         //For Course Name
         courseName.text = "\(modelData?[index].name ?? "")".capitalized

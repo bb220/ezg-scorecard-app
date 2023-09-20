@@ -48,6 +48,9 @@ class CoursesViewController: UIViewController {
         if tabBarController!.selectedIndex == 1 {
             self.tabBarController?.tabBar.isHidden = false
         }
+        currentPage = 1
+        temp = true
+        coursesListAPI()
     }
     
     func initViews() {

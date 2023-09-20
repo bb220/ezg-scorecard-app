@@ -16,7 +16,7 @@ class EditCourseViewController: UIViewController {
     @IBOutlet var frontScore: UILabel!
     @IBOutlet var backScore: UILabel!
     @IBOutlet var totalScore: UILabel!
-    @IBOutlet var CourseHolesTableView: UITableView!
+    @IBOutlet var courseHolesTableView: UITableView!
     @IBOutlet var scoreBoardView: UIView!
     
     var courseHoleModelData: [CourseHoleData] = []
@@ -56,7 +56,7 @@ class EditCourseViewController: UIViewController {
             courseHoleListAPI()
         }
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        
+        courseHolesTableView.separatorColor = UIColor.clear
         headerView.layer.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
         headerView.dropShadow(color: UIColor(red: 0, green: 0, blue: 0, alpha: 0.06), opacity: 1, offSet: CGSize(width: 0, height: 0), radius: 16, scale: true)
         scoreBoardView.layer.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1).cgColor
@@ -80,7 +80,7 @@ class EditCourseViewController: UIViewController {
         navigationItem.titleView = textField
         
         DispatchQueue.main.async { [self] in
-            CourseHolesTableView.reloadData()
+            courseHolesTableView.reloadData()
         }
     }
     
@@ -103,7 +103,7 @@ class EditCourseViewController: UIViewController {
         }
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonTapped))
-        CourseHolesTableView.reloadData()
+        courseHolesTableView.reloadData()
         DispatchQueue.main.async { [self] in
             let navigationTitleLabel = UILabel()
             navigationTitleLabel.text = updatedCourseName
@@ -120,13 +120,18 @@ class EditCourseViewController: UIViewController {
             front = 0
             back = 0
             for i in 0...courseHoleModelData.count - 1 {
+                print("i------>>> " ,i)
+
                 total += courseHoleModelData[i].par!
                 totalScore.text = "\(total)"
                 if i < 9 {
+                    print("front 9 " ,i)
                     front += courseHoleModelData[i].par!
                     frontScore.text = "\(front)"
                 }
                 if i > 8 {
+                    print("back 9  " ,i)
+
                     back += courseHoleModelData[i].par!
                     backScore.text = "\(back)"
                 }
@@ -217,7 +222,7 @@ class EditCourseViewController: UIViewController {
                         }
                         calculateTotalPars(courseHoleModelData: courseHoleModelData)
                         DispatchQueue.main.async { [self] in
-                            CourseHolesTableView.reloadData()
+                            courseHolesTableView.reloadData()
                             Utility.hideProgressDialog(view: view)
                         }
                     }
@@ -322,7 +327,7 @@ extension EditCourseViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = CourseHolesTableView.dequeueReusableCell(withIdentifier: "CourseHoleTVCell", for: indexPath) as? CourseHoleTVCell
+        let cell = courseHolesTableView.dequeueReusableCell(withIdentifier: "CourseHoleTVCell", for: indexPath) as? CourseHoleTVCell
         cell?.delegate = self
         cell?.parDelegate = self
         cell?.setValueOnCell(index: indexPath.row, isEditable: editBtnTapped, isNewCourseCreate: isNewCourseCreate, updateParArr: updatedPars)
@@ -336,7 +341,7 @@ extension EditCourseViewController: EditCourseViewControllerDelegate, ParValueCh
             let incrementedInt = current + parValue
             totalScore.text = "\(incrementedInt)"
         }
-        if value < 9 {
+        if value < 10 {
             if let current = Int(frontScore.text ?? "0") {
                 let incrementedInt = current + parValue
                 frontScore.text = "\(incrementedInt)"
@@ -354,7 +359,7 @@ extension EditCourseViewController: EditCourseViewControllerDelegate, ParValueCh
             let decrementedInt = current - abs(parValue)
             totalScore.text = "\(decrementedInt)"
         }
-        if value < 9 {
+        if value < 10 {
             if let current = Int(frontScore.text ?? "0") {
                 let decrementedInt = current - abs(parValue)
                 frontScore.text = "\(decrementedInt)"
@@ -368,7 +373,7 @@ extension EditCourseViewController: EditCourseViewControllerDelegate, ParValueCh
     }
     
     func reloadTableView() {
-        CourseHolesTableView.reloadData()
+        courseHolesTableView.reloadData()
     }
     
     func updateTmpData(updatedPars: [[String: Int?]]) {
