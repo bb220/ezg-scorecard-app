@@ -98,7 +98,7 @@ class ScorecardViewController: UIViewController {
         backDifference.isHidden = true
         title = roundName
         configureCustomNavBar(roundName: roundName, courseName: selectedCourseName)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(self.backToInitial))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Rounds", style: .plain, target: self, action: #selector(self.backToInitial))
         NotificationCenter.default.addObserver(self, selector: #selector(reloadScorecardVC(_:)), name: NSNotification.Name("updateScorecardVC"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(popToMainVC(_:)), name: NSNotification.Name("popToMain"), object: nil)
         holesTableView.separatorColor = UIColor.clear
@@ -139,7 +139,7 @@ class ScorecardViewController: UIViewController {
             let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonTapped(_:)))
             navigationItem.leftBarButtonItem = cancelButton
             
-
+            
             DispatchQueue.main.async { [self] in
                 editToggle = false
                 holesTableView.reloadData()
@@ -152,21 +152,16 @@ class ScorecardViewController: UIViewController {
     }
     
     @objc func backToInitial(sender: AnyObject) {
-        if selectedCourseName != "Select a course" {
-            self.navigationController?.popToRootViewController(animated: true)
-        } else { self.navigationController?.popViewController(animated: true) }
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func saveButtonTapped(_ sender: UIBarButtonItem) {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(self.backToInitial))
-
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Rounds", style: .plain, target: self, action: #selector(self.backToInitial))
+        
         if isRoundNameEdit == true || isCreatRoundCall == true {
             updateRoundNameAPI()
         }
-        if updatedGolfScore.count > 0 {
-            updateScoreAPI()
-            holeListAPI(call: true)
-        }
+        updateScoreAPI()
         roundName = updatedRoundName
         configureCustomNavBar(roundName: updatedRoundName, courseName: selectedCourseName)
         
@@ -180,7 +175,7 @@ class ScorecardViewController: UIViewController {
     @objc func cancelButtonTapped(_ sender: UIBarButtonItem) {
         updatedGolfScore.removeAll()
         editButtonTapped(sender)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(self.backToInitial))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Rounds", style: .plain, target: self, action: #selector(self.backToInitial))
         configureCustomNavBar(roundName: roundName, courseName: selectedCourseName)
         
         totalScore.text = "\(total)"
@@ -236,7 +231,7 @@ class ScorecardViewController: UIViewController {
         vc?.roundDate = roundDate
         vc?.callBackValue = {
             (courseId: String, courseName: String, isNeedviewWillCall : Bool) in
-//            print("DataFrom popView ::::::",courseId,courseName)
+            //            print("DataFrom popView ::::::",courseId,courseName)
             self.courseId = courseId
             self.selectedCourseName = courseName
             self.isNeedviewWillCall = isNeedviewWillCall
@@ -465,12 +460,11 @@ class ScorecardViewController: UIViewController {
             switch response.result {
             case .success(_):
                 Utility.showProgressDialog(view: view)
-
+                
                 if let model = try? JSONDecoder().decode(GetCourseHoleList.self, from: response.data!) {
                     self.courseHoleModelData.removeAll()
                     //print("model is ------>>>",model)
                     self.courseHoleModelData = model.data?.reversed() ?? []
-                    calculateCourseDifference()
                     DispatchQueue.main.async { [self] in
                         holesTableView.reloadData()
                     }
@@ -487,58 +481,67 @@ class ScorecardViewController: UIViewController {
         back = 0
         for i in 0...holeModelData.count - 1 {
             total += holeModelData[i].score!
-            totalScore.text = "\(total)"
             if i < 9 {
                 front += holeModelData[i].score!
-                frontScore.text = "\(front)"
-            }
-            if i > 8 {
+            } else if i > 8 {
                 back += holeModelData[i].score!
-                backScore.text = "\(back)"
             }
-        }
-        if WCSession.default.isReachable {
-            DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
+            if i == holeModelData.count - 1 {
                 calculateCourseDifference()
             }
         }
+        totalScore.text = "\(total)"
+        frontScore.text = "\(front)"
+        backScore.text = "\(back)"
     }
     
     func calculateCourseDifference() {
         self.totalDifferenceRC = 0
         self.frontDifferenceRC = 0
         self.backDifferenceRC = 0
-        
         if selectedCourseName == "Select a course" {
             return
         }
-        totalDifference.isHidden = false
-        frontDifference.isHidden = false
-        backDifference.isHidden = false
         
-        DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
-            if courseHoleModelData.count > 0 {
-                for i in 0...courseHoleModelData.count - 1 {
+        if courseHoleModelData.count > 0 {
+            for i in 0...courseHoleModelData.count - 1 {
+                if i < holeModelData.count {
                     self.totalDifferenceRC += courseHoleModelData[i].par!
-                    if i < 9 { self.frontDifferenceRC += courseHoleModelData[i].par! }
-                    if i > 8 { self.backDifferenceRC += courseHoleModelData[i].par! }
+                    totalDifference.isHidden = false
+                    if i < 9 {
+                        self.frontDifferenceRC += courseHoleModelData[i].par!
+                        frontDifference.isHidden = false
+                    } else if i > 8 {
+                        self.backDifferenceRC += courseHoleModelData[i].par!
+                        backDifference.isHidden = false
+                    }
                 }
             }
-            Utility.hideProgressDialog(view: view)
-            let totalRC = total - totalDifferenceRC
-            let frontRC = front - frontDifferenceRC
-            let backRC = back - backDifferenceRC
-//            print("ROunds=====>>",total, front, back, "RC===>>>",totalDifferenceRC, frontDifferenceRC, backDifferenceRC, "total", totalRC, frontRC, backRC)
-            if String(totalRC).contains("-") {
-                totalDifference.text = "\(totalRC)"
+        }
+        Utility.hideProgressDialog(view: view)
+        let totalRC = total - totalDifferenceRC
+        let frontRC = front - frontDifferenceRC
+        let backRC = back - backDifferenceRC
+//        print("ROunds=====>>",total, front, back, "RC===>>>",totalDifferenceRC, frontDifferenceRC, backDifferenceRC, "total", totalRC, frontRC, backRC)
+        
+        if totalRC == 0 {
+            totalDifference.isHidden = true
+        } else {
+            if String(totalRC).contains("-") { totalDifference.text = "\(totalRC)"
             } else { totalDifference.text = "+\(totalRC)" }
-            
-            if String(frontRC).contains("-") {
-                frontDifference.text = "\(frontRC)"
+        }
+        
+        if frontRC == 0 {
+            frontDifference.isHidden = true
+        } else {
+            if String(frontRC).contains("-") {  frontDifference.text = "\(frontRC)"
             } else { frontDifference.text = "+\(frontRC)" }
-            
-            if String(backRC).contains("-") {
-                backDifference.text = "\(backRC)"
+        }
+        
+        if backRC == 0 {
+            backDifference.isHidden = true
+        } else {
+            if String(backRC).contains("-") { backDifference.text = "\(backRC)"
             } else { backDifference.text = "+\(backRC)" }
         }
     }
@@ -589,78 +592,78 @@ class ScorecardViewController: UIViewController {
 extension ScorecardViewController: ScorecardViewControllerDelegate {
     
     func incrementScore(value: Int) {
-        var isChangeRC = false
-        if selectedCourseName != "Select a course" {
-            isChangeRC = true
-        }
-        if let current = Int(totalScore.text ?? "0"), let currentDifRC = Int(totalDifference.text ?? "0") {
-            let incrementedInt = current + 1
-            totalScore.text = "\(incrementedInt)"
-            if isChangeRC {
-                let incrementedRC = currentDifRC + 1
-                if String(incrementedRC).contains("-") {
-                    totalDifference.text = "\(incrementedRC)"
-                } else { totalDifference.text = "+\(incrementedRC)" }
-            }
-        }
-        if value < 9 {
-            if let current = Int(frontScore.text ?? "0"), let currentDifRC = Int(frontDifference.text ?? "0") {
-                let incrementedInt = current + 1
-                frontScore.text = "\(incrementedInt)"
-                if isChangeRC {
-                    let incrementedRC = currentDifRC + 1
-                    if String(incrementedRC).contains("-") {
-                        frontDifference.text = "\(incrementedRC)"
-                    } else { frontDifference.text = "+\(incrementedRC)" }
-                }
-            }
-        } else {
-            if let current = Int(backScore.text ?? "0"), let currentDifRC = Int(backDifference.text ?? "0") {
-                let incrementedInt = current + 1
-                backScore.text = "\(incrementedInt)"
-                if isChangeRC {
-                    let incrementedRC = currentDifRC + 1
-                    if String(incrementedRC).contains("-") {
-                        backDifference.text = "\(incrementedRC)"
-                    } else { backDifference.text = "+\(incrementedRC)" }
-                }
-            }
-        }
+        //        var isChangeRC = false
+        //        if selectedCourseName != "Select a course" {
+        //            isChangeRC = true
+        //        }
+        //        if let current = Int(totalScore.text ?? "0"), let currentDifRC = Int(totalDifference.text ?? "0") {
+        //            let incrementedInt = current + 1
+        //            totalScore.text = "\(incrementedInt)"
+        //            if isChangeRC {
+        //                let incrementedRC = currentDifRC + 1
+        //                if String(incrementedRC).contains("-") {
+        //                    totalDifference.text = "\(incrementedRC)"
+        //                } else { totalDifference.text = "+\(incrementedRC)" }
+        //            }
+        //        }
+        //        if value < 9 {
+        //            if let current = Int(frontScore.text ?? "0"), let currentDifRC = Int(frontDifference.text ?? "0") {
+        //                let incrementedInt = current + 1
+        //                frontScore.text = "\(incrementedInt)"
+        //                if isChangeRC {
+        //                    let incrementedRC = currentDifRC + 1
+        //                    if String(incrementedRC).contains("-") {
+        //                        frontDifference.text = "\(incrementedRC)"
+        //                    } else { frontDifference.text = "+\(incrementedRC)" }
+        //                }
+        //            }
+        //        } else {
+        //            if let current = Int(backScore.text ?? "0"), let currentDifRC = Int(backDifference.text ?? "0") {
+        //                let incrementedInt = current + 1
+        //                backScore.text = "\(incrementedInt)"
+        //                if isChangeRC {
+        //                    let incrementedRC = currentDifRC + 1
+        //                    if String(incrementedRC).contains("-") {
+        //                        backDifference.text = "\(incrementedRC)"
+        //                    } else { backDifference.text = "+\(incrementedRC)" }
+        //                }
+        //            }
+        //        }
     }
     
     func decrementScore(value: Int) {
-        var isChangeRC = false
-        if selectedCourseName != "Select a course" {
-            isChangeRC = true
-        }
-        
-        if let current = Int(totalScore.text ?? "0"), let currentDifRC = Int(totalDifference.text ?? "0") {
-            let decrementedInt = current - 1
-            totalScore.text = "\(decrementedInt)"
-            if isChangeRC {
-                let decrementedRC = currentDifRC - 1
-                totalDifference.text = "\(decrementedRC)"
-            }
-        }
-        if value < 9 {
-            if let current = Int(frontScore.text ?? "0"), let currentDifRC = Int(frontDifference.text ?? "0") {
-                let decrementedInt = current - 1
-                frontScore.text = "\(decrementedInt)"
-                if isChangeRC {
-                    let decrementedRC = currentDifRC - 1
-                    frontDifference.text = "\(decrementedRC)"
-                }
-            }
-        } else {
-            if let current = Int(backScore.text ?? "0"), let currentDifRC = Int(backDifference.text ?? "0") {
-                let decrementedInt = current - 1
-                backScore.text = "\(decrementedInt)"
-                if isChangeRC {
-                    let decrementedRC = currentDifRC - 1
-                    backDifference.text = "\(decrementedRC)"
-                }
-            }
-        }
+        //        var isChangeRC = false
+        //        if selectedCourseName != "Select a course" {
+        //            isChangeRC = true
+        //        }
+        //
+        //        if let current = Int(totalScore.text ?? "0"), let currentDifRC = Int(totalDifference.text ?? "0") {
+        //            let decrementedInt = current - 1
+        //            totalScore.text = "\(decrementedInt)"
+        //            if isChangeRC {
+        //                let decrementedRC = currentDifRC - 1
+        //                totalDifference.text = "\(decrementedRC)"
+        //            }
+        //        }
+        //        if value < 9 {
+        //            if let current = Int(frontScore.text ?? "0"), let currentDifRC = Int(frontDifference.text ?? "0") {
+        //                let decrementedInt = current - 1
+        //                frontScore.text = "\(decrementedInt)"
+        //                if isChangeRC {
+        //                    let decrementedRC = currentDifRC - 1
+        //                    frontDifference.text = "\(decrementedRC)"
+        //                }
+        //            }
+        //        } else {
+        //            if let current = Int(backScore.text ?? "0"), let currentDifRC = Int(backDifference.text ?? "0") {
+        //                let decrementedInt = current - 1
+        //                backScore.text = "\(decrementedInt)"
+        //                if isChangeRC {
+        //                    let decrementedRC = currentDifRC - 1
+        //                    backDifference.text = "\(decrementedRC)"
+        //                }
+        //            }
+        //        }
     }
     
     func reloadTableView() {

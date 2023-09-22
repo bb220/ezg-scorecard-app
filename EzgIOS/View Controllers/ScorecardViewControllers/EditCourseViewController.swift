@@ -120,18 +120,13 @@ class EditCourseViewController: UIViewController {
             front = 0
             back = 0
             for i in 0...courseHoleModelData.count - 1 {
-                print("i------>>> " ,i)
-
                 total += courseHoleModelData[i].par!
                 totalScore.text = "\(total)"
                 if i < 9 {
-                    print("front 9 " ,i)
                     front += courseHoleModelData[i].par!
                     frontScore.text = "\(front)"
                 }
                 if i > 8 {
-                    print("back 9  " ,i)
-
                     back += courseHoleModelData[i].par!
                     backScore.text = "\(back)"
                 }
@@ -393,10 +388,12 @@ extension EditCourseViewController: EditCourseViewControllerDelegate, ParValueCh
             DispatchQueue.main.async { [self] in
                 let data = ["number": number, "par": par]
                 updatedPars.append(data)
+                courseHolesTableView.reloadData()
             }
         } else {
             let data = ["number": number, "par": par]
             updatedPars.append(data)
+            courseHolesTableView.reloadData()
         }
     }
 }

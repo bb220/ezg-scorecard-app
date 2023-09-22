@@ -25,32 +25,50 @@ class RoundsTVCell: UITableViewCell {
         roundName.textColor = UIColor(named: "black")
     }
     
-    func setValueOnCell(holeModelData: [HoleData]?, modelData: [RoundData]?, index: Int) {
+    func setValueOnCell(holeModelData: [HoleData]?, modelData: [RoundData]?, courseHolesData: [CourseHoleData]?, index: Int) {
         // For Total Score calculation
         var total = 0
-        courseScore.text = "+0"
+        var courseTotal = 0
+        courseScore.text = "-"
         courseName.text = ""
-
-        /// Round Total Score
-        let HoleData = holeModelData?.filter {
+        
+        //MARK: Round Total Score
+        var roundHolesData = holeModelData?.filter {
             ($0.round?.Id == modelData?[index].Id)
         }
-        if HoleData!.count > 0 {
-            for i in 0...HoleData!.count - 1 {
-                total = total + (HoleData?[i].score)!
+        if roundHolesData!.count > 0 {
+            
+            for i in 0...roundHolesData!.count - 1 {
+                total = total + (roundHolesData?[i].score)!
             }
             roundScore.text = "\(total)"
         } else { roundScore.text = "-" }
+        roundHolesData = roundHolesData?.reversed()
         
-        /// Course Total Score & Course name
+        //MARK: Course and Round difference & Course name
         if let courseObj = modelData![index].course {
             courseName.text = courseObj.name
-            
-            let differenceRC = total - courseObj.total!
-            if String(differenceRC).contains("-") {
-                courseScore.text = "\(differenceRC)"
-            } else { courseScore.text = "+\(differenceRC)" }
+            var courseHoleData = courseHolesData?.filter {
+                ($0.course == courseObj.Id)
+            }
+            courseHoleData = courseHoleData?.reversed()
+            if courseHoleData!.count > 0 {
+                for i in 0...courseHoleData!.count - 1 {
+                    if i < roundHolesData!.count  {
+                        courseTotal = courseTotal + (courseHoleData?[i].par)!
+                    } else {
+                        courseTotal = courseTotal + 0
+                    }
+                }
+                let differenceRC = total - courseTotal
+                if String(differenceRC).contains("-") {
+                    courseScore.text = "\(differenceRC)"
+                } else { courseScore.text = "+\(differenceRC)" }
+            } else {
+                courseScore.text = "-"
+            }
         }
+        
         // For Date
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"

@@ -30,6 +30,7 @@ class MainController: UIViewController {
     ]
     var modelData: [RoundData] = []
     var holeModelData: [HoleData] = []
+    var courseHolesData: [CourseHoleData] = []
     var temp = true
     var deActivate: Bool = false
     var totalRound: Int = 0
@@ -37,7 +38,6 @@ class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initViews()
-        roundListAPI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +58,10 @@ class MainController: UIViewController {
                 }
             }
         }
+        currentPage = 1
+        temp = true
+        roundListAPI()
+        courseHoleListAPI()
     }
     
     func initViews() {
@@ -111,6 +115,7 @@ class MainController: UIViewController {
         currentPage = 1
         temp = true
         roundListAPI()
+        courseHoleListAPI()
     }
     
     func roundListAPI() {
@@ -206,6 +211,43 @@ class MainController: UIViewController {
                         roundsTableView.reloadData()
                         refreshControl.endRefreshing()
                         roundsTableView.tableFooterView = hidefooterview()
+                        Utility.hideProgressDialog(view: self.view)
+                    }
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    func courseHoleListAPI() {
+        Utility.isValidateToken { [self] isValid in
+            if isValid {
+                courseHoleList()
+            } else {
+                Utility.refreshToken { [self] success in
+                    if success {
+                        courseHoleList()
+                    } else { print("Error in holeListAPI") }
+                }
+            }
+        }
+    }
+    
+    func courseHoleList() {
+        let url = "\(Global.sharedInstance.baseUrl)course_hole?page=1&limit=1000"
+        let headers: HTTPHeaders = [
+            "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token") ?? "")",
+        ]
+        Alamofire.request(url, method: .get, headers: headers).responseJSON { [self] response in
+            switch response.result {
+            case .success(_):
+                courseHolesData.removeAll()
+                if let model = try? JSONDecoder().decode(GetCourseHoleList.self, from: response.data!) {
+                    courseHolesData = model.data ?? []
+                    DispatchQueue.main.async { [self] in
+                        roundsTableView.reloadData()
+                        refreshControl.endRefreshing()
                         Utility.hideProgressDialog(view: self.view)
                     }
                 }
@@ -355,7 +397,7 @@ extension MainController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = roundsTableView.dequeueReusableCell(withIdentifier: "RoundsTVCell", for: indexPath) as? RoundsTVCell
-        cell?.setValueOnCell(holeModelData: holeModelData, modelData: modelData, index: indexPath.row)
+        cell?.setValueOnCell(holeModelData: holeModelData, modelData: modelData, courseHolesData: courseHolesData, index: indexPath.row)
         return cell!
     }
     
