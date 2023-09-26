@@ -10,12 +10,6 @@ import Alamofire
 import Foundation
 import WatchConnectivity
 
-struct data {
-    var number: Int?
-    var putt: Int?
-    var score: Int?
-}
-
 class ScorecardViewController: UIViewController {
     
     @IBOutlet weak var headerView: UIView!
@@ -68,7 +62,6 @@ class ScorecardViewController: UIViewController {
         if session.isReachable {
             session.sendMessage(data, replyHandler: nil, errorHandler: nil)
         } else if WCSession.isSupported() {
-            
             session.transferUserInfo(data)
         }
     }
@@ -77,9 +70,19 @@ class ScorecardViewController: UIViewController {
             courseHoleListAPI()
             configureCustomNavBar(roundName: roundName, courseName: selectedCourseName)
             updateRoundNameAPI()
-        } else {
-            if selectedCourseName != "Select a course" {
-                courseHoleListAPI()
+            if holeModelData.count > 0 {
+                let holeNumber = holeModelData.count + 1
+                let data = ["holeNumber": holeNumber, "currentRoundId": "\(roundId)"] as [String : Any]
+                if session.isReachable {
+                    session.sendMessage(data, replyHandler: nil, errorHandler: nil)
+                }
+            } else if holeModelData.count == 0 {
+                let data = ["holeNumber": 1, "currentRoundId": "\(roundId)"] as [String : Any]
+                if session.isReachable {
+                    session.sendMessage(data, replyHandler: nil, errorHandler: nil)
+                } else if WCSession.isSupported() {
+                    session.transferUserInfo(data)
+                }
             }
         }
     }
@@ -98,7 +101,7 @@ class ScorecardViewController: UIViewController {
         backDifference.isHidden = true
         title = roundName
         configureCustomNavBar(roundName: roundName, courseName: selectedCourseName)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Rounds", style: .plain, target: self, action: #selector(self.backToInitial))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "\u{276C} Rounds", style: .plain, target: self, action: #selector(self.backToInitial))
         NotificationCenter.default.addObserver(self, selector: #selector(reloadScorecardVC(_:)), name: NSNotification.Name("updateScorecardVC"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(popToMainVC(_:)), name: NSNotification.Name("popToMain"), object: nil)
         holesTableView.separatorColor = UIColor.clear
@@ -115,6 +118,7 @@ class ScorecardViewController: UIViewController {
         updatedRoundName = textField.text ?? "Round"
     }
     
+    //MARK: - Button Actions
     @objc func editButtonTapped(_ sender: UIBarButtonItem) {
         if editToggle {
             updatedGolfScore.removeAll()
@@ -138,7 +142,6 @@ class ScorecardViewController: UIViewController {
             navigationItem.titleView = textField
             let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonTapped(_:)))
             navigationItem.leftBarButtonItem = cancelButton
-            
             
             DispatchQueue.main.async { [self] in
                 editToggle = false
@@ -176,17 +179,31 @@ class ScorecardViewController: UIViewController {
         updatedGolfScore.removeAll()
         editButtonTapped(sender)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Rounds", style: .plain, target: self, action: #selector(self.backToInitial))
-        configureCustomNavBar(roundName: roundName, courseName: selectedCourseName)
         
-        totalScore.text = "\(total)"
-        frontScore.text = "\(front)"
-        backScore.text = "\(back)"
+        configureCustomNavBar(roundName: roundName, courseName: selectedCourseName)
+        showRoundTotalLbl()
         holeListAPI(call: true)
-        DispatchQueue.main.async { [self] in
-            editToggle = true
-        }
+        editToggle = true
     }
     
+    @objc func selectCourseBtn() {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "CoursesViewController") as? CoursesViewController
+        vc?.isCreatRoundCall = true
+        vc?.isSelecteCourseCall = true
+        vc?.roundId = roundId
+        vc?.roundName = roundName
+        vc?.roundDate = roundDate
+        vc?.callBackValue = {
+            (courseId: String, courseName: String, isNeedviewWillCall : Bool) in
+            //            print("DataFrom popView ::::::",courseId,courseName)
+            self.courseId = courseId
+            self.selectedCourseName = courseName
+            self.isNeedviewWillCall = isNeedviewWillCall
+        }
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    // MARK: Custom navigation title & button
     func configureCustomNavBar(roundName: String, courseName: String) {
         let customNavTitleView = UIView()
         customNavTitleView.frame = CGRect(x: 0, y: 0, width: 200, height: 48)
@@ -221,24 +238,6 @@ class ScorecardViewController: UIViewController {
         navigationItem.titleView = customNavTitleView
     }
     
-    @objc func selectCourseBtn() {
-        
-        let vc = storyboard?.instantiateViewController(withIdentifier: "CoursesViewController") as? CoursesViewController
-        vc?.isCreatRoundCall = true
-        vc?.isSelecteCourseCall = true
-        vc?.roundId = roundId
-        vc?.roundName = roundName
-        vc?.roundDate = roundDate
-        vc?.callBackValue = {
-            (courseId: String, courseName: String, isNeedviewWillCall : Bool) in
-            //            print("DataFrom popView ::::::",courseId,courseName)
-            self.courseId = courseId
-            self.selectedCourseName = courseName
-            self.isNeedviewWillCall = isNeedviewWillCall
-        }
-        self.navigationController?.pushViewController(vc!, animated: true)
-    }
-    
     @objc func reloadScorecardVC(_ notification: Notification) {
         if let data = notification.userInfo as? [String: Bool] {
             if data["holeAPI"] == true {
@@ -265,6 +264,48 @@ class ScorecardViewController: UIViewController {
         }
     }
     
+    @IBAction func shareScoreTap(_ sender: Any) {
+        
+        let text = """
+        Check out my scorecard
+        \(roundName)
+        \(roundDate)
+        
+        Total: \(totalScore.text ?? "-")
+        Front 9: \(frontScore.text ?? "-")
+        Back 9: \(backScore.text ?? "-")
+        1: \(scoreArray[0])
+        2: \(scoreArray[1])
+        3: \(scoreArray[2])
+        4: \(scoreArray[3])
+        5: \(scoreArray[4])
+        6: \(scoreArray[5])
+        7: \(scoreArray[6])
+        8: \(scoreArray[7])
+        9: \(scoreArray[8])
+        - - - - -
+        10: \(scoreArray[9])
+        11: \(scoreArray[10])
+        12: \(scoreArray[11])
+        13: \(scoreArray[12])
+        14: \(scoreArray[13])
+        15: \(scoreArray[14])
+        16: \(scoreArray[15])
+        17: \(scoreArray[16])
+        18: \(scoreArray[17])
+        
+        Focus on your game with the
+        EZG Golf Scorecard app
+        https://apps.apple.com/app/apple-store/id6449625414?pt=124483576&ct=share&mt=8
+        """
+        let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+        if let popoverController = activityViewController.popoverPresentationController {
+            popoverController.barButtonItem = sender as? UIBarButtonItem
+        }
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
+    //MARK: API Calling
     func holeListAPI(call: Bool) {
         Utility.isValidateToken { [self] isValid in
             if isValid {
@@ -286,9 +327,10 @@ class ScorecardViewController: UIViewController {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token") ?? "")",
         ]
-        Alamofire.request(url, method: .get, headers: headers).responseJSON { response in
+        Alamofire.request(url, method: .get, headers: headers).responseJSON { [self] response in
             switch response.result {
             case .success(_):
+                courseHoleListAPI()
                 if let model = try? JSONDecoder().decode(GetHoleList.self, from: response.data!) {
                     self.holeModelData = model.data ?? []
                     self.holeModelData = self.holeModelData.reversed()
@@ -320,7 +362,7 @@ class ScorecardViewController: UIViewController {
                                     session.sendMessageData(jsonData, replyHandler: nil, errorHandler: nil)
                                 } catch { print("Error encoding holeDataArray: \(error)") }
                             }
-                            calculateRoundScore(holeModelData: holeModelData)
+                            calculateRoundScore()
                         } else if holeModelData.count == 0 {
                             let data = ["holeNumber": 1, "currentRoundId": "\(roundId)"] as [String : Any]
                             if session.isReachable {
@@ -338,7 +380,6 @@ class ScorecardViewController: UIViewController {
                                     scoreArray.append("-")
                                 }
                             }
-                            holesTableView.reloadData()
                             Utility.hideProgressDialog(view: view)
                         }
                     }
@@ -379,9 +420,9 @@ class ScorecardViewController: UIViewController {
         Alamofire.request(url, method: .put, parameters: parameters, headers: headers).responseJSON { response in
             switch response.result {
             case .success(let value):
-                print(response.result.map({ i in
-                    print("i is ---",i)
-                }))
+//                print(response.result.map({ i in
+//                    print("i is ---",i)
+//                }))
                 if let json = value as? [String: Any],
                    let data = json["data"] as? [String: Any],
                    let name = data["name"] as? String {
@@ -456,18 +497,19 @@ class ScorecardViewController: UIViewController {
         ]
         Alamofire.request(url, method: .get, headers: headers).responseJSON { [self] response in
             Utility.hideProgressDialog(view: self.view)
-            
             switch response.result {
             case .success(_):
-                Utility.showProgressDialog(view: view)
-                
+                Utility.hideProgressDialog(view: view)
                 if let model = try? JSONDecoder().decode(GetCourseHoleList.self, from: response.data!) {
                     self.courseHoleModelData.removeAll()
                     //print("model is ------>>>",model)
-                    self.courseHoleModelData = model.data?.reversed() ?? []
-                    DispatchQueue.main.async { [self] in
+                    self.courseHoleModelData = model.data ?? []
+                    courseHoleModelData = courseHoleModelData.reversed()
+                    if courseHoleModelData.isEmpty == true {
+                        showRoundTotalLbl()
                         holesTableView.reloadData()
                     }
+                    calculateCourseDifference()
                 }
             case .failure(let error):
                 print(error)
@@ -475,7 +517,13 @@ class ScorecardViewController: UIViewController {
         }
     }
     
-    func calculateRoundScore(holeModelData: [HoleData]) {
+    func showRoundTotalLbl() {
+        totalScore.text = "\(total)"
+        frontScore.text = "\(front)"
+        backScore.text = "\(back)"
+    }
+    
+    func calculateRoundScore() {
         total = 0
         front = 0
         back = 0
@@ -486,13 +534,11 @@ class ScorecardViewController: UIViewController {
             } else if i > 8 {
                 back += holeModelData[i].score!
             }
-            if i == holeModelData.count - 1 {
-                calculateCourseDifference()
-            }
         }
-        totalScore.text = "\(total)"
-        frontScore.text = "\(front)"
-        backScore.text = "\(back)"
+        if courseId == "" || selectedCourseName == "Select a course" {
+            showRoundTotalLbl()
+            holesTableView.reloadData()
+        }
     }
     
     func calculateCourseDifference() {
@@ -516,154 +562,49 @@ class ScorecardViewController: UIViewController {
                         backDifference.isHidden = false
                     }
                 }
+                
+                if i == courseHoleModelData.count - 1 {
+                    let totalRC = total - totalDifferenceRC
+                    let frontRC = front - frontDifferenceRC
+                    let backRC = back - backDifferenceRC
+                    
+                    showRoundTotalLbl()
+                    
+                    if totalRC == 0 {
+                        totalDifference.isHidden = true
+                    } else {
+                        if String(totalRC).contains("-") { totalDifference.text = "\(totalRC)"
+                        } else { totalDifference.text = "+\(totalRC)" }
+                    }
+                    
+                    if frontRC == 0 {
+                        frontDifference.isHidden = true
+                    } else {
+                        if String(frontRC).contains("-") {  frontDifference.text = "\(frontRC)"
+                        } else { frontDifference.text = "+\(frontRC)" }
+                    }
+                    
+                    if backRC == 0 {
+                        backDifference.isHidden = true
+                    } else {
+                        if String(backRC).contains("-") { backDifference.text = "\(backRC)"
+                        } else { backDifference.text = "+\(backRC)" }
+                    }
+                }
             }
-        }
-        Utility.hideProgressDialog(view: view)
-        let totalRC = total - totalDifferenceRC
-        let frontRC = front - frontDifferenceRC
-        let backRC = back - backDifferenceRC
-//        print("ROunds=====>>",total, front, back, "RC===>>>",totalDifferenceRC, frontDifferenceRC, backDifferenceRC, "total", totalRC, frontRC, backRC)
-        
-        if totalRC == 0 {
-            totalDifference.isHidden = true
-        } else {
-            if String(totalRC).contains("-") { totalDifference.text = "\(totalRC)"
-            } else { totalDifference.text = "+\(totalRC)" }
-        }
-        
-        if frontRC == 0 {
-            frontDifference.isHidden = true
-        } else {
-            if String(frontRC).contains("-") {  frontDifference.text = "\(frontRC)"
-            } else { frontDifference.text = "+\(frontRC)" }
-        }
-        
-        if backRC == 0 {
-            backDifference.isHidden = true
-        } else {
-            if String(backRC).contains("-") { backDifference.text = "\(backRC)"
-            } else { backDifference.text = "+\(backRC)" }
+            holesTableView.reloadData()
         }
     }
-    
-    @IBAction func shareScoreTap(_ sender: Any) {
-        
-        let text = """
-        Check out my scorecard
-        \(roundName)
-        \(roundDate)
-        
-        Total: \(totalScore.text ?? "-")
-        Front 9: \(frontScore.text ?? "-")
-        Back 9: \(backScore.text ?? "-")
-        1: \(scoreArray[0])
-        2: \(scoreArray[1])
-        3: \(scoreArray[2])
-        4: \(scoreArray[3])
-        5: \(scoreArray[4])
-        6: \(scoreArray[5])
-        7: \(scoreArray[6])
-        8: \(scoreArray[7])
-        9: \(scoreArray[8])
-        - - - - -
-        10: \(scoreArray[9])
-        11: \(scoreArray[10])
-        12: \(scoreArray[11])
-        13: \(scoreArray[12])
-        14: \(scoreArray[13])
-        15: \(scoreArray[14])
-        16: \(scoreArray[15])
-        17: \(scoreArray[16])
-        18: \(scoreArray[17])
-        
-        Focus on your game with the
-        EZG Golf Scorecard app
-        https://apps.apple.com/app/apple-store/id6449625414?pt=124483576&ct=share&mt=8
-        """
-        let activityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
-        if let popoverController = activityViewController.popoverPresentationController {
-            popoverController.barButtonItem = sender as? UIBarButtonItem
-        }
-        present(activityViewController, animated: true, completion: nil)
-    }
-    
 }
 
 extension ScorecardViewController: ScorecardViewControllerDelegate {
     
     func incrementScore(value: Int) {
-        //        var isChangeRC = false
-        //        if selectedCourseName != "Select a course" {
-        //            isChangeRC = true
-        //        }
-        //        if let current = Int(totalScore.text ?? "0"), let currentDifRC = Int(totalDifference.text ?? "0") {
-        //            let incrementedInt = current + 1
-        //            totalScore.text = "\(incrementedInt)"
-        //            if isChangeRC {
-        //                let incrementedRC = currentDifRC + 1
-        //                if String(incrementedRC).contains("-") {
-        //                    totalDifference.text = "\(incrementedRC)"
-        //                } else { totalDifference.text = "+\(incrementedRC)" }
-        //            }
-        //        }
-        //        if value < 9 {
-        //            if let current = Int(frontScore.text ?? "0"), let currentDifRC = Int(frontDifference.text ?? "0") {
-        //                let incrementedInt = current + 1
-        //                frontScore.text = "\(incrementedInt)"
-        //                if isChangeRC {
-        //                    let incrementedRC = currentDifRC + 1
-        //                    if String(incrementedRC).contains("-") {
-        //                        frontDifference.text = "\(incrementedRC)"
-        //                    } else { frontDifference.text = "+\(incrementedRC)" }
-        //                }
-        //            }
-        //        } else {
-        //            if let current = Int(backScore.text ?? "0"), let currentDifRC = Int(backDifference.text ?? "0") {
-        //                let incrementedInt = current + 1
-        //                backScore.text = "\(incrementedInt)"
-        //                if isChangeRC {
-        //                    let incrementedRC = currentDifRC + 1
-        //                    if String(incrementedRC).contains("-") {
-        //                        backDifference.text = "\(incrementedRC)"
-        //                    } else { backDifference.text = "+\(incrementedRC)" }
-        //                }
-        //            }
-        //        }
+        //
     }
     
     func decrementScore(value: Int) {
-        //        var isChangeRC = false
-        //        if selectedCourseName != "Select a course" {
-        //            isChangeRC = true
-        //        }
         //
-        //        if let current = Int(totalScore.text ?? "0"), let currentDifRC = Int(totalDifference.text ?? "0") {
-        //            let decrementedInt = current - 1
-        //            totalScore.text = "\(decrementedInt)"
-        //            if isChangeRC {
-        //                let decrementedRC = currentDifRC - 1
-        //                totalDifference.text = "\(decrementedRC)"
-        //            }
-        //        }
-        //        if value < 9 {
-        //            if let current = Int(frontScore.text ?? "0"), let currentDifRC = Int(frontDifference.text ?? "0") {
-        //                let decrementedInt = current - 1
-        //                frontScore.text = "\(decrementedInt)"
-        //                if isChangeRC {
-        //                    let decrementedRC = currentDifRC - 1
-        //                    frontDifference.text = "\(decrementedRC)"
-        //                }
-        //            }
-        //        } else {
-        //            if let current = Int(backScore.text ?? "0"), let currentDifRC = Int(backDifference.text ?? "0") {
-        //                let decrementedInt = current - 1
-        //                backScore.text = "\(decrementedInt)"
-        //                if isChangeRC {
-        //                    let decrementedRC = currentDifRC - 1
-        //                    backDifference.text = "\(decrementedRC)"
-        //                }
-        //            }
-        //        }
     }
     
     func reloadTableView() {

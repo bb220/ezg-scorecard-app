@@ -47,3 +47,10 @@ struct HoleData: Codable {
   }
 
 }
+
+struct data {
+    var number: Int?
+    var putt: Int?
+    var score: Int?
+}
+

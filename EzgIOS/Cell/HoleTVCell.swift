@@ -99,6 +99,7 @@ class HoleTVCell: UITableViewCell {
         }
     }
     
+    //MARK: button Actions
     @objc func scorePressed(_ sender: UIButton) {
         let title = sender.titleLabel?.text
         if title == "  " {
@@ -208,7 +209,7 @@ class HoleTVCell: UITableViewCell {
             puttLongPress = false
         }
     }
-    
+    //MARK: Set value on cell
     func setValueOnCell(index: IndexPath, modelData: [data], isEditable: Bool) {
         tmpData = modelData
         let index = index.row

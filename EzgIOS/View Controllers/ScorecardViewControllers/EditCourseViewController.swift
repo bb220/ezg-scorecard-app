@@ -388,12 +388,12 @@ extension EditCourseViewController: EditCourseViewControllerDelegate, ParValueCh
             DispatchQueue.main.async { [self] in
                 let data = ["number": number, "par": par]
                 updatedPars.append(data)
-                courseHolesTableView.reloadData()
+//                courseHolesTableView.reloadData()
             }
         } else {
             let data = ["number": number, "par": par]
             updatedPars.append(data)
-            courseHolesTableView.reloadData()
+//            courseHolesTableView.reloadData()
         }
     }
 }

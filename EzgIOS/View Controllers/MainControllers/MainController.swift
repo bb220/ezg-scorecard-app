@@ -91,6 +91,38 @@ class MainController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = textAttributes
     }
     
+    
+    //MARK: Button Actions
+    @IBAction func didTapAddRoundBtn(_ sender: Any) {
+        createRoundAPI()
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    @IBAction func didTapLogoutBtn(_ sender: Any) {
+        if WCSession.isSupported() {
+            clearUserData()
+        }
+    }
+    
+    private func clearUserData() {
+        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
+        Global.sharedInstance.user = nil
+        Utility.isAcCreated = false
+        UserDefaults.standard.set("", forKey: "userId")
+        UserDefaults.standard.set("", forKey: "token")
+        UserDefaults.standard.set("", forKey: "refreshToken")
+        UserDefaults.standard.set(0, forKey: "tokenExpireAt")
+        let data = ["userId": ""]
+        if session.isReachable {
+            session.sendMessage(data, replyHandler: nil, errorHandler: nil)
+        } else if WCSession.isSupported() {
+            session.transferUserInfo(data)
+        }
+        if removeSuccessful {
+            Utility.openLogin()
+        }
+    }
+    
     func accountCreatedAlert() {
         let alert = UIAlertController(title: "", message: "Account created.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Okay", style: UIAlertAction.Style.default) { UIAlertAction in
@@ -117,7 +149,7 @@ class MainController: UIViewController {
         roundListAPI()
         courseHoleListAPI()
     }
-    
+    //MARK: API Calling
     func roundListAPI() {
         Utility.isValidateToken { [self] isValid in
             if isValid {
@@ -345,36 +377,6 @@ class MainController: UIViewController {
             case .failure(let error):
                 print("API error: \(error)")
             }
-        }
-    }
-    
-    private func clearUserData() {
-        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
-        Global.sharedInstance.user = nil
-        Utility.isAcCreated = false
-        UserDefaults.standard.set("", forKey: "userId")
-        UserDefaults.standard.set("", forKey: "token")
-        UserDefaults.standard.set("", forKey: "refreshToken")
-        UserDefaults.standard.set(0, forKey: "tokenExpireAt")
-        let data = ["userId": ""]
-        if session.isReachable {
-            session.sendMessage(data, replyHandler: nil, errorHandler: nil)
-        } else if WCSession.isSupported() {
-            session.transferUserInfo(data)
-        }
-        if removeSuccessful {
-            Utility.openLogin()
-        }
-    }
-    
-    @IBAction func didTapAddRoundBtn(_ sender: Any) {
-        createRoundAPI()
-        self.tabBarController?.tabBar.isHidden = true
-    }
-    
-    @IBAction func didTapLogoutBtn(_ sender: Any) {
-        if WCSession.isSupported() {
-            clearUserData()
         }
     }
 }

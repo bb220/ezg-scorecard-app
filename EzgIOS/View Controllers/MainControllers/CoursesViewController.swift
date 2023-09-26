@@ -72,12 +72,77 @@ class CoursesViewController: UIViewController {
         }
     }
     
+    //MARK: Button Actions
+    @IBAction func didTapAddCourseBtn(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "EditCourseViewController") as? EditCourseViewController
+        vc?.totalCourses = totalCourses
+        vc?.isNewCourseCreate = true
+        vc?.isCreatRoundCall = isCreatRoundCall
+        vc?.roundId = roundId
+        vc?.roundName = roundName
+        vc?.roundDate = roundDate
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    @objc func didTapLogoutBtn() {
+        if WCSession.isSupported() {
+            clearUserData()
+        }
+    }
+    
+    private func clearUserData() {
+        
+        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
+        Global.sharedInstance.user = nil
+        Utility.isAcCreated = false
+        UserDefaults.standard.set("", forKey: "userId")
+        UserDefaults.standard.set("", forKey: "token")
+        UserDefaults.standard.set("", forKey: "refreshToken")
+        UserDefaults.standard.set(0, forKey: "tokenExpireAt")
+        let data = ["userId": ""]
+        
+        if session.isReachable {
+            session.sendMessage(data, replyHandler: nil, errorHandler: nil)
+        } else if WCSession.isSupported() {
+            session.transferUserInfo(data)
+        }
+        if removeSuccessful {
+            Utility.openLogin()
+        }
+    }
+    
+    func footerview() -> UIView {
+        activityIndicatorView.startAnimating()
+        //        coursesTableView.tableFooterView?.isHidden = false
+        let view = UIView(frame: CGRect(x: coursesTableView.frame.width/2-25, y: 0, width: 50, height: 50))
+        return view
+    }
+    
+    /// Handle the "Skip" button tap event
+    @objc func skipButtonTapped() {
+        print("Skip button tapped")
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ScorecardViewController") as? ScorecardViewController
+        vc?.roundId = roundId
+        vc?.roundName = roundName
+        vc?.roundDate = roundDate
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    func hidefooterview() -> UIView {
+        activityIndicatorView.stopAnimating()
+        coursesTableView.tableFooterView?.isHidden = true
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: coursesTableView.frame.width, height: 0))
+        return view
+    }
+    
     @objc func refreshTable(_ sender: Any) {
         currentPage = 1
         temp = true
         coursesListAPI()
     }
     
+    //MARK: API Calling
     func coursesListAPI() {
         Utility.isValidateToken { [self] isValid in
             if isValid {
@@ -204,70 +269,6 @@ class CoursesViewController: UIViewController {
             }
         }
     }
-    
-    @IBAction func didTapAddCourseBtn(_ sender: Any) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "EditCourseViewController") as? EditCourseViewController
-        vc?.totalCourses = totalCourses
-        vc?.isNewCourseCreate = true
-        vc?.isCreatRoundCall = isCreatRoundCall
-        vc?.roundId = roundId
-        vc?.roundName = roundName
-        vc?.roundDate = roundDate
-        self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.pushViewController(vc!, animated: true)
-    }
-    
-    @objc func didTapLogoutBtn() {
-        if WCSession.isSupported() {
-            clearUserData()
-        }
-    }
-    
-    private func clearUserData() {
-        
-        let removeSuccessful: Bool = KeychainWrapper.standard.removeObject(forKey: "accessToken")
-        Global.sharedInstance.user = nil
-        Utility.isAcCreated = false
-        UserDefaults.standard.set("", forKey: "userId")
-        UserDefaults.standard.set("", forKey: "token")
-        UserDefaults.standard.set("", forKey: "refreshToken")
-        UserDefaults.standard.set(0, forKey: "tokenExpireAt")
-        let data = ["userId": ""]
-        
-        if session.isReachable {
-            session.sendMessage(data, replyHandler: nil, errorHandler: nil)
-        } else if WCSession.isSupported() {
-            session.transferUserInfo(data)
-        }
-        if removeSuccessful {
-            Utility.openLogin()
-        }
-    }
-    
-    func footerview() -> UIView {
-        activityIndicatorView.startAnimating()
-        //        coursesTableView.tableFooterView?.isHidden = false
-        let view = UIView(frame: CGRect(x: coursesTableView.frame.width/2-25, y: 0, width: 50, height: 50))
-        return view
-    }
-    
-    /// Handle the "Skip" button tap event
-    @objc func skipButtonTapped() {
-        print("Skip button tapped")
-        let vc = storyboard?.instantiateViewController(withIdentifier: "ScorecardViewController") as? ScorecardViewController
-        vc?.roundId = roundId
-        vc?.roundName = roundName
-        vc?.roundDate = roundDate
-        self.navigationController?.pushViewController(vc!, animated: true)
-    }
-    
-    func hidefooterview() -> UIView {
-        activityIndicatorView.stopAnimating()
-        coursesTableView.tableFooterView?.isHidden = true
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: coursesTableView.frame.width, height: 0))
-        return view
-    }
-    
 }
 
 extension CoursesViewController: UITableViewDelegate, UITableViewDataSource {
