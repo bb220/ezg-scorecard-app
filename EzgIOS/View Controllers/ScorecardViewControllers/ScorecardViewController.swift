@@ -101,7 +101,7 @@ class ScorecardViewController: UIViewController {
         backDifference.isHidden = true
         title = roundName
         configureCustomNavBar(roundName: roundName, courseName: selectedCourseName)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "\u{276C} Rounds", style: .plain, target: self, action: #selector(self.backToInitial))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "backArrow"), style: .plain, target: self, action: #selector(self.backToInitial))
         NotificationCenter.default.addObserver(self, selector: #selector(reloadScorecardVC(_:)), name: NSNotification.Name("updateScorecardVC"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(popToMainVC(_:)), name: NSNotification.Name("popToMain"), object: nil)
         holesTableView.separatorColor = UIColor.clear
@@ -159,7 +159,7 @@ class ScorecardViewController: UIViewController {
     }
     
     @objc func saveButtonTapped(_ sender: UIBarButtonItem) {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Rounds", style: .plain, target: self, action: #selector(self.backToInitial))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "backArrow"), style: .plain, target: self, action: #selector(self.backToInitial))
         
         if isRoundNameEdit == true || isCreatRoundCall == true {
             updateRoundNameAPI()
@@ -178,7 +178,7 @@ class ScorecardViewController: UIViewController {
     @objc func cancelButtonTapped(_ sender: UIBarButtonItem) {
         updatedGolfScore.removeAll()
         editButtonTapped(sender)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Rounds", style: .plain, target: self, action: #selector(self.backToInitial))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "backArrow"), style: .plain, target: self, action: #selector(self.backToInitial))
         
         configureCustomNavBar(roundName: roundName, courseName: selectedCourseName)
         showRoundTotalLbl()
