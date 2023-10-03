@@ -15,7 +15,9 @@ class HoleTVCell: UITableViewCell {
     let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
     var tmpData: [data] = []
     var roundId: String = ""
-    
+    var courseHoleObj: CourseHoleData?
+    let innerBorderView = UIView()
+
     weak var delegate: ScorecardViewControllerDelegate?
     weak var scoreDelegate: ChangeScoreValueDelegate?
     
@@ -26,6 +28,7 @@ class HoleTVCell: UITableViewCell {
     @IBOutlet var scoreButton: UIButton!
     @IBOutlet var puttButton: UIButton!
     @IBOutlet var courseParLbl: UILabel!
+    @IBOutlet weak var visualView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -209,8 +212,85 @@ class HoleTVCell: UITableViewCell {
             puttLongPress = false
         }
     }
+    
+    //MARK: Set Visual View
+    func visualViewCalculateFromDf(_ isEditable: Bool, _ courseDataCount: Int, _ modelData: [data], _ index: Int) {
+        
+        var dfRC = 0
+        visualView.layer.borderWidth = 0
+        visualView.layer.borderColor = UIColor.clear.cgColor
+        visualView.layer.cornerRadius = 0
+        innerBorderView.removeFromSuperview()
+        visualView.isHidden = true
+        innerBorderView.isHidden = true
+
+        if isEditable == true && courseDataCount > 0 {
+            if modelData.count > index {
+            if courseHoleObj != nil  {
+                    if let roundScore = modelData[index].score {
+                        let coursePar = courseHoleObj?.par
+                        dfRC = roundScore - coursePar!
+//                        print("hole no:" , index + 1, "DfRC = ", dfRC )
+                        if dfRC >= 1 {
+                            switch dfRC {
+                            case 1:
+                                squareVisualView(borderWidth: 1, isInnerViewAdd: false)
+                            case 2:
+                                squareVisualView(borderWidth: 1, isInnerViewAdd: true)
+                            case 3...Int.max:
+                                squareVisualView(borderWidth: 3, isInnerViewAdd: false)
+                            default:
+                                visualView.isHidden = true
+                            }
+                        } else if dfRC <= -1 {
+                            switch dfRC {
+                            case -1:
+                                circleVisualView(borderWidth: 1, isInnerViewAdd: false)
+                            case -2:
+                                circleVisualView(borderWidth: 1, isInnerViewAdd: true)
+                            case Int.min...(-3):
+                                circleVisualView(borderWidth: 3, isInnerViewAdd: false)
+                            default:
+                                visualView.isHidden = true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func circleVisualView(borderWidth: Int, isInnerViewAdd: Bool) {
+        visualView.isHidden = false
+        visualView.layer.borderWidth = CGFloat(borderWidth)
+        visualView.cornerRadius = visualView.frame.width / 2
+        visualView.layer.borderColor = UIColor.black.cgColor
+        if isInnerViewAdd {
+            innerBorderView.isHidden = false
+            innerBorderView.frame = CGRect(x: 5, y: 5, width: visualView.frame.width - 10, height: visualView.frame.height - 10)
+            innerBorderView.layer.borderWidth = 1.0
+            innerBorderView.layer.borderColor = UIColor.black.cgColor
+            innerBorderView.cornerRadius = innerBorderView.frame.width / 2
+            visualView.addSubview(innerBorderView)
+        }
+    }
+    
+    func squareVisualView(borderWidth: Int, isInnerViewAdd: Bool) {
+        visualView.isHidden = false
+        visualView.layer.borderWidth = CGFloat(borderWidth)
+        visualView.layer.borderColor = UIColor.black.cgColor
+        if isInnerViewAdd {
+            innerBorderView.isHidden = false
+            innerBorderView.frame = CGRect(x: 5, y: 5, width: visualView.frame.width - 10, height: visualView.frame.height - 10)
+            innerBorderView.layer.borderWidth = 1.0
+            innerBorderView.layer.borderColor = UIColor.black.cgColor
+            visualView.addSubview(innerBorderView)
+        }
+    }
+    
+    
     //MARK: Set value on cell
-    func setValueOnCell(index: IndexPath, modelData: [data], isEditable: Bool) {
+    func setValueOnCell(index: IndexPath, modelData: [data], isEditable: Bool, courseDataCount: Int) {
         tmpData = modelData
         let index = index.row
         holeName.text = "\(index + 1)"
@@ -224,6 +304,8 @@ class HoleTVCell: UITableViewCell {
         scoreLongPressGesture.minimumPressDuration = 0.5
         scoreButton.addGestureRecognizer(scoreLongPressGesture)
         
+        visualViewCalculateFromDf(isEditable, courseDataCount, modelData, index)
+
         let puttLongPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(puttLongPressed(_:)))
         puttLongPressGesture.minimumPressDuration = 0.5
         puttButton.addGestureRecognizer(puttLongPressGesture)

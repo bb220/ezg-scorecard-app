@@ -265,34 +265,40 @@ class ScorecardViewController: UIViewController {
     }
     
     @IBAction func shareScoreTap(_ sender: Any) {
-        
+        var dfRCArray: [String] = []
+        shareScoreCalculation(&dfRCArray)
+        var shareCourseName = ""
+        if selectedCourseName != "Select a course" {
+            shareCourseName = selectedCourseName
+        }
         let text = """
         Check out my scorecard
-        \(roundName)
         \(roundDate)
+        \(roundName)
+        \(shareCourseName)
         
-        Total: \(totalScore.text ?? "-")
-        Front 9: \(frontScore.text ?? "-")
-        Back 9: \(backScore.text ?? "-")
-        1: \(scoreArray[0])
-        2: \(scoreArray[1])
-        3: \(scoreArray[2])
-        4: \(scoreArray[3])
-        5: \(scoreArray[4])
-        6: \(scoreArray[5])
-        7: \(scoreArray[6])
-        8: \(scoreArray[7])
-        9: \(scoreArray[8])
+        Total: \(totalScore.text ?? "-") \(totalDifference.text ?? "-")
+        Front 9: \(frontScore.text ?? "-") \(frontDifference.text ?? "-")
+        Back 9: \(backScore.text ?? "-") \(backDifference.text ?? "-")
+        1: \(scoreArray[0]) \(dfRCArray[0])
+        2: \(scoreArray[1]) \(dfRCArray[1])
+        3: \(scoreArray[2]) \(dfRCArray[2])
+        4: \(scoreArray[3]) \(dfRCArray[3])
+        5: \(scoreArray[4]) \(dfRCArray[4])
+        6: \(scoreArray[5]) \(dfRCArray[5])
+        7: \(scoreArray[6]) \(dfRCArray[6])
+        8: \(scoreArray[7]) \(dfRCArray[7])
+        9: \(scoreArray[8]) \(dfRCArray[8])
         - - - - -
-        10: \(scoreArray[9])
-        11: \(scoreArray[10])
-        12: \(scoreArray[11])
-        13: \(scoreArray[12])
-        14: \(scoreArray[13])
-        15: \(scoreArray[14])
-        16: \(scoreArray[15])
-        17: \(scoreArray[16])
-        18: \(scoreArray[17])
+        10: \(scoreArray[9]) \(dfRCArray[9])
+        11: \(scoreArray[10]) \(dfRCArray[10])
+        12: \(scoreArray[11]) \(dfRCArray[11])
+        13: \(scoreArray[12]) \(dfRCArray[12])
+        14: \(scoreArray[13]) \(dfRCArray[13])
+        15: \(scoreArray[14]) \(dfRCArray[14])
+        16: \(scoreArray[15]) \(dfRCArray[15])
+        17: \(scoreArray[16]) \(dfRCArray[16])
+        18: \(scoreArray[17]) \(dfRCArray[17])
         
         Focus on your game with the
         EZG Golf Scorecard app
@@ -304,6 +310,25 @@ class ScorecardViewController: UIViewController {
         }
         present(activityViewController, animated: true, completion: nil)
     }
+    
+    func shareScoreCalculation(_ dfRCArray: inout [String]) {
+        for i in 0...17 {
+            if selectedCourseName != "Select a course" && holeModelData.count != 0 {
+                if i <= holeModelData.count - 1 {
+                    if i <= courseHoleModelData.count - 1 {
+                        let roundScore = holeModelData[i].score ?? 0
+                        let par = courseHoleModelData[i].par ?? 0
+                        let df = roundScore - par
+                        
+                        if String(df).contains("-") { dfRCArray.append("\(df)") }
+                        else if df == 0 { dfRCArray.append("") }
+                        else { dfRCArray.append("+\(df)") }
+                    } else { dfRCArray.append("") }
+                } else { dfRCArray.append("") }
+            } else { dfRCArray.append("") }
+        }
+    }
+    
     
     //MARK: API Calling
     func holeListAPI(call: Bool) {
@@ -517,6 +542,7 @@ class ScorecardViewController: UIViewController {
         }
     }
     
+    // MARK: Calculation func
     func showRoundTotalLbl() {
         totalScore.text = "\(total)"
         frontScore.text = "\(front)"
@@ -571,21 +597,21 @@ class ScorecardViewController: UIViewController {
                     showRoundTotalLbl()
                     
                     if totalRC == 0 {
-                        totalDifference.isHidden = true
+                        totalDifference.text = "E"
                     } else {
                         if String(totalRC).contains("-") { totalDifference.text = "\(totalRC)"
                         } else { totalDifference.text = "+\(totalRC)" }
                     }
                     
                     if frontRC == 0 {
-                        frontDifference.isHidden = true
+                        frontDifference.text = "E"
                     } else {
                         if String(frontRC).contains("-") {  frontDifference.text = "\(frontRC)"
                         } else { frontDifference.text = "+\(frontRC)" }
                     }
                     
                     if backRC == 0 {
-                        backDifference.isHidden = true
+                        backDifference.text = "E"
                     } else {
                         if String(backRC).contains("-") { backDifference.text = "\(backRC)"
                         } else { backDifference.text = "+\(backRC)" }
@@ -631,9 +657,13 @@ extension ScorecardViewController: UITableViewDelegate, UITableViewDataSource, C
         
         if indexPath.row < courseHoleModelData.count {
             cell!.courseParLbl.text = "\(courseHoleModelData[indexPath.row].par ?? 0)"
-        } else { cell!.courseParLbl.text = "" }
-        
-        cell?.setValueOnCell(index: indexPath, modelData: tmpData, isEditable: editToggle)
+            cell!.courseHoleObj = courseHoleModelData[indexPath.row]
+        } else {
+            cell!.courseHoleObj = nil
+            cell!.courseParLbl.text = ""
+            cell!.visualView.isHidden = true
+        }
+        cell?.setValueOnCell(index: indexPath, modelData: tmpData, isEditable: editToggle, courseDataCount: courseHoleModelData.count)
         return cell!
     }
     
