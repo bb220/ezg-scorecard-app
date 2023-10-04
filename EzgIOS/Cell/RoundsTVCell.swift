@@ -14,8 +14,8 @@ class RoundsTVCell: UITableViewCell {
     @IBOutlet weak var roundName: UILabel!
     @IBOutlet weak var roundDate: UILabel!
     @IBOutlet weak var roundScore: UILabel!
-    @IBOutlet weak var courseName: UILabel!
-    @IBOutlet weak var courseScore: UILabel!
+    @IBOutlet weak var courseNameLbl: UILabel!
+    @IBOutlet weak var roundCourseDfLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,8 +29,8 @@ class RoundsTVCell: UITableViewCell {
         // For Total Score calculation
         var total = 0
         var courseTotal = 0
-        courseScore.text = "-"
-        courseName.text = ""
+        roundCourseDfLbl.text = "-"
+        courseNameLbl.text = ""
         
         //MARK: Round Total Score
         var roundHolesData = holeModelData?.filter {
@@ -47,7 +47,7 @@ class RoundsTVCell: UITableViewCell {
         
         //MARK: Course and Round difference & Course name
         if let courseObj = modelData![index].course {
-            courseName.text = courseObj.name
+            courseNameLbl.text = courseObj.name
             var courseHoleData = courseHolesData?.filter {
                 ($0.course == courseObj.Id)
             }
@@ -61,11 +61,13 @@ class RoundsTVCell: UITableViewCell {
                     }
                 }
                 let differenceRC = total - courseTotal
-                if String(differenceRC).contains("-") {
-                    courseScore.text = "\(differenceRC)"
-                } else { courseScore.text = "+\(differenceRC)" }
-            } else {
-                courseScore.text = "-"
+                
+                if differenceRC == 0 {
+                    roundCourseDfLbl.text = "E"
+                } else {
+                    if String(differenceRC).contains("-") { roundCourseDfLbl .text = "\(differenceRC)"
+                    } else { roundCourseDfLbl.text = "+\(differenceRC)" }
+                }
             }
         }
         
